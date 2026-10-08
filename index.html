@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>直击先进案例库</title>
+<style>
+:root{
+  --primary:hsl(221,83%,58%);
+  --accent:hsl(245,62%,62%);
+  --background:hsl(224,44%,5%);
+  --card:hsl(223,36%,11%);
+  --foreground:hsl(213,35%,96%);
+  --muted-foreground:hsl(216,20%,73%);
+  --border:hsl(221,24%,22%);
+  --success:hsl(148,58%,46%);
+  --warning:hsl(34,90%,56%);
+  --secondary:hsl(222,28%,15%);
+  --muted:hsl(223,26%,15%);
+  --elevate-1:rgba(255,255,255,0.04);
+  --elevate-2:rgba(255,255,255,0.09);
+  --button-outline:rgba(255,255,255,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Tahoma,"PingFang SC","Microsoft Yahei",Arial,"Hiragino Sans GB",sans-serif;
+  background:var(--background);
+  color:var(--foreground);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+button{font-family:inherit;cursor:pointer;}
+
+/* ===== 背景光晕 ===== */
+.app-bg-glow{
+  position:fixed;top:0;left:0;right:0;height:600px;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, hsla(221,83%,58%,0.12), transparent),
+    radial-gradient(ellipse 60% 40% at 30% 0%, hsla(245,62%,62%,0.10), transparent),
+    radial-gradient(ellipse 50% 30% at 70% -10%, hsla(221,83%,58%,0.08), transparent);
+}
+
+/* ===== 导航栏 ===== */
+.navbar{
+  position:sticky;top:0;z-index:50;width:100%;
+  background:rgba(7,10,19,0.8);backdrop-filter:blur(12px);
+  border-bottom:1px solid hsla(221,24%,22%,0.5);
+}
+.navbar-inner{
+  max-width:1280px;margin:0 auto;padding:0 24px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.logo{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:600;color:var(--foreground);}
+.logo-mark{
+  width:32px;height:32px;border-radius:8px;flex:none;
+  background:linear-gradient(135deg,hsl(221,83%,58%),hsl(245,62%,62%));
+  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:15px;
+}
+.nav-links{display:flex;align-items:center;gap:4px;}
+.nav-link{
+  padding:8px 14px;border-radius:6px;font-size:14px;color:var(--muted-foreground);
+  transition:all .15s;white-space:nowrap;
+}
+.nav-link:hover{color:var(--foreground);background:var(--elevate-1);}
+.nav-link.active{color:#fff;background:hsla(221,83%,58%,0.15);}
+.nav-toggle{display:none;width:40px;height:40px;border:none;background:transparent;color:var(--foreground);border-radius:8px;}
+.nav-toggle:hover{background:var(--elevate-1);}
+.nav-mobile{
+  display:none;flex-direction:column;padding:8px 16px 16px;gap:2px;
+  background:rgba(7,10,19,0.95);border-bottom:1px solid hsla(221,24%,22%,0.5);
+}
+.nav-mobile.open{display:flex;}
+.nav-mobile .nav-link{padding:12px 14px;font-size:15px;}
+
+/* ===== 容器 ===== */
+.container{max-width:1280px;margin:0 auto;padding:0 24px;position:relative;z-index:1;}
+
+/* ===== 按钮 ===== */
+.button{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border-radius:6px;font-size:14px;font-weight:500;transition:all .15s;white-space:nowrap;
+  border:1px solid transparent;min-height:36px;padding:0 16px;line-height:1;
+}
+.button-default{background:var(--primary);color:#fff;border-color:hsl(221,70%,48%);box-shadow:0 0 20px -5px hsla(221,83%,58%,0.3);}
+.button-default:hover{background:hsl(221,83%,62%);}
+.button-outline{background:transparent;color:var(--foreground);border-color:var(--button-outline);}
+.button-outline:hover{background:var(--elevate-1);border-color:rgba(255,255,255,0.2);}
+.button-secondary{background:var(--secondary);color:var(--foreground);border-color:var(--border);}
+.button-secondary:hover{background:hsl(222,28%,19%);}
+.button-ghost{background:transparent;color:var(--foreground);}
+.button-ghost:hover{background:var(--elevate-1);}
+.button-lg{min-height:40px;padding:0 32px;}
+.button-sm{min-height:32px;padding:0 12px;font-size:12px;}
+.button[disabled]{opacity:.5;cursor:not-allowed;}
+
+/* ===== 卡片 ===== */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 1px 2px 0 rgb(0 0 0/.25);}
+.biz-card{
+  background:var(--card);border:1px solid hsla(221,24%,22%,0.6);border-radius:8px;
+  transition:all .2s ease;overflow:hidden;display:flex;flex-direction:column;
+}
+.biz-card:hover{
+  border-color:hsla(221,83%,58%,0.4);
+  box-shadow:inset 0 0 0 9999px var(--elevate-1);
+}
+.featured-card{box-shadow:0 0 20px -5px hsla(221,83%,58%,0.3);border-color:hsla(221,83%,58%,0.35);}
+
+/* ===== Hero ===== */
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;padding:72px 0 48px;}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;font-size:14px;color:var(--muted-foreground);margin-bottom:20px;
+}
+.hero-eyebrow::before{content:"";width:20px;height:2px;background:var(--primary);border-radius:1px;}
+.hero-title{
+  font-size:48px;font-weight:700;line-height:1.15;letter-spacing:-0.02em;
+  background:linear-gradient(135deg,#ffffff 0%,#93c5fd 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;
+}
+.hero-subtitle{font-size:18px;color:var(--muted-foreground);line-height:1.7;margin-top:16px;max-width:500px;}
+.hero-actions{display:flex;align-items:center;gap:16px;margin-top:28px;flex-wrap:wrap;}
+.hero-note{font-size:12px;color:var(--muted-foreground);margin-top:10px;}
+
+/* AI 轨道 */
+.orbit-wrap{position:relative;width:100%;aspect-ratio:1/1;max-width:420px;margin:0 auto;}
+.orbit-ring{
+  position:absolute;inset:0;border-radius:50%;
+  border:1.5px dashed hsla(221,83%,58%,0.35);
+}
+.orbit-ring-inner{inset:18%;border-color:hsla(245,62%,62%,0.3);}
+.orbit-flow{
+  position:absolute;inset:-4px;border-radius:50%;
+  background:conic-gradient(from 0deg, transparent 0deg, hsla(221,83%,58%,0.6) 60deg, hsla(245,62%,62%,0.4) 120deg, transparent 180deg);
+  -webkit-mask:radial-gradient(circle, transparent calc(50% - 1.5px), black calc(50% - 1.5px));
+  mask:radial-gradient(circle, transparent calc(50% - 1.5px), black calc(50% - 1.5px));
+  animation:orbit-spin 16s linear infinite;
+}
+.orbit-flow-inner{inset:18%;animation:orbit-spin 11s linear infinite reverse;}
+@keyframes orbit-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.orbit-core{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:76px;height:76px;border-radius:14px;
+  background:linear-gradient(135deg,#f5e680,#80d8a0);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:20px;color:#16312a;letter-spacing:.05em;
+  animation:ai-breathe 3.2s ease-in-out infinite;
+}
+@keyframes ai-breathe{
+  0%,100%{box-shadow:0 0 20px 2px hsla(221,83%,58%,0.5),0 0 40px 4px hsla(245,62%,62%,0.3);}
+  50%{box-shadow:0 0 30px 6px hsla(221,83%,58%,0.7),0 0 60px 10px hsla(245,62%,62%,0.5);}
+}
+.orbit-card{
+  position:absolute;padding:8px 14px;border-radius:10px;background:var(--card);
+  border:1px solid var(--border);font-size:13px;font-weight:500;white-space:nowrap;
+  box-shadow:0 2px 8px rgb(0 0 0/.3);transition:all .2s;
+}
+.orbit-card:hover{transform:scale(1.1);box-shadow:0 0 18px -4px hsla(221,83%,58%,0.55);}
+.orbit-card b{color:#93c5fd;font-weight:700;}
+.oc-1{top:6%;left:50%;transform:translateX(-50%);}
+.oc-2{right:0;top:50%;transform:translateY(-50%);}
+.oc-3{bottom:6%;left:50%;transform:translateX(-50%);}
+.oc-4{left:0;top:26%;}
+.oc-5{left:2%;bottom:20%;}
+.oc-1:hover,.oc-3:hover{transform:translateX(-50%) scale(1.1);}
+
+/* ===== StatsBanner ===== */
+.stats-banner{
+  border:1px solid var(--border);border-radius:12px;background:var(--card);
+  padding:20px 24px;margin:16px 0 48px;display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.stat-item{display:inline-flex;align-items:baseline;gap:8px;}
+.stat-num{font-size:24px;font-weight:700;color:var(--foreground);}
+.stat-label{font-size:14px;color:var(--muted-foreground);}
+.stat-sep{color:var(--border);font-size:18px;}
+
+/* ===== Section ===== */
+.section{padding:24px 0 56px;}
+.section-head{margin-bottom:24px;}
+.section-eyebrow{font-size:14px;color:var(--muted-foreground);margin-bottom:8px;}
+.section-title{font-size:30px;font-weight:600;letter-spacing:-0.01em;}
+.section-sub{font-size:15px;color:var(--muted-foreground);margin-top:8px;}
+
+/* ===== 胶囊筛选 ===== */
+.pill-row{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 12px;scrollbar-width:none;}
+.pill-row::-webkit-scrollbar{display:none;}
+.pill{
+  flex:none;padding:7px 16px;border-radius:999px;font-size:13px;font-weight:500;
+  background:var(--card);color:var(--foreground);border:1px solid transparent;transition:all .15s;
+}
+.pill:hover{border-color:hsla(221,83%,58%,0.4);}
+.pill.active{background:var(--primary);color:#fff;border-color:var(--primary);}
+
+/* ===== 网格 ===== */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+
+/* ===== LiveCard ===== */
+.live-card{cursor:pointer;}
+.live-card-cover{position:relative;aspect-ratio:16/9;background:var(--muted);overflow:hidden;}
+.live-card-cover img{width:100%;height:100%;object-fit:cover;}
+.cover-empty{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--muted-foreground);font-size:13px;}
+.status-badge{
+  position:absolute;top:10px;left:10px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:999px;
+}
+.status-done{background:hsla(148,58%,46%,0.15);color:hsl(148,58%,65%);border:1px solid hsla(148,58%,46%,0.4);}
+.status-upcoming{background:hsla(34,90%,56%,0.15);color:hsl(34,90%,70%);border:1px solid hsla(34,90%,56%,0.4);}
+.live-card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.tag-row{display:flex;gap:6px;flex-wrap:wrap;}
+.tag{
+  font-size:11px;padding:2px 10px;border-radius:999px;border:1px solid hsla(221,83%,58%,0.4);
+  color:hsl(221,83%,75%);background:hsla(221,83%,58%,0.08);
+}
+.tag-role{
+  border-color:hsla(245,62%,62%,0.4);color:hsl(245,62%,78%);background:hsla(245,62%,62%,0.1);
+}
+.card-title{font-size:18px;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.card-meta{font-size:13px;color:var(--muted-foreground);}
+.card-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:4px;}
+.useful-btn{
+  display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted-foreground);
+  background:transparent;border:none;padding:4px 8px;border-radius:6px;transition:all .15s;
+}
+.useful-btn:hover{background:var(--elevate-1);color:var(--foreground);}
+.useful-btn.liked{color:hsl(221,83%,70%);}
+
+/* ===== GuestCard ===== */
+.guest-card{padding:20px;}
+.guest-head{display:flex;align-items:center;gap:14px;margin-bottom:12px;}
+.avatar{
+  width:52px;height:52px;border-radius:50%;flex:none;object-fit:cover;
+  background:linear-gradient(135deg,hsl(221,83%,58%),hsl(245,62%,62%));
+  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:18px;
+  overflow:hidden;
+}
+.avatar img{width:100%;height:100%;object-fit:cover;}
+.guest-name{font-size:16px;font-weight:600;line-height:1.35;}
+.guest-company{font-size:13px;color:var(--muted-foreground);margin-top:2px;}
+.guest-topic{font-size:14px;color:var(--muted-foreground);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px;}
+.guest-foot{display:flex;align-items:center;justify-content:space-between;}
+
+/* 岗位标签色 */
+.role-tag{font-size:11px;padding:2px 10px;border-radius:999px;font-weight:500;}
+.role-0{border:1px solid rgba(96,165,250,.3);background:rgba(96,165,250,.1);color:rgb(147,197,253);}
+.role-1{border:1px solid rgba(34,211,238,.3);background:rgba(34,211,238,.1);color:rgb(103,232,249);}
+.role-2{border:1px solid rgba(52,211,153,.3);background:rgba(52,211,153,.1);color:rgb(110,231,183);}
+.role-3{border:1px solid rgba(244,114,182,.3);background:rgba(244,114,182,.1);color:rgb(249,168,212);}
+.role-4{border:1px solid rgba(167,139,250,.3);background:rgba(167,139,250,.1);color:rgb(196,181,253);}
+.role-5{border:1px solid rgba(251,191,36,.3);background:rgba(251,191,36,.1);color:rgb(252,211,77);}
+.role-6{border:1px solid rgba(251,113,133,.3);background:rgba(251,113,133,.1);color:rgb(253,164,175);}
+
+/* ===== 素材页 ===== */
+.filter-bar{display:flex;flex-direction:column;gap:12px;margin-bottom:20px;}
+.search-box{
+  display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);
+  border-radius:8px;padding:0 14px;height:42px;transition:border-color .15s;
+}
+.search-box:focus-within{border-color:hsla(221,83%,58%,0.5);}
+.search-box svg{flex:none;color:var(--muted-foreground);}
+.search-box input{
+  flex:1;background:transparent;border:none;outline:none;color:var(--foreground);font-size:14px;font-family:inherit;
+}
+.search-box input::placeholder{color:var(--muted-foreground);}
+.select-row{display:flex;gap:8px;flex-wrap:wrap;}
+.select{
+  background:var(--card);border:1px solid var(--border);color:var(--foreground);
+  border-radius:8px;font-size:13px;padding:8px 12px;font-family:inherit;cursor:pointer;outline:none;
+}
+.select:hover{border-color:hsla(221,83%,58%,0.4);}
+.result-count{font-size:14px;color:var(--muted-foreground);margin-bottom:14px;}
+.material-list{display:flex;flex-direction:column;gap:16px;}
+.material-card{
+  display:flex;align-items:center;gap:16px;padding:14px;cursor:pointer;
+  background:var(--card);border:1px solid hsla(221,24%,22%,0.6);border-radius:8px;transition:all .2s;
+}
+.material-card:hover{border-color:hsla(221,83%,58%,0.4);box-shadow:inset 0 0 0 9999px var(--elevate-1);}
+.material-thumb{width:120px;height:68px;flex:none;border-radius:6px;overflow:hidden;background:var(--muted);position:relative;}
+.material-thumb img{width:100%;height:100%;object-fit:cover;}
+.material-thumb .cover-empty{font-size:11px;}
+.material-info{flex:1;min-width:0;}
+.material-title{font-size:15px;font-weight:600;line-height:1.4;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;}
+.material-meta{font-size:12px;color:var(--muted-foreground);margin-top:4px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.issue-badge{font-size:11px;padding:2px 8px;border-radius:4px;background:hsla(221,83%,58%,0.15);color:hsl(221,83%,75%);}
+.material-right{display:flex;align-items:center;gap:10px;flex:none;}
+.material-arrow{color:var(--muted-foreground);}
+
+/* ===== 播客 ===== */
+.podcast-list{display:flex;flex-direction:column;gap:16px;}
+.podcast-card{padding:20px;}
+.podcast-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;}
+.podcast-title{font-size:18px;font-weight:600;}
+.podcast-audio{margin-bottom:10px;}
+.podcast-audio:last-child{margin-bottom:0;}
+.audio-name{font-size:12px;color:var(--muted-foreground);margin-bottom:6px;}
+.podcast-audio audio{width:100%;height:36px;}
+
+/* ===== 详情页 ===== */
+.detail-wrap{max-width:800px;margin:0 auto;padding:24px 0 64px;}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:transparent;border:none;color:var(--muted-foreground);font-size:14px;padding:8px 12px;border-radius:6px;margin-bottom:20px;}
+.back-btn:hover{background:var(--elevate-1);color:var(--foreground);}
+.detail-main{display:grid;grid-template-columns:2fr 3fr;gap:24px;}
+.detail-cover{aspect-ratio:3/4;border-radius:12px;overflow:hidden;background:var(--muted);position:relative;}
+.detail-cover img{width:100%;height:100%;object-fit:cover;}
+.detail-info{display:flex;flex-direction:column;gap:10px;}
+.detail-issue{display:inline-flex;align-self:flex-start;font-size:12px;font-weight:600;padding:3px 12px;border-radius:999px;background:hsla(221,83%,58%,0.15);color:hsl(221,83%,75%);}
+.detail-title{font-size:24px;font-weight:600;line-height:1.35;}
+.detail-row{display:flex;gap:8px;font-size:14px;}
+.detail-row .k{color:var(--muted-foreground);flex:none;width:56px;}
+.detail-row .v{color:var(--foreground);}
+.detail-highlights{margin-top:24px;}
+.detail-highlights h3{font-size:16px;font-weight:600;margin-bottom:10px;}
+.detail-highlights p{font-size:14px;color:var(--muted-foreground);white-space:pre-wrap;line-height:1.8;}
+.detail-actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;}
+
+/* ===== 报名页 / 说明书 ===== */
+.plain-wrap{max-width:800px;margin:0 auto;padding:48px 0 80px;text-align:center;}
+.plain-title{font-size:30px;font-weight:600;margin-bottom:12px;}
+.plain-sub{font-size:15px;color:var(--muted-foreground);margin-bottom:28px;}
+
+/* ===== Tab ===== */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--border);margin-bottom:20px;}
+.tab{
+  padding:10px 18px;font-size:14px;font-weight:500;background:transparent;border:none;color:var(--muted-foreground);
+  border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;
+}
+.tab:hover{color:var(--foreground);}
+.tab.active{color:var(--foreground);border-bottom-color:var(--primary);}
+
+/* ===== 弹窗 ===== */
+.dialog-mask{
+  position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:100;display:none;
+  align-items:center;justify-content:center;padding:24px;
+}
+.dialog-mask.open{display:flex;}
+.dialog{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;max-width:360px;width:100%;
+  position:relative;text-align:center;
+}
+.dialog-close{position:absolute;top:12px;right:12px;background:transparent;border:none;color:var(--muted-foreground);padding:6px;border-radius:6px;}
+.dialog-close:hover{background:var(--elevate-1);color:var(--foreground);}
+.dialog h3{font-size:17px;font-weight:600;margin-bottom:18px;}
+.dialog-qr{width:200px;height:200px;margin:0 auto;border-radius:10px;overflow:hidden;background:var(--muted);display:flex;align-items:center;justify-content:center;}
+.dialog-qr img{width:100%;height:100%;object-fit:contain;}
+.dialog-note{font-size:12px;color:var(--muted-foreground);margin-top:14px;}
+
+/* ===== 空态/加载 ===== */
+.state-empty{padding:48px 0;text-align:center;color:var(--muted-foreground);font-size:14px;}
+.skeleton{background:var(--muted);border-radius:8px;animation:pulse 1.6s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+.skel-card{aspect-ratio:16/9;border-radius:8px;}
+
+/* ===== Footer ===== */
+.footer{border-top:1px solid var(--border);padding:32px 0;margin-top:48px;}
+.footer-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--muted-foreground);}
+.footer-note{max-width:1280px;margin:12px auto 0;padding:8px 24px 0;text-align:center;font-size:12px;color:var(--warning);opacity:.9;border-top:1px dashed var(--border);line-height:1.6;}
+
+/* ===== 关于区块 ===== */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.value-col{display:flex;flex-direction:column;gap:14px;}
+.value-item{display:flex;gap:10px;}
+.value-item .dot{width:6px;height:6px;border-radius:50%;background:var(--primary);margin-top:8px;flex:none;}
+.value-item h4{font-size:14px;font-weight:600;margin-bottom:2px;}
+.value-item p{font-size:13px;color:var(--muted-foreground);line-height:1.6;}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px;}
+.step-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;}
+.step-num{font-family:"Source Code Pro",monospace;font-size:12px;color:var(--muted-foreground);letter-spacing:.12em;margin-bottom:10px;}
+.step-card h4{font-size:16px;font-weight:600;margin-bottom:8px;}
+.step-card p{font-size:13px;color:var(--muted-foreground);line-height:1.7;}
+.about-brief{font-size:14px;color:var(--muted-foreground);line-height:1.9;}
+
+/* ===== 响应式 ===== */
+@media (max-width:768px){
+  .nav-links{display:none;}
+  .nav-toggle{display:inline-flex;align-items:center;justify-content:center;}
+  .hero{grid-template-columns:1fr;padding:48px 0 32px;gap:40px;}
+  .hero-title{font-size:32px;}
+  .hero-subtitle{font-size:16px;}
+  .orbit-wrap{max-width:320px;}
+  .grid-3{grid-template-columns:1fr;}
+  .grid-2{grid-template-columns:1fr;}
+  .about-grid{grid-template-columns:1fr;}
+  .steps-grid{grid-template-columns:1fr;}
+  .detail-main{grid-template-columns:1fr;}
+  .section-title{font-size:24px;}
+  .material-card{flex-wrap:wrap;}
+  .material-thumb{width:100%;height:140px;}
+}
+@media (prefers-reduced-motion:reduce){
+  .orbit-flow,.orbit-flow-inner,.orbit-core{animation:none;}
+  html{scroll-behavior:auto;}
+}
+</style>
+</head>
+<body>
+<div class="app-bg-glow"></div>
+
+<!-- ===== 导航 ===== -->
+<header class="navbar">
+  <div class="navbar-inner">
+    <a href="#/home" class="logo">
+      <span class="logo-mark">直</span>
+      <span>直击先进</span>
+    </a>
+    <nav class="nav-links" id="navLinks"></nav>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <nav class="nav-mobile" id="navMobile"></nav>
+</header>
+
+<main id="app" class="container"></main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>直击先进案例库 · 本地离线版</span>
+    <span>沉淀可复用的 AI 与数字化实践</span>
+  </div>
+  <div class="footer-note">本数据为示例，实际数据已做脱敏抹除，部分内容已脱敏</div>
+</footer>
+
+<!-- ===== 社群弹窗 ===== -->
+<div class="dialog-mask" id="dialogMask">
+  <div class="dialog">
+    <button class="dialog-close" id="dialogClose" aria-label="关闭">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <h3>加入直击先进社群</h3>
+    <div class="dialog-qr" id="dialogQr">
+      <img id="dialogQrImg" alt="社群二维码" onerror="this.parentNode.innerHTML='<span style=&quot;font-size:13px;color:var(--muted-foreground);&quot;>运营尚未配置社群二维码</span>'">
+    </div>
+    <div class="dialog-note" id="dialogNote"></div>
+  </div>
+</div>
+
+<!-- ===== 数据 ===== -->
+<script id="app-data" type="application/json">
+{"lives":[{"id":"recvpeCjv938Dr","topic":"AI 如何成为管理者的第二双眼睛：安吉尔的“战略雷达”实录","companies":["安吉尔"],"industries":[],"roleTypes":[],"date":1787155200000,"form":"线上对谈","status":"已完成","issue":"145","highlights":"","speaker":"","coverAsset":"R497ba6FyoPnbCxJ4GTccrsanGe.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7675181300868713654&class_id=7675181301107788983&lesson_id=7675182687363009718&content_id=7675182689472744631","giftLink":null,"inviteLink":null},{"id":"recvpeCjv9Vyus","topic":"从 AI 主权到 AI 平权：天波科技的组织转型与数字员工实践","companies":["天波科技"],"industries":["互联网和信息技术"],"roleTypes":[],"date":1785945600000,"form":"线上对谈","status":"已完成","issue":"144","highlights":"","speaker":"","coverAsset":"EEelbATxRozCBExpyXOcToQIn8b.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7669629379739126718&class_id=7669629379864955839&lesson_id=7669629676377083063&content_id=7669629676972673994","giftLink":null,"inviteLink":null},{"id":"recvpeCjv9XAFu","topic":"「吴」限分身：天启，一个会主动办事的高管 Agent","companies":["圣农"],"industries":["农林牧渔"],"roleTypes":["高管/综合管理","业务经营/运营增长"],"date":1784736000000,"form":"线上对谈","status":"已完成","issue":"143","highlights":"","speaker":"","coverAsset":"I6mEbwbUeooBPqxekQCcXZuZnig.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7663049663565532095&class_id=7663049663682972618&lesson_id=7663050023793331384&content_id=7663050024468614326&from=share","giftLink":"https://bytedance.larkoffice.com/wiki/KD9zwqZ1biSiOlkiM0rcLsoznHh?from=from_copylink","inviteLink":null},{"id":"recvpeCjv9KEhw","topic":"从 3 天到 10 分钟：杰森娱乐的 AI 潮玩加速器","companies":["杰森娱乐"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"date":1783440000000,"form":"线上对谈","status":"已完成","issue":"142","highlights":"","speaker":"","coverAsset":"JA6BbqX71orW6Oxya7CcnOAinMg.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7659304094124739768&class_id=7659304094217014454&lesson_id=7659304609122356170&content_id=7659304609864747967","giftLink":"https://bytedance.larkoffice.com/docx/UPx8dveJsoKqctxSPsEcmSQUnyc","inviteLink":null},{"id":"recvpeCjv9M90m","topic":"筹备有“锦”度，质检有“智”量：锦江酒店的 AI 提效实践","companies":["锦江酒店"],"industries":["大消费"],"roleTypes":["业务经营/运营增长","职能/组织管理","供应链/制造/质量合规"],"date":1782316800000,"form":"线上对谈","status":"已完成","issue":"141","highlights":"","speaker":"","coverAsset":"ZiDLbvKqLor0Isx2iLnctMPHnic.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7654480299014753463&class_id=7654480299123805368&lesson_id=7654481429606173630&content_id=7654481430256290998","giftLink":"https://bytedance.larkoffice.com/docx/BFmzdUni8oBXiSxlOAOcn8BHnh3","inviteLink":null},{"id":"recvpeCjv9MjuY","topic":"虾客松大赛：Agent 时代，见证组织新进化","companies":["虾客松大赛"],"industries":[],"roleTypes":[],"date":1781539200000,"form":"线下直播","status":"已完成","issue":"140","highlights":"","speaker":"","coverAsset":"HCIFbMYxxoZAGfxYv2pctMfyngc.png","replayLink":null,"giftLink":null,"inviteLink":null},{"id":"recvpeCjv9hU0B","topic":"国民饮品的AI进化：揭秘康师傅饮品业务一线的“数字化先锋”","companies":["康师傅"],"industries":["大消费"],"roleTypes":["业务经营/运营增长","市场/品牌/内容","供应链/制造/质量合规"],"date":1780560960000,"form":"线上对谈","status":"已完成","issue":"139","highlights":"","speaker":"天津供应链安全生产主管 张伟，市场部推广 孙一轩，经营部系统整合 朱青海","coverAsset":"O12qbGKVYoZ1jOxHDhSc7j4FnKb.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7647064976336260049&class_id=7647064976699427786&lesson_id=7647065256404978870&content_id=7647065256912489654","giftLink":"https://bytedance.larkoffice.com/wiki/YswLwZIi9iQUdxk01K9cawCTned?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/IKf8wRDTQiCvfdkVZa8czWV6ncd?from=from_copylink"},{"id":"recvpeCjv9clPC","topic":"从“怕被替代”到“借力 AI ”：看 IT 用妙搭秒变业务合伙人","companies":["西顿照明"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"date":1779361200000,"form":"线上对谈","status":"已完成","issue":"138","highlights":"","speaker":"西顿照明it总监 郭新和","coverAsset":"Vj3tbHxl1osmr1xNgU4cVGifnEc.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7641123074837842890&class_id=7641123074955283390&lesson_id=7641123252617612222&content_id=7641123253263535039","giftLink":"https://bytedance.larkoffice.com/wiki/A84zwFBVAior1UkEGVncHE2inpb?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/Fia6wL0Szi9oOtk70i1cLwEKnJg?from=from_copylink"},{"id":"recvpeCjv9Z6yE","topic":"飞书 · AI · 医院：一个战略人的一年三跃","companies":["和睦家医疗"],"industries":["大健康"],"roleTypes":["高管/综合管理"],"date":1778756400000,"form":"线上对谈","status":"已完成","issue":"137","highlights":"","speaker":"北京区战略副总监 Al赋能负责 Veronica Zan","coverAsset":"LlGZbvbmOod7fQxpTrbci0Qon6g.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7637398178458766519&class_id=7637398178567818424&lesson_id=7637398397837642936&content_id=7637398397938306230","giftLink":"https://bytedance.larkoffice.com/docx/P02YdFxetotKMMxsVtcclbP2nSe?from=from_copylink","inviteLink":null},{"id":"recvpeCjv96Lw3","topic":"虾说：从养娃到养虾，看母婴顶流圣贝拉用 OpenClaw 解锁门店管理新范式","companies":["圣贝拉"],"industries":["大健康"],"roleTypes":["业务经营/运营增长"],"date":1776942000000,"form":"线上对谈","status":"已完成","issue":"136","highlights":"","speaker":"圣贝拉运营总监 Connie","coverAsset":"BgG8bsj2dovUBkxE0A9cufoGnCe.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7631493738816080842&class_id=7631493738920938442&lesson_id=7631494226101931190&content_id=7631494226164845750","giftLink":"https://bytedance.larkoffice.com/wiki/WmiHwAvQyix6tMkb4bXcONiGnle?from=from_copylink","inviteLink":null},{"id":"recvpeCjv9IozJ","topic":"飞书 aily 养出数字员工，看理想、药康、星宇的「智能巡检专家」落地实录","companies":["理想汽车","药康生物","星宇股份"],"industries":["汽车产业链","大健康"],"roleTypes":["产品/技术/数据","供应链/制造/质量合规"],"date":1776337200000,"form":"线上对谈","status":"已完成","issue":"135","highlights":"","speaker":"理想汽车注册安全工程师 何军，药康生物 AI 应用工程师 罗天同，星宇股份注册安全工程师 肖劼","coverAsset":"YYieb8rkXoqQLExmPMuchUTcnq1.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7628532304423423159&class_id=7628532304452783286&lesson_id=7628533584810216630&content_id=7628533584839576760","giftLink":"https://bytedance.larkoffice.com/wiki/VWs6wXtuCisQ2KkWXb2caA4anKe?from=from_copylink","inviteLink":null},{"id":"recvpeCjv9iVnW","topic":"虾说：人人都能拥有的“数字分身”，15分钟教会龙虾替你干活","companies":["交个朋友"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理"],"date":1775732400000,"form":"线上对谈","status":"已完成","issue":"134","highlights":"","speaker":"交个朋友控股高级副总裁，曼达斯克 CEO 崔东升","coverAsset":"IEH1bHnW8ox0i2x9At2cIDRPntg.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7626234329064017078&class_id=7626234329093377207&lesson_id=7626234695851707576&content_id=7626234695881067703","giftLink":"https://bytedance.larkoffice.com/wiki/LMMJwGqWKiU6fPkGMLjc4srTnmf?from=from_copylink","inviteLink":null},{"id":"recvpeCjv996Er","topic":"当龙虾潜入工厂：看北汽福田用飞书养出真干活的数字同事","companies":["北汽福田"],"industries":["制造业"],"roleTypes":["产品/技术/数据"],"date":1774436400000,"form":"线下直播","status":"已完成","issue":"133","highlights":"","speaker":"北汽福田流程与数字化部高级经理 文伟","coverAsset":"NK4xbARY3ofMxLxZgmQcKjQsnrd.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7620347279764884662&class_id=7620347279899102390&lesson_id=7620347674738297802&content_id=7620347674872515530","giftLink":"https://bytedance.larkoffice.com/wiki/TokzwPSzGiLs0PkE4b2cZGysnTd?disposable_login_token=eyJ1c2VyX2lkIjoiNzU4Mzg5MjAyOTUyOTI2MzAzNiIsImRldmljZV9sb2dpbl9pZCI6Ijc1ODY2MTU3OTQzNzM1Mjg1MzQiLCJ0aW1lc3RhbXAiOjE3ODE1ODAwNjQsInVuaXQiOiJldV9uYyIsInB3ZF9sZXNzX2xvZ2luX2F1dGgiOiIxIiwidmVyc2lvbiI6InYzIiwidGVuYW50X2JyYW5kIjoiZmVpc2h1IiwicGtnX2JyYW5kIjoi6aOe5LmmIiwiY2xpZW50X3NjaGVtYSI6IngtZmVpc2h1In0%3D.a62df34c44662a8d83b4914e4d01bb8bbec933d044442e74288e2f3e00a6dae0","inviteLink":null},{"id":"recvpeCjv92b86","topic":"从工程师到 AI 指挥官，飞鹤人如何用 AI 实现生产力升级","companies":["中国飞鹤"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"date":1770289200000,"form":"线下直播","status":"已完成","issue":"132","highlights":"","speaker":"AI 应用工程师 王识巽，AI应用工程师 于雷，AI应用工程师 王振撼，AI应用工程师 李鹏璋","coverAsset":"DFvnbKxaXoDpsRxtK3acUrCdn9p.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7600257683375000759&class_id=7600257683496635574&lesson_id=7600257962619178166&content_id=7600257962648538296","giftLink":"https://bytedance.larkoffice.com/wiki/CH4Lw0vbBioASyk7FX0cqWqOnKb?from=from_copylink","inviteLink":null},{"id":"recvpeCjv93nVs","topic":"华熙生物 AI 革新：文科生 00 后用 AI “爆改”400 业务铁军！","companies":["华熙生物"],"industries":["大健康"],"roleTypes":["业务经营/运营增长","职能/组织管理"],"date":1769684400000,"form":"线下直播","status":"已完成","issue":"131","highlights":"","speaker":"药械线运营支持部总监 毛伟捷，平台运营助理专业经理 朱朝冉，药械线信息化运营中级专员 马海燕，药械线业务助理 张栩宁","coverAsset":"AX3kbeYGWomTrqx2kiTcAqABn2c.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7599554580933774519&class_id=7599554580975717558&lesson_id=7599556265185905610&content_id=7599556265223654335","giftLink":"https://bytedance.larkoffice.com/wiki/HUVewpOmhiLj8Wkt7UycV01vnge?from=from_copylink","inviteLink":null},{"id":"recvpeCjv929OR","topic":"教育行业AI真落地：国际标榜用AI绘制青春的地图，用科技让青年被看见","companies":["四川国际标榜职业学院"],"industries":["教育"],"roleTypes":["市场/品牌/内容"],"date":1769079600000,"form":"线上对谈","status":"已完成","issue":"130","highlights":"","speaker":"策划传播部 刘延平","coverAsset":"OBKWb1S10oiwFjx3R6Dc9Uq9ndf.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7597344764094057407&class_id=7597344764148583358&lesson_id=7597344932327590847&content_id=7597344932365339582","giftLink":"https://bytedance.larkoffice.com/wiki/XrKnwPu9NiEmW8kU6oOcvAF2nhc?from=from_copylink","inviteLink":null},{"id":"recvpeCjv9fG9U","topic":"企业 AI 转型最前线，效率先锋面对面：揭秘四维图新如何点亮一线 AI 转型提效火种！","companies":["四维图新"],"industries":["汽车产业链"],"roleTypes":["产品/技术/数据","供应链/制造/质量合规"],"date":1768474800000,"form":"线下直播","status":"已完成","issue":"129","highlights":"","speaker":"Al效率提升负责人 刘大伟，质量体系专家 吕坤","coverAsset":"FswzbbBlVoVyBNxgHvicw66Fn1b.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7594724076791270597&class_id=7594724076820630742&lesson_id=7594724373462780883&content_id=7594724373496335298&from=ugpush","giftLink":"https://bytedance.larkoffice.com/wiki/WRFpwfrRoiJ0FmkcU4pcwRmkn2c?from=from_copylink","inviteLink":null},{"id":"recvpeCjv9tPen","topic":"医疗行业AI真落地：AI领跑者伯杰医疗，如何实现90%+效率跃升","companies":["伯杰医疗"],"industries":["大健康"],"roleTypes":["产品/技术/数据"],"date":1767870000000,"form":"线上对谈","status":"已完成","issue":"128","highlights":"","speaker":"伯杰医疗IT&AI负责人 嵇云红","coverAsset":"WS33bDc3YorbrLxxyU8cZYFjnxe.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7592091443158584510&class_id=7592091443187944644&lesson_id=7592092819611716561&content_id=7592092819653659612","giftLink":"https://bytedance.larkoffice.com/wiki/LOiRwjzxAiTuxhk9jxDcTC9wnMd?from=from_copylink","inviteLink":null},{"id":"recvpeCjv9GZI7","topic":"项目管理提效2.0时代：范泰克创新 x 飞书解锁项目管理新姿势！","companies":["范泰克"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理","业务经营/运营增长","客户成功/解决方案"],"date":1766660400000,"form":"线上对谈","status":"已完成","issue":"127","highlights":"","speaker":"范泰克创新国内运营负责人 卓伟锋，范泰克创新总经理助理 赵文华，轮动科技客户成功总监 肖忍忍，轮动科技客户成功负责人 罗顺杰","coverAsset":"QU9ZbpnT2ozlaQx8UTVc9h7rnve.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7586226193637051343&class_id=7586226193695771608&lesson_id=7586552398542277838&content_id=7586552398571637982","giftLink":"https://bytedance.larkoffice.com/wiki/Hwk9wgJvCiEdU9kEexvcgcKGnhg?from=from_copylink","inviteLink":null},{"id":"recvpeCjv97UQa","topic":"CMI 智能对账助手：让 AI 成为“看懂账单”的超级实习生！","companies":["CMI"],"industries":["互联网和信息技术"],"roleTypes":["产品/技术/数据"],"date":1766055600000,"form":"线上对谈","status":"已完成","issue":"126","highlights":"","speaker":"CMI 数字技术部高级业务分析师 王久铭","coverAsset":"E6AlbZ41xoRFY8xjcAccOBv5nag.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7584275515368803258&class_id=7584275515419134915&lesson_id=7584275678564977618&content_id=7584275678602726345","giftLink":"https://bytedance.larkoffice.com/wiki/M5jrwrxiniExMGk8TOLcxHLwn4e?from=from_copylink","inviteLink":null},{"id":"recvpeCjv9KmKW","topic":"AI 效率先锋，技术守护安全：鹏飞集团「全维监测」守护安全生命线","companies":["鹏飞集团"],"industries":["通用"],"roleTypes":["无匹配标签"],"date":1765450800000,"form":"线上对谈","status":"已完成","issue":"125","highlights":"","speaker":"鹏飞集团甲醇制氢热源厂，电仪车间仪表检修工 尚炀舰","coverAsset":"HTMtbETc9oKwVDx8IoccrKTdn2c.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7581699380357369016&class_id=7581699380395117751&lesson_id=7581699708909784248&content_id=7581699708934950071","giftLink":"https://bytedance.larkoffice.com/wiki/K6tsw1OKQixZpHkLqHkcWZSyn5c","inviteLink":null},{"id":"recvpeCjv9i9Lm","topic":"独家解读，看懂 AI ：2025飞书 AI 效率先锋全国大赛总决赛「精选案例回顾」","companies":["效率先锋大赛"],"industries":[],"roleTypes":[],"date":1764846000000,"form":"线上对谈","status":"已完成","issue":"124","highlights":"","speaker":"","coverAsset":"BH5xb3ULso8UTTxAb4Jc9jKWnpd.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7578819156710935499&class_id=7578819157606927307&lesson_id=7578819351462022326&content_id=7578819351529131190","giftLink":"https://bytedance.larkoffice.com/wiki/KUxTwZnnsiJCQgkiRjBcXC8pnif?from=from_copylink","inviteLink":null},{"id":"recvpeCjv9bcmJ","topic":"兴趣创造价值，AI 赋能实践：揭秘趣丸科技的“AI提效”密码！","companies":["趣丸"],"industries":["互联网和信息技术"],"roleTypes":["产品/技术/数据","市场/品牌/内容"],"date":1764241200000,"form":"线上对谈","status":"已完成","issue":"123","highlights":"","speaker":"趣丸科技CTO Jerry，趣丸科技 文化品牌组 禹宇，趣丸科技 研发中心 林贤","coverAsset":"D07zbCxEgo3z20xXeXMcmPnznUh.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7576567319296478176&class_id=7576567319346809816&lesson_id=7576567579859225530&content_id=7576567579913751494","giftLink":"https://bytedance.larkoffice.com/wiki/Ul2Jw6feYiG9SJkxqNjcvHDfnzd?from=from_copylink","inviteLink":null},{"id":"recvpeCjv9DNzp","topic":"aily专项：AI “真落地”：智能巡检「看-听-读-测」全贯通，助力 EHS 管理提效","companies":["aily专项"],"industries":[],"roleTypes":["产品/技术/数据","客户成功/解决方案"],"date":1763636400000,"form":"线上对谈","status":"已完成","issue":"122","highlights":"","speaker":"飞书 aily 解决方案工程师 申志远，飞书 aily 高级产品经理 姚锦乐","coverAsset":"XgezbzxeCorS3BxmmFVcba1zn6e.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7573582636178096129&class_id=7573582636222824449&lesson_id=7573583515794178050&content_id=7573583515831730178","giftLink":"https://bytedance.larkoffice.com/wiki/Yn22wE9Gfinle4k5oSdcvDCGnAd?from=from_copylink","inviteLink":null},{"id":"recvpeCjv9nrf5","topic":"影刀x飞书：AI 深度赋能，直击“黑五”提效！影刀x飞书「精准营销-选品爆品-电商运营-数据驱动」出海跨境提效宝典","companies":["影刀"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理","业务经营/运营增长"],"date":1763031600000,"form":"线下直播","status":"已完成","issue":"121","highlights":"","speaker":"影刀深圳区域负责人 梧霜，易触科技总经理Al私塾发起人 黄学烽","coverAsset":"FFQtbMYgFoAO4QxcMzBcRKwnn33.png","replayLink":null,"giftLink":"https://bytedance.larkoffice.com/wiki/P6YnwfXRJiZPcHk3oLkctsMhn5e?disposable_login_token=eyJ1c2VyX2lkIjoiNzU4Mzg5MjAyOTUyOTI2MzAzNiIsImRldmljZV9sb2dpbl9pZCI6Ijc1ODY2MTU3OTQzNzM1Mjg1MzQiLCJ0aW1lc3RhbXAiOjE3ODE1ODE4MjEsInVuaXQiOiJldV9uYyIsInB3ZF9sZXNzX2xvZ2luX2F1dGgiOiIxIiwidmVyc2lvbiI6InYzIiwidGVuYW50X2JyYW5kIjoiZmVpc2h1IiwicGtnX2JyYW5kIjoi6aOe5LmmIiwiY2xpZW50X3NjaGVtYSI6IngtZmVpc2h1In0%3D.34c9564116224841358e0d97c0b68648de86ac2183d563ef4f3a6ec81067667f","inviteLink":null},{"id":"recvpeCjv94nYv","topic":"影刀x飞书：电商 AI 真落地：从营销推广到客服质检，从库存管理到VOC，电商人必看的双11「AI提效指南」","companies":["影刀"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理"],"date":1762426800000,"form":"线上对谈","status":"已完成","issue":"120","highlights":"","speaker":"影刀合伙人 即心","coverAsset":"LpR3b2rgqoJluAxBdcEcFvu0nIb.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7568421428274069506&class_id=7568421428317257730&lesson_id=7568487668177616899&content_id=7568487668216299523","giftLink":"https://bytedance.larkoffice.com/wiki/Jx7awORqkiYgS3k7TDdc1iQDnZf?from=from_copylink","inviteLink":null},{"id":"recvpeCjv9IWNo","topic":"欧诗漫：美妆行业 AI 真落地：揭秘AI如何深度融入欧诗漫的“产-研-销-售后”全流程","companies":["欧诗漫"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"date":1761822000000,"form":"线下直播","status":"已完成","issue":"119","highlights":"","speaker":"欧诗漫 CIO","coverAsset":"P1cabk0Zmo79G4x3UGLcKGuUnPb.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7565807306220470276&class_id=7565807306279714820&lesson_id=7565807445412052994&content_id=7565807445450276866","giftLink":"https://bytedance.larkoffice.com/wiki/Jx7awORqkiYgS3k7TDdc1iQDnZf?from=from_copylink","inviteLink":null},{"id":"recvpeCjv9Iep0","topic":"渝欧跨境：AI 重塑跨境电商，激发组织新动能","companies":["渝欧跨境"],"industries":["大消费"],"roleTypes":["业务经营/运营增长","市场/品牌/内容","职能/组织管理"],"date":1761303600000,"form":"线上对谈","status":"已完成","issue":"118","highlights":"","speaker":"渝欧跨境人力资源主管 熊志波，渝欧跨境 AI应用研究院品牌负责人 蔡莹，渝欧跨境流量与用户运营部负责人 周固贤","coverAsset":"UwzUbymuSoLCBYxD3ufcpeJtniB.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7563235574283780124&class_id=7563235574325264412&lesson_id=7563235722404462611&content_id=7563235722589159443","giftLink":"https://bytedance.larkoffice.com/wiki/I5huwhUweixrq6k8wNkcItrwnvf?from=from_copylink","inviteLink":null},{"id":"recvpeCjv9gD3t","topic":"AI 智服“真落地”：公牛 AI 智能客服落地增效方法论","companies":["公牛"],"industries":["消费电子"],"roleTypes":["产品/技术/数据"],"date":1760612400000,"form":"线上对谈","status":"已完成","issue":"117","highlights":"","speaker":"Agent 开发工程师 朱凯杰","coverAsset":"FTkEbLbQso69ifx2Hoec3Pt0nQe.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7559551227279425537&class_id=7559551227330756609&lesson_id=7559552006080856092&content_id=7559552006120882204","giftLink":"https://bytedance.larkoffice.com/wiki/VVfqwdFSmiDEkBkOr5FcEkGnn6g?from=from_copylink","inviteLink":null},{"id":"recvpeCjv9OnUd","topic":"大健康专场926- 康诺思腾 “AI 智造”手术机器人：康诺思腾的研销场景智能辅助方案\n","companies":["康诺思腾"],"industries":["大健康"],"roleTypes":["职能/组织管理"],"date":1758798000000,"form":"线上对谈","status":"已完成","issue":"116","highlights":"","speaker":"康诺思腾 IT负责人 刘林","coverAsset":"A3KIb6OSmonIaYxlq8gc1Btqnsb.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7543928018927304707&class_id=7543928018983256067&lesson_id=7543928376323768323&content_id=7543928376358305795","giftLink":"https://bytedance.larkoffice.com/wiki/KLewwvydYiVscJkSCymcfPOtnVc?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/EK56wUQYZiEfM6kRz2HcpaXdnMe"},{"id":"recvpeCjv9T9VS","topic":"大健康专场918 - 海正 海正药业：4个月从 0 到 1，传统药企生产到销售全场景智能升级","companies":["海正药业"],"industries":["大健康"],"roleTypes":["产品/技术/数据"],"date":1758193200000,"form":"线下直播","status":"已完成","issue":"115","highlights":"","speaker":"海正药业信息技术部数字化创新负责人 郑久舟","coverAsset":"PZkxbm4hJoFFQ0xmsa8cAijnnfe.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7543947226316570627&class_id=7543947226374930435&lesson_id=7543947370053484548&content_id=7543947370103095300","giftLink":"https://bytedance.larkoffice.com/wiki/QuqIwdAl3iQwJFkR8kpce3AAnag?from=from_copylink","inviteLink":null},{"id":"recvpeCjv9yDXA","topic":"大健康专场911 - 美中 美中爱瑞“AI医院”，让关怀跑得比疾病更快\n","companies":["美中爱瑞"],"industries":["大健康"],"roleTypes":["产品/技术/数据"],"date":1757588400000,"form":"线下直播","status":"已完成","issue":"114","highlights":"","speaker":"北京美中爱瑞肿瘤医院数据及信息技术总监 胡三多","coverAsset":"YUJ6bXpOLoeqz7xS6NlcZjRznrh.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7543902210069037084&class_id=7543902210113568796&lesson_id=7543906391113924636&content_id=7543906391230890012","giftLink":"https://bytedance.larkoffice.com/wiki/IvRIwF56jilNufkhTGMcygGgnWh?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/P7hAwks0fi66DfkN24gcigrJn4d"},{"id":"recvpeCjv9pLsR","topic":"大健康专场904 - 振东 振东健康：从新品上市到千店推广，Meego +多维表格让效率端到端翻倍","companies":["振东"],"industries":["大健康"],"roleTypes":["产品/技术/数据","供应链/制造/质量合规"],"date":1756983600000,"form":"线上对谈","status":"已完成","issue":"113","highlights":"","speaker":"振东产品线质量运营部业务分析师 代晓云，振东康护市场部产品经理 张鹏云","coverAsset":"N1XybHQVyoGCJ5xqAPucE5bTnId.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7543946143395495964&class_id=7543946143435161628&lesson_id=7543946274551808028&content_id=7543946274579333148","giftLink":"https://bytedance.larkoffice.com/wiki/Yw1ywtFx6ivQaVkZ5eRcINwznyf?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/Ac9XwCawWiQgEKkNPn5cMcsdn1e"},{"id":"recvpeCjv9R3I7","topic":"大健康专场828 - 联影医疗 联影医疗：创新联影 同频共振 医疗供应链全链管理的智造突围","companies":["联影医疗"],"industries":["大健康"],"roleTypes":["产品/技术/数据","供应链/制造/质量合规"],"date":1756378800000,"form":"线下直播","status":"已完成","issue":"112期","highlights":"","speaker":"联影医疗信息系统运维工程师 邹佳吟，联影医疗高级生产主管 王成","coverAsset":"Kel3bYDM0oPGz2xBc8wcRQpUnsb.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7533498922248306716&class_id=7533498922288594972&lesson_id=7533499221672886291&content_id=7533499221723267091","giftLink":"https://bytedance.larkoffice.com/wiki/PKbXwZKWeiYLTMknSEcc6oOZnOc?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/NY8MwKvK2i7HMAkIqlhc8SPfnkd"},{"id":"recvpeCjv90oHN","topic":"大健康专场821 - 普瑞眼科 普瑞眼科：AI 赋能智慧医疗，普瑞眼科解锁眼健康服务新场景","companies":["普瑞眼科"],"industries":["大健康"],"roleTypes":["产品/技术/数据"],"date":1755774000000,"form":"线下直播","status":"已完成","issue":"111期","highlights":"","speaker":"普瑞眼科医院（集团）数字化发展中心CIO 刘剑秋","coverAsset":"YXw7bTWnoog5kAxAkBpcuOwGnXb.png","replayLink":null,"giftLink":"https://bytedance.larkoffice.com/wiki/PPNLwU8XUiXVCykMIWecfamtnOn?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/PY3NwB23yi2EwJkVxYvcELb6nOb"},{"id":"recvpeCjv926sI","topic":"大健康专场814 - 开立医疗 开立医疗：从太空彩超到AI诊断 开立如何推动AI医疗设备实践","companies":["开立医疗"],"industries":["大健康"],"roleTypes":["产品/技术/数据","职能/组织管理"],"date":1755169200000,"form":"线下直播","status":"已完成","issue":"110期","highlights":"","speaker":"开立医疗创新研究中心技术经理 陈黎云，开立医疗信息化经理 李俊逸","coverAsset":"KTmWbxKHpoYp04xxvbfco2mQnAh.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7533553284008853532&class_id=7533553284048994332&lesson_id=7533553571974365203&content_id=7533553572019027987&from=push","giftLink":"https://bytedance.larkoffice.com/wiki/EsFBwe0AyiV1TdkFpiLc7PuVnRb?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/U14TwyRNMi7UMIkxTVycp01Snfh"},{"id":"recvpeCjv9hOBT","topic":"大健康专场0807 - 扬子江药业：从精益生产到AI制药 扬子江药业如何由“制造”向“智造”跨越","companies":["扬子江"],"industries":["大健康"],"roleTypes":["客户成功/解决方案"],"date":1754564400000,"form":"线下直播","status":"已完成","issue":"109期","highlights":"","speaker":"扬子江药业AI解决方案处负责人 宋梓涵","coverAsset":"E5QhbKNFBoe3EZxAFBvcGsYpnpf.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7533238179887530012&class_id=7533238179929980956&lesson_id=7533238571054563347&content_id=7533238571099947027","giftLink":"https://bytedance.larkoffice.com/wiki/Rb3mw4x1RiTESkklbU0cmYVDnzd?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/RxmBwXsOti1VkTkFkwncj939n0e"},{"id":"recvpeCjv9HwUT","topic":"暗物智能：“红绿灯执法大队” 暗物智能如何用AI驱动项目管理革新","companies":["暗物智能"],"industries":["互联网和信息技术"],"roleTypes":["产品/技术/数据"],"date":1753959600000,"form":"线下直播","status":"已完成","issue":"108期","highlights":"","speaker":"暗物智能科技项目管理部负责人 张松钦","coverAsset":"WhTYbSEHNoUdrKxoUNNc3y5hnph.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7532054256882548764&class_id=7532054257005051932&lesson_id=7532054425941016604&content_id=7532054426072727580","giftLink":"https://bytedance.larkoffice.com/wiki/LxnWwggVMidUEEkEwSFc46fVnDg?from=from_copylink","inviteLink":null},{"id":"recvpeCjv9j2rO","topic":"爱回收：AI 门户引爆数字化想象力，文化互动照见效率革命","companies":["爱回收"],"industries":["互联网和信息技术"],"roleTypes":["职能/组织管理"],"date":1753372140000,"form":"线上对谈","status":"已完成","issue":"107期","highlights":"","speaker":"爱回收企业文化负责人 林宇","coverAsset":"AxPBbzHZEozuIHxQ5M4c70DtnNO.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7528319916087377924&class_id=7528319916147982340&lesson_id=7528320464742875164&content_id=7528320464782622748","giftLink":"https://bytedance.larkoffice.com/wiki/Jlxww1mVgidwr9kljV5czxIVnih?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/Oc9Bw6TMtitzIZkFLhjcexhXnOd"},{"id":"recvpeCjv9kpkl","topic":"国企 AI 破局进行时，九洲加速推进 AI 应用全面落地\n","companies":["九洲集团"],"industries":["制造业"],"roleTypes":["高管/综合管理","产品/技术/数据","职能/组织管理","供应链/制造/质量合规"],"date":1752750000000,"form":"线上对谈","status":"已完成","issue":"106期","highlights":"","speaker":"九洲集团软智军工负责人 王星星，湖山电器音响分公司工艺主管 刘敏彬，九洲软智军团AI产品经理 彭诚，九洲集团财务共享中心主管 常客夫","coverAsset":"RLO1byA8qo1SMkxkFlwcGLHcnKg.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7525775295717834780&class_id=7525775295764414492&lesson_id=7525775467395186691&content_id=7525775467446321155","giftLink":"https://bytedance.larkoffice.com/docx/PRGbdsu1coAAGBx26wEcX2fBnKd?from=from_copylink","inviteLink":"https://jiuzhou1958.feishu.cn/wiki/JRwHwQ9pYiMXSlkcKy5cysRJncb"},{"id":"recvpeCjv90Qu3","topic":"固德威：LTC项目管理实战，从销售到交付的全链路提效密码 直播回放","companies":["固德光伏"],"industries":["制造业"],"roleTypes":["客户成功/解决方案"],"date":1751540400000,"form":"线上对谈","status":"已完成","issue":"105期","highlights":"","speaker":"固德威 光电建材事业部国内解决方案经理 严煜","coverAsset":"SNZzbvN8aoVebAxL8QKcAvr0n4d.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7521662692800118785&class_id=7521662692846452737&lesson_id=7521663798792044546&content_id=7521663798828793858","giftLink":"https://bytedance.larkoffice.com/wiki/FEmIwkYvBiS0XpkbqpccuQRAnke?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/AMR6wTajLiVtbwkSvlYcW0gZn0g"},{"id":"recvpeCjv9Hq85","topic":"鱼泡直聘：AI引领招聘新时代，工具赋能增长新路径 直播回放","companies":["鱼泡直聘"],"industries":[],"roleTypes":["高管/综合管理"],"date":1750935600000,"form":"线上对谈","status":"已完成","issue":"104期","highlights":"","speaker":"鱼泡直聘创始人&董事长 周峰","coverAsset":"Ovpkb4eOFouPRPxXLX1cc27Tn0c.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7519345053372710915&class_id=7519345053462806531&lesson_id=7519345390182973443&content_id=7519345390213316611","giftLink":"https://bytedance.larkoffice.com/wiki/FQlcwsFbYidcOMkQXnNcmuscnVc?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/BX8mwdkS3ibgLpky0TAc9O80nWc?from=from_lark_index_search&ccm_open_type=from_lark_index_search"},{"id":"recvpeCjv9WbOL","topic":"全行业Al破局密码，智谱如何重构高效工作","companies":["智谱AI"],"industries":["互联网和信息技术"],"roleTypes":["产品/技术/数据"],"date":1750330800000,"form":"线上对谈","status":"已完成","issue":"103期","highlights":"","speaker":"智谱MaaS平台 大模型教练 王长铭，智谱MaaS平台 场景产品专家陆紫涵，智谱MaaS平台产品专家 曹满琳","coverAsset":"DbCXbdqhtook6xxTFNhcYr2MnEd.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7516473177956630529&class_id=7516473177993216001&lesson_id=7516473355932155906&content_id=7516473355962236930","giftLink":"https://bytedance.larkoffice.com/wiki/Y4A9wW5glicbrRkvy2ZciopQnfh?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/Rr98wpsTSiRZ5Sk1Gj8cvwCRnNb"},{"id":"recvpeCjv9W4GH","topic":"“东方魔水”健力宝，国民品牌的AI智造","companies":["健力宝"],"industries":["大消费"],"roleTypes":["无匹配标签","产品/技术/数据","供应链/制造/质量合规"],"date":1749726000000,"form":"线上对谈","status":"已完成","issue":"102期","highlights":"","speaker":"健力宝首席信息官 李鹏，供应链中心镇江分厂EHS 管理主任 韩鹏，电务操作技术员","coverAsset":"LH3dbt88YorfZ6xs7fbcFJ5hnbd.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7514180258520956956&class_id=7514180258553839644&lesson_id=7514180446641815580&content_id=7514180446666637340","giftLink":"https://bytedance.larkoffice.com/docx/KacMd2T4zoYUSAx4ipkcRkIBn1f","inviteLink":"https://bytedance.larkoffice.com/docx/KacMd2T4zoYUSAx4ipkcRkIBn1f"},{"id":"recvpeCjv92Ndz","topic":"维动轻流：HR跨界破局，AI客服实战分享","companies":["维动轻流"],"industries":["大消费"],"roleTypes":["高管/综合管理"],"date":1749121200000,"form":"线上对谈","status":"已完成","issue":"101期","highlights":"","speaker":"维动轻流创始人 於杰","coverAsset":"B9EcbeqzSouEiVxpLi3c8dHon6e.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7511600335494201346&class_id=7511600335549693954&lesson_id=7511600494335295492&content_id=7511600494365507588","giftLink":"https://bytedance.larkoffice.com/docx/VtnFdmEFUoyMvXxuiNfcNQBInUc","inviteLink":"https://pcnmm6f384lz.feishu.cn/wiki/Vsp7w10cxiHCCikaXE4cTRuHnrc"},{"id":"recvpeCjv9gqyn","topic":"国货精品共话增长：40年从“新”出发，双汇数字化的“第一步”","companies":["双汇集团"],"industries":["大消费"],"roleTypes":["职能/组织管理"],"date":1748499600000,"form":"线下直播","status":"已完成","issue":"100期","highlights":"","speaker":"数字化转型办公室主任 高瞻","coverAsset":"Qg4HbnDtRoYvX4xZkewcuf6UnDe.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7501608537609748484&class_id=7501608537670074372&lesson_id=7501608681736929299&content_id=7501608681765601299","giftLink":"https://bytedance.larkoffice.com/docx/HIY6dncveo9iAexJVRLcVXhVnIh","inviteLink":"https://bytedance.larkoffice.com/wiki/ZxPwwpDAti27KykAN77cMRmJnsf"},{"id":"recvpeCjv9Kau3","topic":"国货精品共话增长：AI驱动革新，数智化工具构建商业运营新范式","companies":["恒太商业"],"industries":["大消费"],"roleTypes":["高管/综合管理","业务经营/运营增长"],"date":1747911600000,"form":"线下直播","status":"已完成","issue":"99期","highlights":"","speaker":"恒太商业 企划中心总经理周洪根，用户运营总监 焦跃辉","coverAsset":"DJE4b6ixSooSDzxPFjZcSDDznkf.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7501607525676908572&class_id=7501607525712822300&lesson_id=7501607730271584275&content_id=7501607730300698643","giftLink":"https://bytedance.larkoffice.com/wiki/NiMAwAVDZihH3SkIbRZctnpznAg","inviteLink":"https://bytedance.larkoffice.com/wiki/Ann2wUbdJiplnykzLeGcQVq9ndg"},{"id":"recvpeCjv9B91R","topic":"国货精品共话增长：水羊股份重构电商效率新范式","companies":["水羊集团"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"date":1747306800000,"form":"线下直播","status":"已完成","issue":"98期","highlights":"","speaker":"水羊股份 技术总监 长流","coverAsset":"XTJTboHPAoJoUwxyCafczQLFnme.png","replayLink":"https://www.feishu.cn/community/course?id=7501604824247615516","giftLink":"https://bytedance.larkoffice.com/wiki/ZuciwRPGPi2n5ckHJxQcInBYnYe","inviteLink":"https://bytedance.larkoffice.com/wiki/FWlHwYQV4i5wiZk8mfgcU4MVn5f"},{"id":"recvpeCjv95Ibc","topic":"国货精品共话增长：揭秘飞书如何助力水星家纺织就数字化增长蓝图","companies":["水星家纺"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"date":1746702000000,"form":"线下直播","status":"已完成","issue":"97期","highlights":"","speaker":"水星家纺 CIO 刘峰","coverAsset":"VMYgbXDOLolSYox02Suc3EtXnBh.png","replayLink":"https://www.feishu.cn/community/course?id=7498713887249645569","giftLink":"https://bytedance.larkoffice.com/wiki/TSTmwNkDEiu7irkPzCJck7BRnId","inviteLink":"https://bytedance.larkoffice.com/wiki/ZQZIw8dhci3TvjkpX8ecwVi3nbc"},{"id":"recvpeCjv9w4P2","topic":"解码跨境：工具赋能企业出海，点燃全球生意增长引擎","companies":["领星科技"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理","客户成功/解决方案"],"date":1745463120000,"form":"线下直播","status":"已完成","issue":"96期","highlights":"","speaker":"邹叔 华狮出海CEO，李坤莲 领星科技 客户成功负责人","coverAsset":"OhpSbd0DcoPJxKxhDYHcbiyhnnb.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7495735858545262594&class_id=7495735858585337858&lesson_id=7495736252327215107&content_id=7495736252356886531","giftLink":null,"inviteLink":"https://bytedance.larkoffice.com/wiki/A0piwbzojihhSYkmIupcAcdgnFh"},{"id":"recvpeCjv985z5","topic":"多维表格 × 地上铁，碰撞新能源物流数智化 “火花”","companies":["地上铁"],"industries":["互联网和信息技术"],"roleTypes":["业务经营/运营增长"],"date":1744858320000,"form":"线下直播","status":"已完成","issue":"95期","highlights":"","speaker":"地上铁 首席运营官 李晓炜","coverAsset":"IGXrbtqX2o8EOZx5hf6cOGdOncc.jpeg","replayLink":"https://www.feishu.cn/community/course?id=7493380794975518721","giftLink":"https://bytedance.larkoffice.com/wiki/Bl0AwAybkizt0Mk40Qrc6NHln9d?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/Sdxbw8Z4pilb5pk1gtic8Nisnic?from=from_lark_group_search"},{"id":"recvpeCjv9ebGQ","topic":"企业如何将AI融入工作流：Kimi+飞书解锁业务新玩法","companies":["月之暗面"],"industries":["互联网和信息技术"],"roleTypes":["产品/技术/数据"],"date":1744253520000,"form":"线下直播","status":"已完成","issue":"94期","highlights":"","speaker":"月之暗面开放平台负责人 许博瑀","coverAsset":"RWnobAYYxoDJeVxea49cBsdGnGg.png","replayLink":"https://www.feishu.cn/community/course?id=7490773573748064258","giftLink":"https://moonshot.feishu.cn/wiki/R8XPwurbtiakVoknOcmcrfAfn9d?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/Q9l0wAapxiKmaMkH5QOc6erpn6e?renamingWikiNode=true"},{"id":"recvpeCjv9pTye","topic":"解码烤匠:打造餐饮数字化样板间与狂揽食客的独家秘籍","companies":["烤匠"],"industries":[],"roleTypes":["职能/组织管理"],"date":1743073200000,"form":"线下直播","status":"已完成","issue":"93期","highlights":"","speaker":"烤匠人力资源部负责人 @陈飞龙","coverAsset":"Ytgab9pjhopYdrxk88fcRoTEnpc.png","replayLink":"https://www.feishu.cn/community/course?id=7485274435455795204","giftLink":"https://wh-digit.feishu.cn/docx/YiUvdVimno8PA0xMKJdckO64nOb?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/L5nWwIhb7iSITOkSEnFcBub3nIc"},{"id":"recvpeCjv9x32R","topic":"长城物业：\"传统\"行业 Al破局进行时,长城物业人的效率革命","companies":["长城物业"],"industries":["通用"],"roleTypes":["产品/技术/数据"],"date":1742468400000,"form":"线下直播","status":"已完成","issue":"92期","highlights":"","speaker":"长城物业产品与解决方案中心 产品研发总监 李欢","coverAsset":"P4kCbWlUeo2Au8x8XIuci822nLg.jpg","replayLink":"https://www.feishu.cn/community/course/content?course_id=7482710022804635676&class_id=7482710022839566364&lesson_id=7482710224780230660&content_id=7482710224809852932","giftLink":"https://bytedance.larkoffice.com/wiki/YNtYwtznziAPDqk1Y4vcMrqWnhf?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/NTNiw5nIFi0zzlku9Rechqa9nQe"},{"id":"recvpeCjv9ivON","topic":"航旅纵横：1亿+旅客选择的秘密解码航旅纵横如何重塑出行新体验","companies":["航旅纵横"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理","产品/技术/数据"],"date":1741863600000,"form":"线下直播","status":"已完成","issue":"91期","highlights":"","speaker":"刘丰 公司副总裁兼产品部总经理","coverAsset":"ZWOCb1sZwofvnwx8n5NcleFhneg.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7480459834786234372&class_id=7480459834837024772&lesson_id=7480460025538347036&content_id=7480460025574424604","giftLink":null,"inviteLink":"https://bytedance.larkoffice.com/wiki/LdQ5wrMBUisVTbkFVVgcEQJunsc"},{"id":"recvpeCjv9c3nQ","topic":"魔珐科技：智启AI数字人新纪元，飞书+魔珐双擎颠覆内容生产力\n","companies":["魔珐科技"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理","无匹配标签","产品/技术/数据","市场/品牌/内容"],"date":1741260600000,"form":"线下直播","status":"已完成","issue":"90期","highlights":"","speaker":"柴金祥 魔珐科技创始人兼CEO，贺恒垚 魔珐科技有光产品负责人，李韵 魔珐科技市场负责人，令颜欢","coverAsset":"XXEAbTCP2oe7hAxxJXYco2xOnpf.jpg","replayLink":"https://www.feishu.cn/community/course/content?course_id=7477837108204519452&class_id=7477837108245692444&lesson_id=7477837890431025155&content_id=7477837890462908419","giftLink":"https://bytedance.larkoffice.com/wiki/RkwVwhbhaiWEeMkXUFQcanK5nzc?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/X4rvwd2SriAjEXkA3Kkc4XdfnDf"},{"id":"recvpeCjv9B6wl","topic":"山海短剧：山海无界，飞书织链，短剧工业化的星辰征途","companies":["山海短剧"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理","产品/技术/数据","职能/组织管理"],"date":1740657600000,"form":"线上对谈","status":"已完成","issue":"89期","highlights":"","speaker":"山海星辰董事长助理Yulya，山海星辰研发工程师雷恩，山海星辰行政经理因子","coverAsset":"PxHfb7T6joNiJvxsvCvcwKG7nMf.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7474925236543160322&class_id=7474925236594999298&lesson_id=7474925404128772100&content_id=7474925404153970692","giftLink":"https://bytedance.larkoffice.com/wiki/JnxNwzehKi5oeMkdCsQcbkr7nxb?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/docx/Ui8MdrQQSoa3VBxo4IacQRx1ntf?from=from_copylink"},{"id":"recvpeCjv98kUP","topic":"“得到”AI新机遇，“书”写企业效率新篇章","companies":["得到"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理"],"date":1740052800000,"form":"线下直播","status":"已完成","issue":"88期","highlights":"","speaker":"得到联合创始人、AI圈主理人 快刀青衣","coverAsset":"SPmzbJjycopCy6xJv6Ncy0vKnkd.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7471191404212781058&class_id=7471191404248301570&lesson_id=7471191708564340738&content_id=7471191708595470338","giftLink":"https://bytedance.larkoffice.com/wiki/AcQ3wBa9RiQyh0kMcjacK6ZWnvb?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/G3DZwckxXis1Ptk5jJXcz6AMnUc?from=from_lark_index_search&ccm_open_type=from_lark_index_search"},{"id":"recvpeCjv9NoDz","topic":"帝砺前行，迈向AI新时代的数字化征程","companies":["帝迈生物"],"industries":["大健康"],"roleTypes":["产品/技术/数据"],"date":1736852400000,"form":"线上对谈","status":"已完成","issue":"87期","highlights":"","speaker":"帝迈生物IT信息工程师李美行","coverAsset":"VOzKbJ7jFoHOdZxzjMlcyGWKndd.jpeg","replayLink":"https://www.feishu.cn/community/course/content?course_id=7457096464268083202&class_id=7457096464298803202&lesson_id=7457096746605379603&content_id=7457096746648125459","giftLink":"https://bytedance.larkoffice.com/wiki/H0ThwhBsGipbmdkLtbLc1o7bn0g","inviteLink":"https://bytedance.larkoffice.com/wiki/Oy4SwSy3UiRMBdkMzdycXSH4njf"},{"id":"recvpeCjv9jDjW","topic":"天鹅到家，2025 组织与员工提效攻略","companies":["天鹅到家"],"industries":["互联网和信息技术"],"roleTypes":["职能/组织管理"],"date":1736424000000,"form":"线下直播","status":"已完成","issue":"86期","highlights":"","speaker":"天鹅到家集团首席人才官段冬","coverAsset":"COrIbl3x8oENRixLGZIcFctbnnd.png","replayLink":null,"giftLink":"https://bytedance.larkoffice.com/wiki/EzT4wQIFQi4VzokidnFcInulncf?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/CP8Nw9xjLikir2kINNOct9isnth?from=from_copylink"},{"id":"recvpeCjv91bms","topic":"\"芯\"战场上的中国力量，惠伦晶体的数字化之路","companies":["惠伦晶体"],"industries":["制造业"],"roleTypes":["产品/技术/数据"],"date":1735038000000,"form":"线下直播","status":"已完成","issue":"85 期","highlights":"","speaker":"惠伦晶体CIO 刘佐敬","coverAsset":"MMtvbzgimocmAHxh9Ruct6Funme.jpeg","replayLink":"https://www.feishu.cn/community/course/content?course_id=7451482130049679363&class_id=7451482130111447043&lesson_id=7451484133333958658&content_id=7451484133365628930","giftLink":"https://bytedance.larkoffice.com/wiki/EzT4wQIFQi4VzokidnFcInulncf","inviteLink":"https://bytedance.larkoffice.com/wiki/HAkNwzZ2wigB2KkAcxmcP1G0n6g"},{"id":"recvpeCjv9Qpah","topic":"飞入门店新时代，茶百道带来数字化门店新攻略","companies":["茶百道"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"date":1734523200000,"form":"线下直播","status":"已完成","issue":"84 期","highlights":"","speaker":"张睿，茶百道首席数字官","coverAsset":"Zbeob88XWoN3D5xMaqucpnAVnde.jpg","replayLink":"https://www.feishu.cn/community/course/content?course_id=7447797102089584644&class_id=7447797102143160324&lesson_id=7447798059430363140&content_id=7447798059459100676","giftLink":"https://bytedance.larkoffice.com/wiki/ABChwrxtdi9W0XkGqrQcyTHpnob","inviteLink":"https://bytedance.larkoffice.com/wiki/KRiqwhyipiSo29khGaLcfKrRnCe?from=from_copylink"},{"id":"recvpeCjv9A6WS","topic":"宇宙尽头的辣嘴鸭，如何打造国民鸭货餐厅","companies":["双舟辣嘴鸭"],"industries":["大消费"],"roleTypes":["高管/综合管理"],"date":1733828400000,"form":"线下直播","status":"已完成","issue":"83 期","highlights":"","speaker":"双舟集团副总经理张丽楠","coverAsset":"D7xybrNANoHMydxePlvcpB7qn09.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7444856160443875331&class_id=7444856160498925571&lesson_id=7444856735984123906&content_id=7444856736014450690","giftLink":"https://bytedance.larkoffice.com/wiki/LASzwqzhtia48vkYUkrchMLunvh","inviteLink":"https://bytedance.larkoffice.com/wiki/ETwmwuxdeiemS0kt5eCcZC7Ln71"},{"id":"recvpeCjv9mfKr","topic":"衬衫老罗，抖音衬衫 No.1 的升级之路","companies":["衬衫老罗"],"industries":["大消费"],"roleTypes":["业务经营/运营增长"],"date":1733310000000,"form":"线下直播","status":"已完成","issue":"82 期","highlights":"","speaker":"衬衫老罗创始人 罗鑫华","coverAsset":"Bwh1bdaJdoOqhqxOzEgcMYULnAh.png","replayLink":"https://bytedance.larkoffice.com/minutes/obcnbp8yynvrt11965b9j3wr","giftLink":"https://bytedance.larkoffice.com/wiki/EBaawe4K0ip02Mkqju0cONCVnmd?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/wiki/Ox09wjo9TiSbzFkfEhLcmQgEnKb"},{"id":"recvpeCjv9Ys1I","topic":"操盘1.5 亿用户，90 后 CEO 7 年创业路分享","companies":["零一裂变"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理"],"date":1732618800000,"form":"线下直播","status":"已完成","issue":"81 期","highlights":"","speaker":"零一数科 CEO 鉴锋","coverAsset":"X8gBblBhpoQIb5xlyIscNk8unBR.png","replayLink":"https://www.feishu.cn/community/course?id=7441087484601368604","giftLink":"https://bytedance.larkoffice.com/wiki/TboFwoF6xiqZn1kdA1TcDDDsnJf?renamingWikiNode=true","inviteLink":"https://bytedance.larkoffice.com/wiki/O8nrwMO4FiNZQfkO9xrcv9vVnwe"},{"id":"recvpeCjv9nwaN","topic":"多维表格产品面对面","companies":["飞书"],"industries":[],"roleTypes":["产品/技术/数据"],"date":1732014000000,"form":"线上对谈","status":"已完成","issue":"80 期","highlights":"","speaker":"飞书多维表格产品经理","coverAsset":"NMp6bmop4oRTcVxxEp8cehuWnOf.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7438967397285806083&class_id=7438967397346525187&lesson_id=7438967563805671427&content_id=7438967563835342851","giftLink":"https://bytedance.larkoffice.com/wiki/UVzRw9ekcimxY1kLkYbccLD4nue?from=from_copylink","inviteLink":"https://bytedance.larkoffice.com/docx/Z4rGd23ZqoEDHSx70HdcXXAznug"},{"id":"recvpeCjv9Sa1l","topic":"效率工程新篇章，AI智能伙伴实战派","companies":["荔枝"],"industries":["互联网和信息技术"],"roleTypes":["职能/组织管理"],"date":1731409200000,"form":"线下直播","status":"已完成","issue":"79 期","highlights":"","speaker":"荔枝企业效率负责人程孝羽","coverAsset":"FO7LbZ3mso6W96x74J6cULVAnxe.jpeg","replayLink":"https://bytedance.larkoffice.com/minutes/obcnvl3932bf96ck81wvcg2v","giftLink":"https://bytedance.larkoffice.com/wiki/Sb5AwpmONi4kOZkR6TrcUK48nqc","inviteLink":"https://bytedance.larkoffice.com/wiki/Nb2bwFzFiisz4lkNA9YcbhiEngg"},{"id":"recvpeCjv98UGH","topic":"赢在 AI 时代，企业这样打造 AI 黑客松！","companies":["锐捷","阶跃星辰"],"industries":["互联网和信息技术"],"roleTypes":["业务经营/运营增长","产品/技术/数据"],"date":1730804400000,"form":"圆桌","status":"已完成","issue":"78 期","highlights":"","speaker":"锐捷网络 AI 运营负责人，阶跃星辰开放平台总监付凯","coverAsset":"FJFob5KaKoq2mDxSAcucrM4nnqf.png","replayLink":"https://bytedance.larkoffice.com/minutes/obcnqsq23b538xi3842218s4","giftLink":"https://bytedance.larkoffice.com/docx/GvXrdqcMzog87HxGQrpc7xpgn6g","inviteLink":"https://bytedance.larkoffice.com/docx/MYoodNZzGotWxkxRaJucbL3bnid"},{"id":"recvpeCjv93rN6","topic":"交个朋友如何打造“日不落”直播间","companies":["交个朋友"],"industries":["互联网和信息技术"],"roleTypes":["产品/技术/数据"],"date":1730199600000,"form":"线下直播","status":"已完成","issue":"77 期","highlights":"","speaker":"交个朋友产品经理岑呈友","coverAsset":"NnzSbenA9oYxPVxdUKwcNELWn4e.PNG","replayLink":"https://www.feishu.cn/community/course/content?course_id=7436269218427715587&class_id=7436269218458107907&lesson_id=7436269279246876676&content_id=7436269279275548676","giftLink":"https://bytedance.larkoffice.com/base/NGCIbBFvjahn1tslzbdclrpunXc?table=tblg2nhFGLthf2QB&view=vewtfkD9lJ","inviteLink":"https://bytedance.larkoffice.com/wiki/Icsowr13NiAMQ3kPMHIcQJganAg"},{"id":"recvqzs5Jt6mFe","topic":"企业 AI 架构师炼成记｜帝迈 CIO 的 60 天 AI 转型之路","companies":["帝迈生物"],"industries":["大健康"],"roleTypes":[],"date":1788364800000,"form":"线上对谈","status":"已完成","issue":"146","highlights":"","speaker":"","coverAsset":"AS0ZbKAD7oktTrxFUcDcYAWKnMf.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7680810571242933431&class_id=7680810571360373942&lesson_id=7680810916199271608&content_id=7680810916807445687","giftLink":null,"inviteLink":null},{"id":"recvw0rHtgWgaY","topic":"Z 世代操盘手：华熙生物00 后 MKT 团队的双十一 AI 解法","companies":["华熙生物"],"industries":["大健康"],"roleTypes":[],"date":1789574400000,"form":"线上对谈","status":"已完成","issue":"147","highlights":"","speaker":"","coverAsset":"G10bbiRmJoVcwCxyDLTcjUGwnuc.png","replayLink":"https://www.feishu.cn/community/course/content?course_id=7685687715932671160&class_id=7685687716012362934&lesson_id=7685688247074163895&content_id=7685688248349232310","giftLink":null,"inviteLink":null}],"guests":[{"id":"recvo12t0adcH6","name":"锦江酒店（中国区）锦鲲项目负责人","companies":["锦江酒店"],"industries":["大消费"],"roleTypes":["业务经营/运营增长"],"topic":"筹备有“锦”度，质检有“智”量：锦江酒店的 AI 提效实践","date":1782316800000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7654480299014753463&class_id=7654480299123805368&lesson_id=7654481429606173630&content_id=7654481430256290998","giftLink":"https://bytedance.larkoffice.com/docx/BFmzdUni8oBXiSxlOAOcn8BHnh3","avatarAsset":"XTPfbhbKKowhXuxPiIxcwcUbnvh.png","clipAsset":null},{"id":"recvo12t0aM15N","name":"锦江酒店（中国区）华西区品牌发展部供应链负责人","companies":["锦江酒店"],"industries":["大消费"],"roleTypes":["供应链/制造/质量合规"],"topic":"筹备有“锦”度，质检有“智”量：锦江酒店的 AI 提效实践","date":1782316800000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7654480299014753463&class_id=7654480299123805368&lesson_id=7654481429606173630&content_id=7654481430256290998","giftLink":"https://bytedance.larkoffice.com/docx/BFmzdUni8oBXiSxlOAOcn8BHnh3","avatarAsset":"XTPfbhbKKowhXuxPiIxcwcUbnvh.png","clipAsset":null},{"id":"recvo12t0a4Ydl","name":"锦江酒店（中国区）欢朋品牌•标准管理及创新发展高级总监","companies":["锦江酒店"],"industries":["大消费"],"roleTypes":["供应链/制造/质量合规"],"topic":"筹备有“锦”度，质检有“智”量：锦江酒店的 AI 提效实践","date":1782316800000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7654480299014753463&class_id=7654480299123805368&lesson_id=7654481429606173630&content_id=7654481430256290998","giftLink":"https://bytedance.larkoffice.com/docx/BFmzdUni8oBXiSxlOAOcn8BHnh3","avatarAsset":"XTPfbhbKKowhXuxPiIxcwcUbnvh.png","clipAsset":null},{"id":"recvo12t0aeZcZ","name":"锦江酒店（中国区）战略与效能部 锦鲲培训负责人","companies":["锦江酒店"],"industries":["大消费"],"roleTypes":["职能/组织管理"],"topic":"筹备有“锦”度，质检有“智”量：锦江酒店的 AI 提效实践","date":1782316800000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7654480299014753463&class_id=7654480299123805368&lesson_id=7654481429606173630&content_id=7654481430256290998","giftLink":"https://bytedance.larkoffice.com/docx/BFmzdUni8oBXiSxlOAOcn8BHnh3","avatarAsset":"XTPfbhbKKowhXuxPiIxcwcUbnvh.png","clipAsset":null},{"id":"recvo12t0aiUUJ","name":"","companies":["虾客松大赛"],"industries":[],"roleTypes":[],"topic":"虾客松大赛：Agent 时代，见证组织新进化","date":1781539200000,"replayLink":null,"giftLink":null,"avatarAsset":"GFPRbCCkIo6il3xwsLBckgLdnxh.png","clipAsset":null},{"id":"recvo12t0ah3Hk","name":"天津供应链安全生产主管 张伟","companies":["康师傅"],"industries":["大消费"],"roleTypes":["供应链/制造/质量合规"],"topic":"国民饮品的AI进化：揭秘康师傅饮品业务一线的“数字化先锋”","date":1780560960000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7647064976336260049&class_id=7647064976699427786&lesson_id=7647065256404978870&content_id=7647065256912489654","giftLink":"https://bytedance.larkoffice.com/wiki/YswLwZIi9iQUdxk01K9cawCTned?from=from_copylink","avatarAsset":"WCuwbcd6qoLblsxQewFcPOHCnpc.png","clipAsset":null},{"id":"recvo12t0aMWLa","name":"市场部推广 孙一轩","companies":["康师傅"],"industries":["大消费"],"roleTypes":["市场/品牌/内容"],"topic":"国民饮品的AI进化：揭秘康师傅饮品业务一线的“数字化先锋”","date":1780560960000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7647064976336260049&class_id=7647064976699427786&lesson_id=7647065256404978870&content_id=7647065256912489654","giftLink":"https://bytedance.larkoffice.com/wiki/YswLwZIi9iQUdxk01K9cawCTned?from=from_copylink","avatarAsset":"WCuwbcd6qoLblsxQewFcPOHCnpc.png","clipAsset":null},{"id":"recvo12t0axsXa","name":"经营部系统整合 朱青海","companies":["康师傅"],"industries":["大消费"],"roleTypes":["业务经营/运营增长"],"topic":"国民饮品的AI进化：揭秘康师傅饮品业务一线的“数字化先锋”","date":1780560960000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7647064976336260049&class_id=7647064976699427786&lesson_id=7647065256404978870&content_id=7647065256912489654","giftLink":"https://bytedance.larkoffice.com/wiki/YswLwZIi9iQUdxk01K9cawCTned?from=from_copylink","avatarAsset":"WCuwbcd6qoLblsxQewFcPOHCnpc.png","clipAsset":null},{"id":"recvo12t0a9C5e","name":"西顿照明it总监 郭新和","companies":["西顿照明"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"topic":"从“怕被替代”到“借力 AI ”：看 IT 用妙搭秒变业务合伙人","date":1779361200000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7641123074837842890&class_id=7641123074955283390&lesson_id=7641123252617612222&content_id=7641123253263535039","giftLink":"https://bytedance.larkoffice.com/wiki/A84zwFBVAior1UkEGVncHE2inpb?from=from_copylink","avatarAsset":"DevCb8ekSoX55RxumEPcpI9VnxS.png","clipAsset":null},{"id":"recvo12t0aYuuH","name":"北京区战略副总监 Al赋能负责 Veronica Zan","companies":["和睦家医疗"],"industries":["大健康"],"roleTypes":["高管/综合管理"],"topic":"飞书 · AI · 医院：一个战略人的一年三跃","date":1778756400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7637398178458766519&class_id=7637398178567818424&lesson_id=7637398397837642936&content_id=7637398397938306230","giftLink":"https://bytedance.larkoffice.com/docx/P02YdFxetotKMMxsVtcclbP2nSe?from=from_copylink","avatarAsset":"FlTIbS5O5omfvOxg1zkcS2yPnTc.png","clipAsset":null},{"id":"recvo12t0aj9lQ","name":"圣贝拉运营总监 Connie","companies":["圣贝拉"],"industries":["大健康"],"roleTypes":["业务经营/运营增长"],"topic":"虾说：从养娃到养虾，看母婴顶流圣贝拉用 OpenClaw 解锁门店管理新范式","date":1776942000000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7631493738816080842&class_id=7631493738920938442&lesson_id=7631494226101931190&content_id=7631494226164845750","giftLink":"https://bytedance.larkoffice.com/wiki/WmiHwAvQyix6tMkb4bXcONiGnle?from=from_copylink","avatarAsset":"SC13bRagLoZFk9x2GTJcso7Pnad.png","clipAsset":null},{"id":"recvo12t0ao5OK","name":"理想汽车注册安全工程师 何军","companies":["理想汽车"],"industries":["汽车产业链","大健康"],"roleTypes":["供应链/制造/质量合规"],"topic":"飞书 aily 养出数字员工，看理想、药康、星宇的「智能巡检专家」落地实录","date":1776337200000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7628532304423423159&class_id=7628532304452783286&lesson_id=7628533584810216630&content_id=7628533584839576760","giftLink":"https://bytedance.larkoffice.com/wiki/VWs6wXtuCisQ2KkWXb2caA4anKe?from=from_copylink","avatarAsset":"Nrl5bv3Vwo4PIRx1i0gcjr8jnhh.png","clipAsset":null},{"id":"recvo12t0aaJa5","name":"药康生物 AI 应用工程师 罗天同","companies":["药康生物"],"industries":["汽车产业链","大健康"],"roleTypes":["产品/技术/数据"],"topic":"飞书 aily 养出数字员工，看理想、药康、星宇的「智能巡检专家」落地实录","date":1776337200000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7628532304423423159&class_id=7628532304452783286&lesson_id=7628533584810216630&content_id=7628533584839576760","giftLink":"https://bytedance.larkoffice.com/wiki/VWs6wXtuCisQ2KkWXb2caA4anKe?from=from_copylink","avatarAsset":"Nrl5bv3Vwo4PIRx1i0gcjr8jnhh.png","clipAsset":null},{"id":"recvo12t0aHDpQ","name":"星宇股份注册安全工程师 肖劼","companies":["星宇股份"],"industries":["汽车产业链","大健康"],"roleTypes":["供应链/制造/质量合规"],"topic":"飞书 aily 养出数字员工，看理想、药康、星宇的「智能巡检专家」落地实录","date":1776337200000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7628532304423423159&class_id=7628532304452783286&lesson_id=7628533584810216630&content_id=7628533584839576760","giftLink":"https://bytedance.larkoffice.com/wiki/VWs6wXtuCisQ2KkWXb2caA4anKe?from=from_copylink","avatarAsset":"Nrl5bv3Vwo4PIRx1i0gcjr8jnhh.png","clipAsset":null},{"id":"recvo12t0anU8w","name":"交个朋友控股高级副总裁，曼达斯克 CEO 崔东升","companies":["交个朋友"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理"],"topic":"虾说：人人都能拥有的“数字分身”，15分钟教会龙虾替你干活","date":1775732400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7626234329064017078&class_id=7626234329093377207&lesson_id=7626234695851707576&content_id=7626234695881067703","giftLink":"https://bytedance.larkoffice.com/wiki/LMMJwGqWKiU6fPkGMLjc4srTnmf?from=from_copylink","avatarAsset":"Zl2rbO2IKoNb8DxuD2FcSS0ZnQb.png","clipAsset":null},{"id":"recvo12t0aLGcz","name":"北汽福田流程与数字化部高级经理 文伟","companies":["北汽福田"],"industries":["制造业"],"roleTypes":["产品/技术/数据"],"topic":"当龙虾潜入工厂：看北汽福田用飞书养出真干活的数字同事","date":1774436400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7620347279764884662&class_id=7620347279899102390&lesson_id=7620347674738297802&content_id=7620347674872515530","giftLink":"https://bytedance.larkoffice.com/wiki/TokzwPSzGiLs0PkE4b2cZGysnTd?disposable_login_token=eyJ1c2VyX2lkIjoiNzU4Mzg5MjAyOTUyOTI2MzAzNiIsImRldmljZV9sb2dpbl9pZCI6Ijc1ODY2MTU3OTQzNzM1Mjg1MzQiLCJ0aW1lc3RhbXAiOjE3ODE1ODAwNjQsInVuaXQiOiJldV9uYyIsInB3ZF9sZXNzX2xvZ2luX2F1dGgiOiIxIiwidmVyc2lvbiI6InYzIiwidGVuYW50X2JyYW5kIjoiZmVpc2h1IiwicGtnX2JyYW5kIjoi6aOe5LmmIiwiY2xpZW50X3NjaGVtYSI6IngtZmVpc2h1In0%3D.a62df34c44662a8d83b4914e4d01bb8bbec933d044442e74288e2f3e00a6dae0","avatarAsset":"Nz4QbpCRjoeo4bxHEHScccv1nGg.png","clipAsset":null},{"id":"recvo12t0azUmj","name":"AI 应用工程师 王识巽","companies":["中国飞鹤"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"topic":"从工程师到 AI 指挥官，飞鹤人如何用 AI 实现生产力升级","date":1770289200000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7600257683375000759&class_id=7600257683496635574&lesson_id=7600257962619178166&content_id=7600257962648538296","giftLink":"https://bytedance.larkoffice.com/wiki/CH4Lw0vbBioASyk7FX0cqWqOnKb?from=from_copylink","avatarAsset":"SMa4bsYs5on5Dkx0yR1cPnKDnMh.png","clipAsset":null},{"id":"recvo12t0aXusV","name":"AI应用工程师 于雷","companies":["中国飞鹤"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"topic":"从工程师到 AI 指挥官，飞鹤人如何用 AI 实现生产力升级","date":1770289200000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7600257683375000759&class_id=7600257683496635574&lesson_id=7600257962619178166&content_id=7600257962648538296","giftLink":"https://bytedance.larkoffice.com/wiki/CH4Lw0vbBioASyk7FX0cqWqOnKb?from=from_copylink","avatarAsset":"SMa4bsYs5on5Dkx0yR1cPnKDnMh.png","clipAsset":null},{"id":"recvo12t0ax5qb","name":"AI应用工程师 王振撼","companies":["中国飞鹤"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"topic":"从工程师到 AI 指挥官，飞鹤人如何用 AI 实现生产力升级","date":1770289200000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7600257683375000759&class_id=7600257683496635574&lesson_id=7600257962619178166&content_id=7600257962648538296","giftLink":"https://bytedance.larkoffice.com/wiki/CH4Lw0vbBioASyk7FX0cqWqOnKb?from=from_copylink","avatarAsset":"SMa4bsYs5on5Dkx0yR1cPnKDnMh.png","clipAsset":null},{"id":"recvo12t0ax66L","name":"AI应用工程师 李鹏璋","companies":["中国飞鹤"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"topic":"从工程师到 AI 指挥官，飞鹤人如何用 AI 实现生产力升级","date":1770289200000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7600257683375000759&class_id=7600257683496635574&lesson_id=7600257962619178166&content_id=7600257962648538296","giftLink":"https://bytedance.larkoffice.com/wiki/CH4Lw0vbBioASyk7FX0cqWqOnKb?from=from_copylink","avatarAsset":"SMa4bsYs5on5Dkx0yR1cPnKDnMh.png","clipAsset":null},{"id":"recvo12t0aPr0a","name":"药械线运营支持部总监 毛伟捷","companies":["华熙生物"],"industries":["大健康"],"roleTypes":["业务经营/运营增长"],"topic":"华熙生物 AI 革新：文科生 00 后用 AI “爆改”400 业务铁军！","date":1769684400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7599554580933774519&class_id=7599554580975717558&lesson_id=7599556265185905610&content_id=7599556265223654335","giftLink":"https://bytedance.larkoffice.com/wiki/HUVewpOmhiLj8Wkt7UycV01vnge?from=from_copylink","avatarAsset":"E6lpbwtedorsUPx7T9XcQuvAnqf.png","clipAsset":null},{"id":"recvo12t0atjz7","name":"平台运营助理专业经理 朱朝冉","companies":["华熙生物"],"industries":["大健康"],"roleTypes":["业务经营/运营增长"],"topic":"华熙生物 AI 革新：文科生 00 后用 AI “爆改”400 业务铁军！","date":1769684400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7599554580933774519&class_id=7599554580975717558&lesson_id=7599556265185905610&content_id=7599556265223654335","giftLink":"https://bytedance.larkoffice.com/wiki/HUVewpOmhiLj8Wkt7UycV01vnge?from=from_copylink","avatarAsset":"E6lpbwtedorsUPx7T9XcQuvAnqf.png","clipAsset":null},{"id":"recvo12t0aswtT","name":"药械线信息化运营中级专员 马海燕","companies":["华熙生物"],"industries":["大健康"],"roleTypes":["业务经营/运营增长"],"topic":"华熙生物 AI 革新：文科生 00 后用 AI “爆改”400 业务铁军！","date":1769684400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7599554580933774519&class_id=7599554580975717558&lesson_id=7599556265185905610&content_id=7599556265223654335","giftLink":"https://bytedance.larkoffice.com/wiki/HUVewpOmhiLj8Wkt7UycV01vnge?from=from_copylink","avatarAsset":"E6lpbwtedorsUPx7T9XcQuvAnqf.png","clipAsset":null},{"id":"recvo12t0atztC","name":"药械线业务助理 张栩宁","companies":["华熙生物"],"industries":["大健康"],"roleTypes":["职能/组织管理"],"topic":"华熙生物 AI 革新：文科生 00 后用 AI “爆改”400 业务铁军！","date":1769684400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7599554580933774519&class_id=7599554580975717558&lesson_id=7599556265185905610&content_id=7599556265223654335","giftLink":"https://bytedance.larkoffice.com/wiki/HUVewpOmhiLj8Wkt7UycV01vnge?from=from_copylink","avatarAsset":"E6lpbwtedorsUPx7T9XcQuvAnqf.png","clipAsset":null},{"id":"recvo12t0ai66U","name":"策划传播部 刘延平","companies":["四川国际标榜职业学院"],"industries":["教育"],"roleTypes":["市场/品牌/内容"],"topic":"教育行业AI真落地：国际标榜用AI绘制青春的地图，用科技让青年被看见","date":1769079600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7597344764094057407&class_id=7597344764148583358&lesson_id=7597344932327590847&content_id=7597344932365339582","giftLink":"https://bytedance.larkoffice.com/wiki/XrKnwPu9NiEmW8kU6oOcvAF2nhc?from=from_copylink","avatarAsset":"BqYmbSxl1o48YoxrMGZcTBSxn9b.png","clipAsset":null},{"id":"recvo12t0a50rV","name":"Al效率提升负责人 刘大伟","companies":["四维图新"],"industries":["汽车产业链"],"roleTypes":["产品/技术/数据"],"topic":"企业 AI 转型最前线，效率先锋面对面：揭秘四维图新如何点亮一线 AI 转型提效火种！","date":1768474800000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7594724076791270597&class_id=7594724076820630742&lesson_id=7594724373462780883&content_id=7594724373496335298&from=ugpush","giftLink":"https://bytedance.larkoffice.com/wiki/WRFpwfrRoiJ0FmkcU4pcwRmkn2c?from=from_copylink","avatarAsset":"OrM8bAZWEoWkvrxoWE8cYM1rnee.png","clipAsset":null},{"id":"recvo12t0asNX2","name":"质量体系专家 吕坤","companies":["四维图新"],"industries":["汽车产业链"],"roleTypes":["供应链/制造/质量合规"],"topic":"企业 AI 转型最前线，效率先锋面对面：揭秘四维图新如何点亮一线 AI 转型提效火种！","date":1768474800000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7594724076791270597&class_id=7594724076820630742&lesson_id=7594724373462780883&content_id=7594724373496335298&from=ugpush","giftLink":"https://bytedance.larkoffice.com/wiki/WRFpwfrRoiJ0FmkcU4pcwRmkn2c?from=from_copylink","avatarAsset":"OrM8bAZWEoWkvrxoWE8cYM1rnee.png","clipAsset":null},{"id":"recvo12t0aKA4V","name":"伯杰医疗IT&AI负责人 嵇云红","companies":["伯杰医疗"],"industries":["大健康"],"roleTypes":["产品/技术/数据"],"topic":"医疗行业AI真落地：AI领跑者伯杰医疗，如何实现90%+效率跃升","date":1767870000000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7592091443158584510&class_id=7592091443187944644&lesson_id=7592092819611716561&content_id=7592092819653659612","giftLink":"https://bytedance.larkoffice.com/wiki/LOiRwjzxAiTuxhk9jxDcTC9wnMd?from=from_copylink","avatarAsset":"Lpy8bspVWostsAxRqOWc170knpc.png","clipAsset":null},{"id":"recvo12t0aG1Tv","name":"范泰克创新国内运营负责人 卓伟锋","companies":["范泰克"],"industries":["互联网和信息技术"],"roleTypes":["业务经营/运营增长"],"topic":"项目管理提效2.0时代：范泰克创新 x 飞书解锁项目管理新姿势！","date":1766660400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7586226193637051343&class_id=7586226193695771608&lesson_id=7586552398542277838&content_id=7586552398571637982","giftLink":"https://bytedance.larkoffice.com/wiki/Hwk9wgJvCiEdU9kEexvcgcKGnhg?from=from_copylink","avatarAsset":"PzAAbci1uo43c0xyijJcDJWcnzg.png","clipAsset":null},{"id":"recvo12t0a0mwU","name":"范泰克创新总经理助理 赵文华","companies":["范泰克"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理"],"topic":"项目管理提效2.0时代：范泰克创新 x 飞书解锁项目管理新姿势！","date":1766660400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7586226193637051343&class_id=7586226193695771608&lesson_id=7586552398542277838&content_id=7586552398571637982","giftLink":"https://bytedance.larkoffice.com/wiki/Hwk9wgJvCiEdU9kEexvcgcKGnhg?from=from_copylink","avatarAsset":"PzAAbci1uo43c0xyijJcDJWcnzg.png","clipAsset":null},{"id":"recvo12t0attgH","name":"轮动科技客户成功总监 肖忍忍","companies":["范泰克"],"industries":["互联网和信息技术"],"roleTypes":["客户成功/解决方案"],"topic":"项目管理提效2.0时代：范泰克创新 x 飞书解锁项目管理新姿势！","date":1766660400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7586226193637051343&class_id=7586226193695771608&lesson_id=7586552398542277838&content_id=7586552398571637982","giftLink":"https://bytedance.larkoffice.com/wiki/Hwk9wgJvCiEdU9kEexvcgcKGnhg?from=from_copylink","avatarAsset":"PzAAbci1uo43c0xyijJcDJWcnzg.png","clipAsset":null},{"id":"recvo12t0asu38","name":"轮动科技客户成功负责人 罗顺杰","companies":["范泰克"],"industries":["互联网和信息技术"],"roleTypes":["客户成功/解决方案"],"topic":"项目管理提效2.0时代：范泰克创新 x 飞书解锁项目管理新姿势！","date":1766660400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7586226193637051343&class_id=7586226193695771608&lesson_id=7586552398542277838&content_id=7586552398571637982","giftLink":"https://bytedance.larkoffice.com/wiki/Hwk9wgJvCiEdU9kEexvcgcKGnhg?from=from_copylink","avatarAsset":"PzAAbci1uo43c0xyijJcDJWcnzg.png","clipAsset":null},{"id":"recvo12t0aWDFz","name":"CMI 数字技术部高级业务分析师 王久铭","companies":["CMI"],"industries":["互联网和信息技术"],"roleTypes":["产品/技术/数据"],"topic":"CMI 智能对账助手：让 AI 成为“看懂账单”的超级实习生！","date":1766055600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7584275515368803258&class_id=7584275515419134915&lesson_id=7584275678564977618&content_id=7584275678602726345","giftLink":"https://bytedance.larkoffice.com/wiki/M5jrwrxiniExMGk8TOLcxHLwn4e?from=from_copylink","avatarAsset":"HNwqbOYP1oFlpcxPiELcxhbwnyg.png","clipAsset":null},{"id":"recvo12t0adt6E","name":"鹏飞集团甲醇制氢热源厂，电仪车间仪表检修工 尚炀舰","companies":["鹏飞集团"],"industries":["通用"],"roleTypes":["无匹配标签"],"topic":"AI 效率先锋，技术守护安全：鹏飞集团「全维监测」守护安全生命线","date":1765450800000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7581699380357369016&class_id=7581699380395117751&lesson_id=7581699708909784248&content_id=7581699708934950071","giftLink":"https://bytedance.larkoffice.com/wiki/K6tsw1OKQixZpHkLqHkcWZSyn5c","avatarAsset":"HRoCb0gSMosNDqxmVY2cvnaHncd.png","clipAsset":null},{"id":"recvo12t0aUz5k","name":"","companies":["效率先锋大赛"],"industries":[],"roleTypes":[],"topic":"独家解读，看懂 AI ：2025飞书 AI 效率先锋全国大赛总决赛「精选案例回顾」","date":1764846000000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7578819156710935499&class_id=7578819157606927307&lesson_id=7578819351462022326&content_id=7578819351529131190","giftLink":"https://bytedance.larkoffice.com/wiki/KUxTwZnnsiJCQgkiRjBcXC8pnif?from=from_copylink","avatarAsset":"JiPibakhUoQ1UjxqWkOcfXEdn6b.png","clipAsset":null},{"id":"recvo12t0a5kf5","name":"趣丸科技CTO Jerry","companies":["趣丸"],"industries":["互联网和信息技术"],"roleTypes":["产品/技术/数据"],"topic":"兴趣创造价值，AI 赋能实践：揭秘趣丸科技的“AI提效”密码！","date":1764241200000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7576567319296478176&class_id=7576567319346809816&lesson_id=7576567579859225530&content_id=7576567579913751494","giftLink":"https://bytedance.larkoffice.com/wiki/Ul2Jw6feYiG9SJkxqNjcvHDfnzd?from=from_copylink","avatarAsset":"Lju1bxHoSoMl3bxiPtecg9D9n5g.png","clipAsset":null},{"id":"recvo12t0akHrJ","name":"趣丸科技 文化品牌组 禹宇","companies":["趣丸"],"industries":["互联网和信息技术"],"roleTypes":["市场/品牌/内容"],"topic":"兴趣创造价值，AI 赋能实践：揭秘趣丸科技的“AI提效”密码！","date":1764241200000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7576567319296478176&class_id=7576567319346809816&lesson_id=7576567579859225530&content_id=7576567579913751494","giftLink":"https://bytedance.larkoffice.com/wiki/Ul2Jw6feYiG9SJkxqNjcvHDfnzd?from=from_copylink","avatarAsset":"Lju1bxHoSoMl3bxiPtecg9D9n5g.png","clipAsset":null},{"id":"recvo12t0a46KO","name":"趣丸科技 研发中心 林贤","companies":["趣丸"],"industries":["互联网和信息技术"],"roleTypes":["产品/技术/数据"],"topic":"兴趣创造价值，AI 赋能实践：揭秘趣丸科技的“AI提效”密码！","date":1764241200000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7576567319296478176&class_id=7576567319346809816&lesson_id=7576567579859225530&content_id=7576567579913751494","giftLink":"https://bytedance.larkoffice.com/wiki/Ul2Jw6feYiG9SJkxqNjcvHDfnzd?from=from_copylink","avatarAsset":"Lju1bxHoSoMl3bxiPtecg9D9n5g.png","clipAsset":null},{"id":"recvo12t0a6xx0","name":"飞书 aily 解决方案工程师 申志远","companies":["aily专项"],"industries":[],"roleTypes":["客户成功/解决方案"],"topic":"aily专项：AI “真落地”：智能巡检「看-听-读-测」全贯通，助力 EHS 管理提效","date":1763636400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7573582636178096129&class_id=7573582636222824449&lesson_id=7573583515794178050&content_id=7573583515831730178","giftLink":"https://bytedance.larkoffice.com/wiki/Yn22wE9Gfinle4k5oSdcvDCGnAd?from=from_copylink","avatarAsset":"EuYsbuGL7oXXCsxQtyRcq9vXnke.png","clipAsset":null},{"id":"recvo12t0aizia","name":"飞书 aily 高级产品经理 姚锦乐","companies":["aily专项"],"industries":[],"roleTypes":["产品/技术/数据"],"topic":"aily专项：AI “真落地”：智能巡检「看-听-读-测」全贯通，助力 EHS 管理提效","date":1763636400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7573582636178096129&class_id=7573582636222824449&lesson_id=7573583515794178050&content_id=7573583515831730178","giftLink":"https://bytedance.larkoffice.com/wiki/Yn22wE9Gfinle4k5oSdcvDCGnAd?from=from_copylink","avatarAsset":"EuYsbuGL7oXXCsxQtyRcq9vXnke.png","clipAsset":null},{"id":"recvo12t0aMUgZ","name":"影刀深圳区域负责人 梧霜","companies":["影刀"],"industries":["互联网和信息技术"],"roleTypes":["业务经营/运营增长"],"topic":"影刀x飞书：AI 深度赋能，直击“黑五”提效！影刀x飞书「精准营销-选品爆品-电商运营-数据驱动」出海跨境提效宝典","date":1763031600000,"replayLink":null,"giftLink":"https://bytedance.larkoffice.com/wiki/P6YnwfXRJiZPcHk3oLkctsMhn5e?disposable_login_token=eyJ1c2VyX2lkIjoiNzU4Mzg5MjAyOTUyOTI2MzAzNiIsImRldmljZV9sb2dpbl9pZCI6Ijc1ODY2MTU3OTQzNzM1Mjg1MzQiLCJ0aW1lc3RhbXAiOjE3ODE1ODE4MjEsInVuaXQiOiJldV9uYyIsInB3ZF9sZXNzX2xvZ2luX2F1dGgiOiIxIiwidmVyc2lvbiI6InYzIiwidGVuYW50X2JyYW5kIjoiZmVpc2h1IiwicGtnX2JyYW5kIjoi6aOe5LmmIiwiY2xpZW50X3NjaGVtYSI6IngtZmVpc2h1In0%3D.34c9564116224841358e0d97c0b68648de86ac2183d563ef4f3a6ec81067667f","avatarAsset":"OhQ2baSv0oQmT1xFuLCcgKe0nPc.png","clipAsset":null},{"id":"recvo12t0a5TBx","name":"易触科技总经理Al私塾发起人 黄学烽","companies":["影刀"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理"],"topic":"影刀x飞书：AI 深度赋能，直击“黑五”提效！影刀x飞书「精准营销-选品爆品-电商运营-数据驱动」出海跨境提效宝典","date":1763031600000,"replayLink":null,"giftLink":"https://bytedance.larkoffice.com/wiki/P6YnwfXRJiZPcHk3oLkctsMhn5e?disposable_login_token=eyJ1c2VyX2lkIjoiNzU4Mzg5MjAyOTUyOTI2MzAzNiIsImRldmljZV9sb2dpbl9pZCI6Ijc1ODY2MTU3OTQzNzM1Mjg1MzQiLCJ0aW1lc3RhbXAiOjE3ODE1ODE4MjEsInVuaXQiOiJldV9uYyIsInB3ZF9sZXNzX2xvZ2luX2F1dGgiOiIxIiwidmVyc2lvbiI6InYzIiwidGVuYW50X2JyYW5kIjoiZmVpc2h1IiwicGtnX2JyYW5kIjoi6aOe5LmmIiwiY2xpZW50X3NjaGVtYSI6IngtZmVpc2h1In0%3D.34c9564116224841358e0d97c0b68648de86ac2183d563ef4f3a6ec81067667f","avatarAsset":"OhQ2baSv0oQmT1xFuLCcgKe0nPc.png","clipAsset":null},{"id":"recvo12t0aAtQu","name":"影刀合伙人 即心","companies":["影刀"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理"],"topic":"影刀x飞书：电商 AI 真落地：从营销推广到客服质检，从库存管理到VOC，电商人必看的双11「AI提效指南」","date":1762426800000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7568421428274069506&class_id=7568421428317257730&lesson_id=7568487668177616899&content_id=7568487668216299523","giftLink":"https://bytedance.larkoffice.com/wiki/Jx7awORqkiYgS3k7TDdc1iQDnZf?from=from_copylink","avatarAsset":"Ugs1b0wKxoocFUxGMHZczdLPn4d.png","clipAsset":null},{"id":"recvo12t0aEDVb","name":"欧诗漫 CIO","companies":["欧诗漫"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"topic":"欧诗漫：美妆行业 AI 真落地：揭秘AI如何深度融入欧诗漫的“产-研-销-售后”全流程","date":1761822000000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7565807306220470276&class_id=7565807306279714820&lesson_id=7565807445412052994&content_id=7565807445450276866","giftLink":"https://bytedance.larkoffice.com/wiki/Jx7awORqkiYgS3k7TDdc1iQDnZf?from=from_copylink","avatarAsset":"AEbrbj2igo2DhBxXr6OcQnl3nBb.png","clipAsset":null},{"id":"recvo12t0aCXTv","name":"渝欧跨境人力资源主管 熊志波","companies":["渝欧跨境"],"industries":["大消费"],"roleTypes":["职能/组织管理"],"topic":"渝欧跨境：AI 重塑跨境电商，激发组织新动能","date":1761303600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7563235574283780124&class_id=7563235574325264412&lesson_id=7563235722404462611&content_id=7563235722589159443","giftLink":"https://bytedance.larkoffice.com/wiki/I5huwhUweixrq6k8wNkcItrwnvf?from=from_copylink","avatarAsset":"JrX3bTdiZoUrHZxNZ3HcVOQAnqc.png","clipAsset":null},{"id":"recvo12t0aSzUD","name":"渝欧跨境 AI应用研究院品牌负责人 蔡莹","companies":["渝欧跨境"],"industries":["大消费"],"roleTypes":["市场/品牌/内容"],"topic":"渝欧跨境：AI 重塑跨境电商，激发组织新动能","date":1761303600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7563235574283780124&class_id=7563235574325264412&lesson_id=7563235722404462611&content_id=7563235722589159443","giftLink":"https://bytedance.larkoffice.com/wiki/I5huwhUweixrq6k8wNkcItrwnvf?from=from_copylink","avatarAsset":"JrX3bTdiZoUrHZxNZ3HcVOQAnqc.png","clipAsset":null},{"id":"recvo12t0ausUM","name":"渝欧跨境流量与用户运营部负责人 周固贤","companies":["渝欧跨境"],"industries":["大消费"],"roleTypes":["业务经营/运营增长"],"topic":"渝欧跨境：AI 重塑跨境电商，激发组织新动能","date":1761303600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7563235574283780124&class_id=7563235574325264412&lesson_id=7563235722404462611&content_id=7563235722589159443","giftLink":"https://bytedance.larkoffice.com/wiki/I5huwhUweixrq6k8wNkcItrwnvf?from=from_copylink","avatarAsset":"JrX3bTdiZoUrHZxNZ3HcVOQAnqc.png","clipAsset":null},{"id":"recvo12t0a5AGQ","name":"Agent 开发工程师 朱凯杰","companies":["公牛"],"industries":["消费电子"],"roleTypes":["产品/技术/数据"],"topic":"AI 智服“真落地”：公牛 AI 智能客服落地增效方法论","date":1760612400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7559551227279425537&class_id=7559551227330756609&lesson_id=7559552006080856092&content_id=7559552006120882204","giftLink":"https://bytedance.larkoffice.com/wiki/VVfqwdFSmiDEkBkOr5FcEkGnn6g?from=from_copylink","avatarAsset":"PWs2bdS52o3WAKxkDW7cck6onRs.png","clipAsset":null},{"id":"recvo12t0aAi8s","name":"康诺思腾 IT负责人 刘林","companies":["康诺思腾"],"industries":["大健康"],"roleTypes":["职能/组织管理"],"topic":"大健康专场926- 康诺思腾 “AI 智造”手术机器人：康诺思腾的研销场景智能辅助方案\n","date":1758798000000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7543928018927304707&class_id=7543928018983256067&lesson_id=7543928376323768323&content_id=7543928376358305795","giftLink":"https://bytedance.larkoffice.com/wiki/KLewwvydYiVscJkSCymcfPOtnVc?from=from_copylink","avatarAsset":"AnF9b3qk9oWCz8xbh8yckp4un5c.png","clipAsset":null},{"id":"recvo12t0alHeU","name":"海正药业信息技术部数字化创新负责人 郑久舟","companies":["海正药业"],"industries":["大健康"],"roleTypes":["产品/技术/数据"],"topic":"大健康专场918 - 海正 海正药业：4个月从 0 到 1，传统药企生产到销售全场景智能升级","date":1758193200000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7543947226316570627&class_id=7543947226374930435&lesson_id=7543947370053484548&content_id=7543947370103095300","giftLink":"https://bytedance.larkoffice.com/wiki/QuqIwdAl3iQwJFkR8kpce3AAnag?from=from_copylink","avatarAsset":"XdPOb6kjFovnOxxftvdc34nCnug.png","clipAsset":null},{"id":"recvo12t0a5kaJ","name":"北京美中爱瑞肿瘤医院数据及信息技术总监 胡三多","companies":["美中爱瑞"],"industries":["大健康"],"roleTypes":["产品/技术/数据"],"topic":"大健康专场911 - 美中 美中爱瑞“AI医院”，让关怀跑得比疾病更快\n","date":1757588400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7543902210069037084&class_id=7543902210113568796&lesson_id=7543906391113924636&content_id=7543906391230890012","giftLink":"https://bytedance.larkoffice.com/wiki/IvRIwF56jilNufkhTGMcygGgnWh?from=from_copylink","avatarAsset":"ZMp2bM6LWoYKvJxfG5acSe0jnuf.png","clipAsset":null},{"id":"recvo12t0a5APD","name":"振东产品线质量运营部业务分析师 代晓云","companies":["振东"],"industries":["大健康"],"roleTypes":["供应链/制造/质量合规"],"topic":"大健康专场904 - 振东 振东健康：从新品上市到千店推广，Meego +多维表格让效率端到端翻倍","date":1756983600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7543946143395495964&class_id=7543946143435161628&lesson_id=7543946274551808028&content_id=7543946274579333148","giftLink":"https://bytedance.larkoffice.com/wiki/Yw1ywtFx6ivQaVkZ5eRcINwznyf?from=from_copylink","avatarAsset":"QzN9b9707o1BVVxZvlzcKNWFnSb.png","clipAsset":null},{"id":"recvo12t0aIOwW","name":"振东康护市场部产品经理 张鹏云","companies":["振东"],"industries":["大健康"],"roleTypes":["产品/技术/数据"],"topic":"大健康专场904 - 振东 振东健康：从新品上市到千店推广，Meego +多维表格让效率端到端翻倍","date":1756983600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7543946143395495964&class_id=7543946143435161628&lesson_id=7543946274551808028&content_id=7543946274579333148","giftLink":"https://bytedance.larkoffice.com/wiki/Yw1ywtFx6ivQaVkZ5eRcINwznyf?from=from_copylink","avatarAsset":"QzN9b9707o1BVVxZvlzcKNWFnSb.png","clipAsset":null},{"id":"recvo12t0aU6G4","name":"联影医疗信息系统运维工程师 邹佳吟","companies":["联影医疗"],"industries":["大健康"],"roleTypes":["产品/技术/数据"],"topic":"大健康专场828 - 联影医疗 联影医疗：创新联影 同频共振 医疗供应链全链管理的智造突围","date":1756378800000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7533498922248306716&class_id=7533498922288594972&lesson_id=7533499221672886291&content_id=7533499221723267091","giftLink":"https://bytedance.larkoffice.com/wiki/PKbXwZKWeiYLTMknSEcc6oOZnOc?from=from_copylink","avatarAsset":"QZRUbKYH5oRnBoxoFQXcqUQWncd.png","clipAsset":null},{"id":"recvo12t0aYoEZ","name":"联影医疗高级生产主管 王成","companies":["联影医疗"],"industries":["大健康"],"roleTypes":["供应链/制造/质量合规"],"topic":"大健康专场828 - 联影医疗 联影医疗：创新联影 同频共振 医疗供应链全链管理的智造突围","date":1756378800000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7533498922248306716&class_id=7533498922288594972&lesson_id=7533499221672886291&content_id=7533499221723267091","giftLink":"https://bytedance.larkoffice.com/wiki/PKbXwZKWeiYLTMknSEcc6oOZnOc?from=from_copylink","avatarAsset":"QZRUbKYH5oRnBoxoFQXcqUQWncd.png","clipAsset":null},{"id":"recvo12t0aWFLQ","name":"普瑞眼科医院（集团）数字化发展中心CIO 刘剑秋","companies":["普瑞眼科"],"industries":["大健康"],"roleTypes":["产品/技术/数据"],"topic":"大健康专场821 - 普瑞眼科 普瑞眼科：AI 赋能智慧医疗，普瑞眼科解锁眼健康服务新场景","date":1755774000000,"replayLink":null,"giftLink":"https://bytedance.larkoffice.com/wiki/PPNLwU8XUiXVCykMIWecfamtnOn?from=from_copylink","avatarAsset":"LplSbj2aWotuZgxM8r4c6VznnCD.png","clipAsset":null},{"id":"recvo12t0a5K38","name":"开立医疗创新研究中心技术经理 陈黎云","companies":["开立医疗"],"industries":["大健康"],"roleTypes":["产品/技术/数据"],"topic":"大健康专场814 - 开立医疗 开立医疗：从太空彩超到AI诊断 开立如何推动AI医疗设备实践","date":1755169200000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7533553284008853532&class_id=7533553284048994332&lesson_id=7533553571974365203&content_id=7533553572019027987&from=push","giftLink":"https://bytedance.larkoffice.com/wiki/EsFBwe0AyiV1TdkFpiLc7PuVnRb?from=from_copylink","avatarAsset":"Wt4cbrT4Roszyax4VWlccQmDnfd.png","clipAsset":null},{"id":"recvo12t0a1vUQ","name":"开立医疗信息化经理 李俊逸","companies":["开立医疗"],"industries":["大健康"],"roleTypes":["职能/组织管理"],"topic":"大健康专场814 - 开立医疗 开立医疗：从太空彩超到AI诊断 开立如何推动AI医疗设备实践","date":1755169200000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7533553284008853532&class_id=7533553284048994332&lesson_id=7533553571974365203&content_id=7533553572019027987&from=push","giftLink":"https://bytedance.larkoffice.com/wiki/EsFBwe0AyiV1TdkFpiLc7PuVnRb?from=from_copylink","avatarAsset":"Wt4cbrT4Roszyax4VWlccQmDnfd.png","clipAsset":null},{"id":"recvo12t0ajg0b","name":"扬子江药业AI解决方案处负责人 宋梓涵","companies":["扬子江"],"industries":["大健康"],"roleTypes":["客户成功/解决方案"],"topic":"大健康专场0807 - 扬子江药业：从精益生产到AI制药 扬子江药业如何由“制造”向“智造”跨越","date":1754564400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7533238179887530012&class_id=7533238179929980956&lesson_id=7533238571054563347&content_id=7533238571099947027","giftLink":"https://bytedance.larkoffice.com/wiki/Rb3mw4x1RiTESkklbU0cmYVDnzd?from=from_copylink","avatarAsset":"BtMibmF5Doe03ax60BTcIYrJn5c.png","clipAsset":null},{"id":"recvo12t0a43lb","name":"暗物智能科技项目管理部负责人 张松钦","companies":["暗物智能"],"industries":["互联网和信息技术"],"roleTypes":["产品/技术/数据"],"topic":"暗物智能：“红绿灯执法大队” 暗物智能如何用AI驱动项目管理革新","date":1753959600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7532054256882548764&class_id=7532054257005051932&lesson_id=7532054425941016604&content_id=7532054426072727580","giftLink":"https://bytedance.larkoffice.com/wiki/LxnWwggVMidUEEkEwSFc46fVnDg?from=from_copylink","avatarAsset":"W5PJbQjgwo26T6xjQ6uceuTWn5R.png","clipAsset":null},{"id":"recvo12t0ag2Fh","name":"爱回收企业文化负责人 林宇","companies":["爱回收"],"industries":["互联网和信息技术"],"roleTypes":["职能/组织管理"],"topic":"爱回收：AI 门户引爆数字化想象力，文化互动照见效率革命","date":1753372140000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7528319916087377924&class_id=7528319916147982340&lesson_id=7528320464742875164&content_id=7528320464782622748","giftLink":"https://bytedance.larkoffice.com/wiki/Jlxww1mVgidwr9kljV5czxIVnih?from=from_copylink","avatarAsset":"WNFebdPFfoKKy3xhGYOczl65n2e.png","clipAsset":null},{"id":"recvo12t0albUR","name":"九洲集团软智军工负责人 王星星","companies":["九洲集团"],"industries":["制造业"],"roleTypes":["高管/综合管理"],"topic":"国企 AI 破局进行时，九洲加速推进 AI 应用全面落地\n","date":1752750000000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7525775295717834780&class_id=7525775295764414492&lesson_id=7525775467395186691&content_id=7525775467446321155","giftLink":"https://bytedance.larkoffice.com/docx/PRGbdsu1coAAGBx26wEcX2fBnKd?from=from_copylink","avatarAsset":"EgX2byuicouwWuxzxwvcAaN1nod.png","clipAsset":null},{"id":"recvo12t0aIA8S","name":"湖山电器音响分公司工艺主管 刘敏彬","companies":["九洲集团"],"industries":["制造业"],"roleTypes":["供应链/制造/质量合规"],"topic":"国企 AI 破局进行时，九洲加速推进 AI 应用全面落地\n","date":1752750000000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7525775295717834780&class_id=7525775295764414492&lesson_id=7525775467395186691&content_id=7525775467446321155","giftLink":"https://bytedance.larkoffice.com/docx/PRGbdsu1coAAGBx26wEcX2fBnKd?from=from_copylink","avatarAsset":"EgX2byuicouwWuxzxwvcAaN1nod.png","clipAsset":null},{"id":"recvo12t0acq1w","name":"九洲软智军团AI产品经理 彭诚","companies":["九洲集团"],"industries":["制造业"],"roleTypes":["产品/技术/数据"],"topic":"国企 AI 破局进行时，九洲加速推进 AI 应用全面落地\n","date":1752750000000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7525775295717834780&class_id=7525775295764414492&lesson_id=7525775467395186691&content_id=7525775467446321155","giftLink":"https://bytedance.larkoffice.com/docx/PRGbdsu1coAAGBx26wEcX2fBnKd?from=from_copylink","avatarAsset":"EgX2byuicouwWuxzxwvcAaN1nod.png","clipAsset":null},{"id":"recvo12t0amxp2","name":"九洲集团财务共享中心主管 常客夫","companies":["九洲集团"],"industries":["制造业"],"roleTypes":["职能/组织管理"],"topic":"国企 AI 破局进行时，九洲加速推进 AI 应用全面落地\n","date":1752750000000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7525775295717834780&class_id=7525775295764414492&lesson_id=7525775467395186691&content_id=7525775467446321155","giftLink":"https://bytedance.larkoffice.com/docx/PRGbdsu1coAAGBx26wEcX2fBnKd?from=from_copylink","avatarAsset":"EgX2byuicouwWuxzxwvcAaN1nod.png","clipAsset":null},{"id":"recvo12t0aaiPk","name":"固德威 光电建材事业部国内解决方案经理 严煜","companies":["固德光伏"],"industries":["制造业"],"roleTypes":["客户成功/解决方案"],"topic":"固德威：LTC项目管理实战，从销售到交付的全链路提效密码 直播回放","date":1751540400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7521662692800118785&class_id=7521662692846452737&lesson_id=7521663798792044546&content_id=7521663798828793858","giftLink":"https://bytedance.larkoffice.com/wiki/FEmIwkYvBiS0XpkbqpccuQRAnke?from=from_copylink","avatarAsset":"DalHbpTCooQpjBxnHi2cEB1GnVe.png","clipAsset":null},{"id":"recvo12t0ay7Ry","name":"鱼泡直聘创始人&董事长 周峰","companies":["鱼泡直聘"],"industries":[],"roleTypes":["高管/综合管理"],"topic":"鱼泡直聘：AI引领招聘新时代，工具赋能增长新路径 直播回放","date":1750935600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7519345053372710915&class_id=7519345053462806531&lesson_id=7519345390182973443&content_id=7519345390213316611","giftLink":"https://bytedance.larkoffice.com/wiki/FQlcwsFbYidcOMkQXnNcmuscnVc?from=from_copylink","avatarAsset":"MpozbgMJOolkjYxSPWhcARr7nSe.png","clipAsset":null},{"id":"recvo12t0acvPJ","name":"智谱MaaS平台 大模型教练 王长铭","companies":["智谱AI"],"industries":["互联网和信息技术"],"roleTypes":["产品/技术/数据"],"topic":"全行业Al破局密码，智谱如何重构高效工作","date":1750330800000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7516473177956630529&class_id=7516473177993216001&lesson_id=7516473355932155906&content_id=7516473355962236930","giftLink":"https://bytedance.larkoffice.com/wiki/Y4A9wW5glicbrRkvy2ZciopQnfh?from=from_copylink","avatarAsset":"KZskbHpipo8fgUxl766cvHtGnad.png","clipAsset":null},{"id":"recvo12t0a5ycH","name":"智谱MaaS平台 场景产品专家陆紫涵","companies":["智谱AI"],"industries":["互联网和信息技术"],"roleTypes":["产品/技术/数据"],"topic":"全行业Al破局密码，智谱如何重构高效工作","date":1750330800000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7516473177956630529&class_id=7516473177993216001&lesson_id=7516473355932155906&content_id=7516473355962236930","giftLink":"https://bytedance.larkoffice.com/wiki/Y4A9wW5glicbrRkvy2ZciopQnfh?from=from_copylink","avatarAsset":"KZskbHpipo8fgUxl766cvHtGnad.png","clipAsset":null},{"id":"recvo12t0aWlD9","name":"智谱MaaS平台产品专家 曹满琳","companies":["智谱AI"],"industries":["互联网和信息技术"],"roleTypes":["产品/技术/数据"],"topic":"全行业Al破局密码，智谱如何重构高效工作","date":1750330800000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7516473177956630529&class_id=7516473177993216001&lesson_id=7516473355932155906&content_id=7516473355962236930","giftLink":"https://bytedance.larkoffice.com/wiki/Y4A9wW5glicbrRkvy2ZciopQnfh?from=from_copylink","avatarAsset":"KZskbHpipo8fgUxl766cvHtGnad.png","clipAsset":null},{"id":"recvo12t0aHnPi","name":"健力宝首席信息官 李鹏","companies":["健力宝"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"topic":"“东方魔水”健力宝，国民品牌的AI智造","date":1749726000000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7514180258520956956&class_id=7514180258553839644&lesson_id=7514180446641815580&content_id=7514180446666637340","giftLink":"https://bytedance.larkoffice.com/docx/KacMd2T4zoYUSAx4ipkcRkIBn1f","avatarAsset":"HAsjbsQeeoNvxexRlZfcUbHon9c.png","clipAsset":null},{"id":"recvo12t0aKFHj","name":"供应链中心镇江分厂EHS 管理主任 韩鹏","companies":["健力宝"],"industries":["大消费"],"roleTypes":["供应链/制造/质量合规"],"topic":"“东方魔水”健力宝，国民品牌的AI智造","date":1749726000000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7514180258520956956&class_id=7514180258553839644&lesson_id=7514180446641815580&content_id=7514180446666637340","giftLink":"https://bytedance.larkoffice.com/docx/KacMd2T4zoYUSAx4ipkcRkIBn1f","avatarAsset":"HAsjbsQeeoNvxexRlZfcUbHon9c.png","clipAsset":null},{"id":"recvo12t0aGwjN","name":"电务操作技术员","companies":["健力宝"],"industries":["大消费"],"roleTypes":["无匹配标签"],"topic":"“东方魔水”健力宝，国民品牌的AI智造","date":1749726000000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7514180258520956956&class_id=7514180258553839644&lesson_id=7514180446641815580&content_id=7514180446666637340","giftLink":"https://bytedance.larkoffice.com/docx/KacMd2T4zoYUSAx4ipkcRkIBn1f","avatarAsset":"HAsjbsQeeoNvxexRlZfcUbHon9c.png","clipAsset":null},{"id":"recvo12t0acEFN","name":"维动轻流创始人 於杰","companies":["维动轻流"],"industries":["大消费"],"roleTypes":["高管/综合管理"],"topic":"维动轻流：HR跨界破局，AI客服实战分享","date":1749121200000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7511600335494201346&class_id=7511600335549693954&lesson_id=7511600494335295492&content_id=7511600494365507588","giftLink":"https://bytedance.larkoffice.com/docx/VtnFdmEFUoyMvXxuiNfcNQBInUc","avatarAsset":"YHLEb2DRHoxhfxxIPuBc6QyOnXd.png","clipAsset":null},{"id":"recvo12t0a6lb7","name":"数字化转型办公室主任 高瞻","companies":["双汇集团"],"industries":["大消费"],"roleTypes":["职能/组织管理"],"topic":"国货精品共话增长：40年从“新”出发，双汇数字化的“第一步”","date":1748499600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7501608537609748484&class_id=7501608537670074372&lesson_id=7501608681736929299&content_id=7501608681765601299","giftLink":"https://bytedance.larkoffice.com/docx/HIY6dncveo9iAexJVRLcVXhVnIh","avatarAsset":"WTaCbcDoroP8bPx9milcGr7un7O.png","clipAsset":null},{"id":"recvo12t0aqF50","name":"恒太商业 企划中心总经理周洪根","companies":["恒太商业"],"industries":["大消费"],"roleTypes":["高管/综合管理"],"topic":"国货精品共话增长：AI驱动革新，数智化工具构建商业运营新范式","date":1747911600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7501607525676908572&class_id=7501607525712822300&lesson_id=7501607730271584275&content_id=7501607730300698643","giftLink":"https://bytedance.larkoffice.com/wiki/NiMAwAVDZihH3SkIbRZctnpznAg","avatarAsset":"OarQbNWzroaogMxGdE9ccoElnkh.png","clipAsset":null},{"id":"recvo12t0aCARH","name":"用户运营总监 焦跃辉","companies":["恒太商业"],"industries":["大消费"],"roleTypes":["业务经营/运营增长"],"topic":"国货精品共话增长：AI驱动革新，数智化工具构建商业运营新范式","date":1747911600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7501607525676908572&class_id=7501607525712822300&lesson_id=7501607730271584275&content_id=7501607730300698643","giftLink":"https://bytedance.larkoffice.com/wiki/NiMAwAVDZihH3SkIbRZctnpznAg","avatarAsset":"OarQbNWzroaogMxGdE9ccoElnkh.png","clipAsset":null},{"id":"recvo12t0aMAAJ","name":"水羊股份 技术总监 长流","companies":["水羊集团"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"topic":"国货精品共话增长：水羊股份重构电商效率新范式","date":1747306800000,"replayLink":"https://www.feishu.cn/community/course?id=7501604824247615516","giftLink":"https://bytedance.larkoffice.com/wiki/ZuciwRPGPi2n5ckHJxQcInBYnYe","avatarAsset":"UxujbHcYSowDE1x1XLkcwb3anoc.png","clipAsset":null},{"id":"recvo12t0arF16","name":"水星家纺 CIO 刘峰","companies":["水星家纺"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"topic":"国货精品共话增长：揭秘飞书如何助力水星家纺织就数字化增长蓝图","date":1746702000000,"replayLink":"https://www.feishu.cn/community/course?id=7498713887249645569","giftLink":"https://bytedance.larkoffice.com/wiki/TSTmwNkDEiu7irkPzCJck7BRnId","avatarAsset":"DBxKbhA0DoNxXexs9LlcVeXFnKd.png","clipAsset":null},{"id":"recvo12t0aKgtK","name":"邹叔 华狮出海CEO","companies":["领星科技"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理"],"topic":"解码跨境：工具赋能企业出海，点燃全球生意增长引擎","date":1745463120000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7495735858545262594&class_id=7495735858585337858&lesson_id=7495736252327215107&content_id=7495736252356886531","giftLink":null,"avatarAsset":"GGKkbWokhofTvaxqCGncFiqcncd.png","clipAsset":null},{"id":"recvo12t0aeC9c","name":"李坤莲 领星科技 客户成功负责人","companies":["领星科技"],"industries":["互联网和信息技术"],"roleTypes":["客户成功/解决方案"],"topic":"解码跨境：工具赋能企业出海，点燃全球生意增长引擎","date":1745463120000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7495735858545262594&class_id=7495735858585337858&lesson_id=7495736252327215107&content_id=7495736252356886531","giftLink":null,"avatarAsset":"GGKkbWokhofTvaxqCGncFiqcncd.png","clipAsset":null},{"id":"recvo12t0aYZdo","name":"地上铁 首席运营官 李晓炜","companies":["地上铁"],"industries":["互联网和信息技术"],"roleTypes":["业务经营/运营增长"],"topic":"多维表格 × 地上铁，碰撞新能源物流数智化 “火花”","date":1744858320000,"replayLink":"https://www.feishu.cn/community/course?id=7493380794975518721","giftLink":"https://bytedance.larkoffice.com/wiki/Bl0AwAybkizt0Mk40Qrc6NHln9d?from=from_copylink","avatarAsset":"TEDObfptxoVYOcxr3lgcmj3inod.jpeg","clipAsset":null},{"id":"recvo12t0aWZtF","name":"月之暗面开放平台负责人 许博瑀","companies":["月之暗面"],"industries":["互联网和信息技术"],"roleTypes":["产品/技术/数据"],"topic":"企业如何将AI融入工作流：Kimi+飞书解锁业务新玩法","date":1744253520000,"replayLink":"https://www.feishu.cn/community/course?id=7490773573748064258","giftLink":"https://moonshot.feishu.cn/wiki/R8XPwurbtiakVoknOcmcrfAfn9d?from=from_copylink","avatarAsset":"JbdHbD0KkodNaUxLXhNcJM8onqf.png","clipAsset":null},{"id":"recvo12t0azfeR","name":"烤匠人力资源部负责人 @陈飞龙","companies":["烤匠"],"industries":[],"roleTypes":["职能/组织管理"],"topic":"解码烤匠:打造餐饮数字化样板间与狂揽食客的独家秘籍","date":1743073200000,"replayLink":"https://www.feishu.cn/community/course?id=7485274435455795204","giftLink":"https://wh-digit.feishu.cn/docx/YiUvdVimno8PA0xMKJdckO64nOb?from=from_copylink","avatarAsset":"UmU9b0nuAoIgacxIx6NcaofVnBh.png","clipAsset":null},{"id":"recvo12t0aDAEm","name":"长城物业产品与解决方案中心 产品研发总监 李欢","companies":["长城物业"],"industries":["通用"],"roleTypes":["产品/技术/数据"],"topic":"长城物业：\"传统\"行业 Al破局进行时,长城物业人的效率革命","date":1742468400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7482710022804635676&class_id=7482710022839566364&lesson_id=7482710224780230660&content_id=7482710224809852932","giftLink":"https://bytedance.larkoffice.com/wiki/YNtYwtznziAPDqk1Y4vcMrqWnhf?from=from_copylink","avatarAsset":"VZDZb0RF1oroVzx3DFXcZxwRnod.jpg","clipAsset":null},{"id":"recvo12t0aTz3s","name":"刘丰 公司副总裁兼产品部总经理","companies":["航旅纵横"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理","产品/技术/数据"],"topic":"航旅纵横：1亿+旅客选择的秘密解码航旅纵横如何重塑出行新体验","date":1741863600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7480459834786234372&class_id=7480459834837024772&lesson_id=7480460025538347036&content_id=7480460025574424604","giftLink":null,"avatarAsset":"Auh3bGwFCovc24xcseYcpvIznih.png","clipAsset":null},{"id":"recvo12t0aaO3l","name":"柴金祥 魔珐科技创始人兼CEO","companies":["魔珐科技"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理"],"topic":"魔珐科技：智启AI数字人新纪元，飞书+魔珐双擎颠覆内容生产力\n","date":1741260600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7477837108204519452&class_id=7477837108245692444&lesson_id=7477837890431025155&content_id=7477837890462908419","giftLink":"https://bytedance.larkoffice.com/wiki/RkwVwhbhaiWEeMkXUFQcanK5nzc?from=from_copylink","avatarAsset":"FzO5bMVF8ozUCuxo5YicnMSUnph.jpg","clipAsset":null},{"id":"recvo12t0anaZp","name":"贺恒垚 魔珐科技有光产品负责人","companies":["魔珐科技"],"industries":["互联网和信息技术"],"roleTypes":["产品/技术/数据"],"topic":"魔珐科技：智启AI数字人新纪元，飞书+魔珐双擎颠覆内容生产力\n","date":1741260600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7477837108204519452&class_id=7477837108245692444&lesson_id=7477837890431025155&content_id=7477837890462908419","giftLink":"https://bytedance.larkoffice.com/wiki/RkwVwhbhaiWEeMkXUFQcanK5nzc?from=from_copylink","avatarAsset":"FzO5bMVF8ozUCuxo5YicnMSUnph.jpg","clipAsset":null},{"id":"recvo12t0alCt2","name":"李韵 魔珐科技市场负责人","companies":["魔珐科技"],"industries":["互联网和信息技术"],"roleTypes":["市场/品牌/内容"],"topic":"魔珐科技：智启AI数字人新纪元，飞书+魔珐双擎颠覆内容生产力\n","date":1741260600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7477837108204519452&class_id=7477837108245692444&lesson_id=7477837890431025155&content_id=7477837890462908419","giftLink":"https://bytedance.larkoffice.com/wiki/RkwVwhbhaiWEeMkXUFQcanK5nzc?from=from_copylink","avatarAsset":"FzO5bMVF8ozUCuxo5YicnMSUnph.jpg","clipAsset":null},{"id":"recvo12t0aKjXx","name":"令颜欢","companies":["魔珐科技"],"industries":["互联网和信息技术"],"roleTypes":["无匹配标签"],"topic":"魔珐科技：智启AI数字人新纪元，飞书+魔珐双擎颠覆内容生产力\n","date":1741260600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7477837108204519452&class_id=7477837108245692444&lesson_id=7477837890431025155&content_id=7477837890462908419","giftLink":"https://bytedance.larkoffice.com/wiki/RkwVwhbhaiWEeMkXUFQcanK5nzc?from=from_copylink","avatarAsset":"FzO5bMVF8ozUCuxo5YicnMSUnph.jpg","clipAsset":null},{"id":"recvo12t0aGPPk","name":"山海星辰董事长助理Yulya","companies":["山海短剧"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理"],"topic":"山海短剧：山海无界，飞书织链，短剧工业化的星辰征途","date":1740657600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7474925236543160322&class_id=7474925236594999298&lesson_id=7474925404128772100&content_id=7474925404153970692","giftLink":"https://bytedance.larkoffice.com/wiki/JnxNwzehKi5oeMkdCsQcbkr7nxb?from=from_copylink","avatarAsset":"WFpmbZXxJoOZMLxGNXicyByXnqd.png","clipAsset":null},{"id":"recvo12t0aiK8X","name":"山海星辰研发工程师雷恩","companies":["山海短剧"],"industries":["互联网和信息技术"],"roleTypes":["产品/技术/数据"],"topic":"山海短剧：山海无界，飞书织链，短剧工业化的星辰征途","date":1740657600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7474925236543160322&class_id=7474925236594999298&lesson_id=7474925404128772100&content_id=7474925404153970692","giftLink":"https://bytedance.larkoffice.com/wiki/JnxNwzehKi5oeMkdCsQcbkr7nxb?from=from_copylink","avatarAsset":"WFpmbZXxJoOZMLxGNXicyByXnqd.png","clipAsset":null},{"id":"recvo12t0aOFSz","name":"山海星辰行政经理因子","companies":["山海短剧"],"industries":["互联网和信息技术"],"roleTypes":["职能/组织管理"],"topic":"山海短剧：山海无界，飞书织链，短剧工业化的星辰征途","date":1740657600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7474925236543160322&class_id=7474925236594999298&lesson_id=7474925404128772100&content_id=7474925404153970692","giftLink":"https://bytedance.larkoffice.com/wiki/JnxNwzehKi5oeMkdCsQcbkr7nxb?from=from_copylink","avatarAsset":"WFpmbZXxJoOZMLxGNXicyByXnqd.png","clipAsset":null},{"id":"recvo12t0amNNm","name":"得到联合创始人、AI圈主理人 快刀青衣","companies":["得到"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理"],"topic":"“得到”AI新机遇，“书”写企业效率新篇章","date":1740052800000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7471191404212781058&class_id=7471191404248301570&lesson_id=7471191708564340738&content_id=7471191708595470338","giftLink":"https://bytedance.larkoffice.com/wiki/AcQ3wBa9RiQyh0kMcjacK6ZWnvb?from=from_copylink","avatarAsset":"YMbMbpzAdoMiwUxAaWSc4f63nhd.png","clipAsset":null},{"id":"recvo12t0aTi3J","name":"帝迈生物IT信息工程师李美行","companies":["帝迈生物"],"industries":["大健康"],"roleTypes":["产品/技术/数据"],"topic":"帝砺前行，迈向AI新时代的数字化征程","date":1736852400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7457096464268083202&class_id=7457096464298803202&lesson_id=7457096746605379603&content_id=7457096746648125459","giftLink":"https://bytedance.larkoffice.com/wiki/H0ThwhBsGipbmdkLtbLc1o7bn0g","avatarAsset":"VPjxbFC9UoSsXcxF9hac89G7nWe.jpeg","clipAsset":null},{"id":"recvo12t0alAnU","name":"天鹅到家集团首席人才官段冬","companies":["天鹅到家"],"industries":["互联网和信息技术"],"roleTypes":["职能/组织管理"],"topic":"天鹅到家，2025 组织与员工提效攻略","date":1736424000000,"replayLink":null,"giftLink":"https://bytedance.larkoffice.com/wiki/EzT4wQIFQi4VzokidnFcInulncf?from=from_copylink","avatarAsset":"FsCwbmMgXoxPlsxIBhAciVNRnJe.png","clipAsset":null},{"id":"recvo12t0awH0x","name":"惠伦晶体CIO 刘佐敬","companies":["惠伦晶体"],"industries":["制造业"],"roleTypes":["产品/技术/数据"],"topic":"\"芯\"战场上的中国力量，惠伦晶体的数字化之路","date":1735038000000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7451482130049679363&class_id=7451482130111447043&lesson_id=7451484133333958658&content_id=7451484133365628930","giftLink":"https://bytedance.larkoffice.com/wiki/EzT4wQIFQi4VzokidnFcInulncf","avatarAsset":"DqcAbXEl3oJ7XGxrxvgc3yjXn9f.jpeg","clipAsset":null},{"id":"recvo12t0aO5eC","name":"张睿，茶百道首席数字官","companies":["茶百道"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"topic":"飞入门店新时代，茶百道带来数字化门店新攻略","date":1734523200000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7447797102089584644&class_id=7447797102143160324&lesson_id=7447798059430363140&content_id=7447798059459100676","giftLink":"https://bytedance.larkoffice.com/wiki/ABChwrxtdi9W0XkGqrQcyTHpnob","avatarAsset":"MvimbmKfnoLJMExslSfcYlzwnRf.jpg","clipAsset":null},{"id":"recvo12t0as8xf","name":"双舟集团副总经理张丽楠","companies":["双舟辣嘴鸭"],"industries":["大消费"],"roleTypes":["高管/综合管理"],"topic":"宇宙尽头的辣嘴鸭，如何打造国民鸭货餐厅","date":1733828400000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7444856160443875331&class_id=7444856160498925571&lesson_id=7444856735984123906&content_id=7444856736014450690","giftLink":"https://bytedance.larkoffice.com/wiki/LASzwqzhtia48vkYUkrchMLunvh","avatarAsset":"AJ0FbcIigoEClaxMWNQcWos3ntb.png","clipAsset":null},{"id":"recvo12t0axFdI","name":"衬衫老罗创始人 罗鑫华","companies":["衬衫老罗"],"industries":["大消费"],"roleTypes":["业务经营/运营增长"],"topic":"衬衫老罗，抖音衬衫 No.1 的升级之路","date":1733310000000,"replayLink":"https://bytedance.larkoffice.com/minutes/obcnbp8yynvrt11965b9j3wr","giftLink":"https://bytedance.larkoffice.com/wiki/EBaawe4K0ip02Mkqju0cONCVnmd?from=from_copylink","avatarAsset":"BGpUb4YTkohWZExPXCecEdPKnrA.png","clipAsset":null},{"id":"recvo12t0a9M9h","name":"零一数科 CEO 鉴锋","companies":["零一裂变"],"industries":["互联网和信息技术"],"roleTypes":["高管/综合管理"],"topic":"操盘1.5 亿用户，90 后 CEO 7 年创业路分享","date":1732618800000,"replayLink":"https://www.feishu.cn/community/course?id=7441087484601368604","giftLink":"https://bytedance.larkoffice.com/wiki/TboFwoF6xiqZn1kdA1TcDDDsnJf?renamingWikiNode=true","avatarAsset":"NMiEbWU7jomxxwxm6OqcgfOBnqI.png","clipAsset":null},{"id":"recvo12t0anAnU","name":"飞书多维表格产品经理","companies":["飞书"],"industries":[],"roleTypes":["产品/技术/数据"],"topic":"多维表格产品面对面","date":1732014000000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7438967397285806083&class_id=7438967397346525187&lesson_id=7438967563805671427&content_id=7438967563835342851","giftLink":"https://bytedance.larkoffice.com/wiki/UVzRw9ekcimxY1kLkYbccLD4nue?from=from_copylink","avatarAsset":"Xpw1bSnSvoPI0KxdzH9cqvGynJc.png","clipAsset":null},{"id":"recvo12t0aXgMX","name":"荔枝企业效率负责人程孝羽","companies":["荔枝"],"industries":["互联网和信息技术"],"roleTypes":["职能/组织管理"],"topic":"效率工程新篇章，AI智能伙伴实战派","date":1731409200000,"replayLink":"https://bytedance.larkoffice.com/minutes/obcnvl3932bf96ck81wvcg2v","giftLink":"https://bytedance.larkoffice.com/wiki/Sb5AwpmONi4kOZkR6TrcUK48nqc","avatarAsset":"VY66boadPoHtMKxYZQlcj1Egncf.jpeg","clipAsset":null},{"id":"recvo12t0aTdeu","name":"锐捷网络 AI 运营负责人","companies":["锐捷","阶跃星辰"],"industries":["互联网和信息技术"],"roleTypes":["业务经营/运营增长"],"topic":"赢在 AI 时代，企业这样打造 AI 黑客松！","date":1730804400000,"replayLink":"https://bytedance.larkoffice.com/minutes/obcnqsq23b538xi3842218s4","giftLink":"https://bytedance.larkoffice.com/docx/GvXrdqcMzog87HxGQrpc7xpgn6g","avatarAsset":"K5gxb7ZChoEJlSxSTRwcylpVnlg.png","clipAsset":null},{"id":"recvo12t0aDYqF","name":"阶跃星辰开放平台总监付凯","companies":["锐捷","阶跃星辰"],"industries":["互联网和信息技术"],"roleTypes":["产品/技术/数据"],"topic":"赢在 AI 时代，企业这样打造 AI 黑客松！","date":1730804400000,"replayLink":"https://bytedance.larkoffice.com/minutes/obcnqsq23b538xi3842218s4","giftLink":"https://bytedance.larkoffice.com/docx/GvXrdqcMzog87HxGQrpc7xpgn6g","avatarAsset":"K5gxb7ZChoEJlSxSTRwcylpVnlg.png","clipAsset":null},{"id":"recvo12t0aW2W4","name":"交个朋友产品经理岑呈友","companies":["交个朋友"],"industries":["互联网和信息技术"],"roleTypes":["产品/技术/数据"],"topic":"交个朋友如何打造“日不落”直播间","date":1730199600000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7436269218427715587&class_id=7436269218458107907&lesson_id=7436269279246876676&content_id=7436269279275548676","giftLink":"https://bytedance.larkoffice.com/base/NGCIbBFvjahn1tslzbdclrpunXc?table=tblg2nhFGLthf2QB&view=vewtfkD9lJ","avatarAsset":"C9bubtyMboD6LtxbhSvc00zBnCh.PNG","clipAsset":null},{"id":"recvpewMB7PfVz","name":"杰森娱乐产品技术总监陈力遥","companies":["杰森娱乐"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"topic":"从 3 天到 10 分钟：杰森娱乐的 AI 潮玩加速器","date":1783440000000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7659304094124739768&class_id=7659304094217014454&lesson_id=7659304609122356170&content_id=7659304609864747967","giftLink":"https://bytedance.larkoffice.com/docx/UPx8dveJsoKqctxSPsEcmSQUnyc","avatarAsset":"VLGIbMBJHoJBgzxd3rjcX9bqn2d.png","clipAsset":"GXfybwnbnoRnu7xq6GpcPeF2nch.mp4"},{"id":"recvpewMB7jPCH","name":"杰森娱乐产品经理陆芷珺","companies":["杰森娱乐"],"industries":["大消费"],"roleTypes":["产品/技术/数据"],"topic":"从 3 天到 10 分钟：杰森娱乐的 AI 潮玩加速器","date":1783440000000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7659304094124739768&class_id=7659304094217014454&lesson_id=7659304609122356170&content_id=7659304609864747967","giftLink":"https://bytedance.larkoffice.com/docx/UPx8dveJsoKqctxSPsEcmSQUnyc","avatarAsset":"VLGIbMBJHoJBgzxd3rjcX9bqn2d.png","clipAsset":"N3jLbJAm8o3sefxaszAcAttbnhg.mp4"},{"id":"recvpYzLSmdXDf","name":"福建圣农发展股份有限公司零售渠道销售部副总裁 吴宗伟","companies":["圣农"],"industries":["农林牧渔"],"roleTypes":["高管/综合管理"],"topic":"「吴」限分身：天启，一个会主动办事的高管 Agent","date":1784736000000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7663049663565532095&class_id=7663049663682972618&lesson_id=7663050023793331384&content_id=7663050024468614326&from=share","giftLink":"https://bytedance.larkoffice.com/wiki/KD9zwqZ1biSiOlkiM0rcLsoznHh?from=from_copylink","avatarAsset":"Fkj7bV3vEorA5LxCOX4czQbsnub.png","clipAsset":null},{"id":"recvpYzLSmpdNq","name":"福建圣农发展股份有限公司零售渠道销售管理部负责人 金峰","companies":["圣农"],"industries":["农林牧渔"],"roleTypes":["业务经营/运营增长"],"topic":"「吴」限分身：天启，一个会主动办事的高管 Agent","date":1784736000000,"replayLink":"https://www.feishu.cn/community/course/content?course_id=7663049663565532095&class_id=7663049663682972618&lesson_id=7663050023793331384&content_id=7663050024468614326&from=share","giftLink":"https://bytedance.larkoffice.com/wiki/KD9zwqZ1biSiOlkiM0rcLsoznHh?from=from_copylink","avatarAsset":"Fkj7bV3vEorA5LxCOX4czQbsnub.png","clipAsset":null}],"podcasts":[{"id":"recvqAu70NNsGx","text":"筹备有“锦”度，质检有“智”量：锦江酒店的 AI 提效实践","industry":"大消费","createdAt":1785165882000,"audios":[{"name":"锦江酒店的AI提效实践.mp3","asset":"WiZ7bE8c8ooi1pxuRTJcGv8gnhh.mp3"}]},{"id":"recvqAu70N1fuS","text":"从“怕被替代”到“借力 AI ”：看 IT 用妙搭秒变业务合伙人","industry":"大消费","createdAt":1785165882000,"audios":[{"name":"从怕被替代到借力AI：IT用妙搭秒变业务合伙人.mp3","asset":"SGWJbJPXwoIIaExaLBjclxa2nwf.mp3"}]},{"id":"recvqAu70NWRut","text":"虾说：从养娃到养虾，看母婴顶流圣贝拉用 OpenClaw 解锁门店管理新范式","industry":"大健康","createdAt":1785165882000,"audios":[{"name":"从养娃到养虾：母婴顶流圣贝拉的门店管理新范式.mp3","asset":"Pfp6b5pxvohc6oxqGX9ctzvpnRe.mp3"}]},{"id":"recvqAu70NNQbC","text":"飞书 · AI · 医院：一个战略人的一年三跃","industry":"大健康","createdAt":1785165882000,"audios":[{"name":"飞书·AI·医院：一个战略人的一年三跃.mp3","asset":"QmK4bjHLcoDzL5xkv1Pcj17xnWg.mp3"}]},{"id":"recvqAu70NUztG","text":"国民饮品的AI进化：揭秘康师傅饮品业务一线的“数字化先锋”","industry":"大消费","createdAt":1785165882000,"audios":[{"name":"国民饮品的AI突围：一家传统食品企业的一线数字化实践.mp3","asset":"GicabihYkoT0OOxnPK6ccfxHnzh.mp3"}]},{"id":"recvqAviHRWLUz","text":"飞书 aily 养出数字员工，看理想、药康、星宇的「智能巡检专家」落地实录","industry":"汽车产业链 大健康","createdAt":1785166165000,"audios":[{"name":"飞书aily智能巡检专家：三家企业落地实录.mp3","asset":"Lic4bMBOeow2DqxqdHRcGQKineh.mp3"}]},{"id":"recvqDG1X3U89N","text":"「吴」限分身：天启，一个会主动办事的高管 Agent","industry":"农林牧渔","createdAt":1785213051000,"audios":[{"name":"「吴」限分身：天启，一个会主动办事的高管Agent.mp3","asset":"RjaNblvb0ohKFqxZWNyc4rd0nRb.mp3"}]},{"id":"recvqDTn7TOQfe","text":"从 3 天到 10 分钟：杰森娱乐的 AI 潮玩加速器","industry":"大消费","createdAt":1785216231000,"audios":[{"name":"从3天到10分钟：杰森娱乐的AI潮玩加速器.mp3","asset":"HDxvbmvTbo9aasxPeRScBHMfnLc.mp3"}]},{"id":"recvrYjd6Re6iu","text":"从 AI 主权到 AI 平权：天波科技的组织转型与数字员工实践","industry":"互联网和信息技术","createdAt":1786434048000,"audios":[{"name":"从 AI 主权到 AI 平权：天波科技的组织转型与数字员工实践.mp3","asset":"MOSfbUg1cozXpzx4Vz2cc00Nnpg.mp3"}]}]}
+</script>
+
+<script>
+/* ============================================================
+   直击先进案例库 · 本地离线版
+   数据源：飞书多维表格导出快照（离职前固化的数据）
+   ============================================================ */
+(function(){
+"use strict";
+
+/* ---------- 数据加载 ---------- */
+var RAW;
+try {
+  RAW = JSON.parse(document.getElementById('app-data').textContent);
+} catch(e) {
+  RAW = { lives: [], guests: [], podcasts: [] };
+}
+
+/* ---------- 资源映射（本地附件 → CDN/本地 URL） ---------- */
+var ASSETS = {"R497ba6FyoPnbCxJ4GTccrsanGe.png":"https://aka.doubaocdn.com/s/TxIyEKJXkR","EEelbATxRozCBExpyXOcToQIn8b.png":"https://aka.doubaocdn.com/s/lV8Vd9XzQU","I6mEbwbUeooBPqxekQCcXZuZnig.png":"https://aka.doubaocdn.com/s/gQpEljbRpc","JA6BbqX71orW6Oxya7CcnOAinMg.png":"https://aka.doubaocdn.com/s/DpDuJsVO1i","ZiDLbvKqLor0Isx2iLnctMPHnic.png":"https://aka.doubaocdn.com/s/OYaCtoHPpb","HCIFbMYxxoZAGfxYv2pctMfyngc.png":"https://aka.doubaocdn.com/s/Lj7fBqARTn","O12qbGKVYoZ1jOxHDhSc7j4FnKb.png":"https://aka.doubaocdn.com/s/enlscVCVMQ","Vj3tbHxl1osmr1xNgU4cVGifnEc.png":"https://aka.doubaocdn.com/s/UQ2BT8uNqj","LlGZbvbmOod7fQxpTrbci0Qon6g.png":"https://aka.doubaocdn.com/s/p6IJXCDkG4","BgG8bsj2dovUBkxE0A9cufoGnCe.png":"https://aka.doubaocdn.com/s/SJlKkHjosQ","YYieb8rkXoqQLExmPMuchUTcnq1.png":"https://aka.doubaocdn.com/s/41p8mXITsh","IEH1bHnW8ox0i2x9At2cIDRPntg.png":"https://aka.doubaocdn.com/s/yKTNnydLAF","NK4xbARY3ofMxLxZgmQcKjQsnrd.png":"https://aka.doubaocdn.com/s/341c6NFMiV","DFvnbKxaXoDpsRxtK3acUrCdn9p.png":"https://aka.doubaocdn.com/s/c2dFhvsVsa","AX3kbeYGWomTrqx2kiTcAqABn2c.png":"https://aka.doubaocdn.com/s/t5c08AV7t3","OBKWb1S10oiwFjx3R6Dc9Uq9ndf.png":"https://aka.doubaocdn.com/s/D7mRtw0xLm","FswzbbBlVoVyBNxgHvicw66Fn1b.png":"https://aka.doubaocdn.com/s/mmsu8nkOOS","WS33bDc3YorbrLxxyU8cZYFjnxe.png":"https://aka.doubaocdn.com/s/r27wON2ENJ","QU9ZbpnT2ozlaQx8UTVc9h7rnve.png":"https://aka.doubaocdn.com/s/2Lbt4Mz4Zs","E6AlbZ41xoRFY8xjcAccOBv5nag.png":"https://aka.doubaocdn.com/s/p7ekwZOpuH","HTMtbETc9oKwVDx8IoccrKTdn2c.png":"https://aka.doubaocdn.com/s/VIZNJZEAil","BH5xb3ULso8UTTxAb4Jc9jKWnpd.png":"https://aka.doubaocdn.com/s/jfSxRHt1GH","D07zbCxEgo3z20xXeXMcmPnznUh.png":"https://aka.doubaocdn.com/s/3ogwi7bRtV","XgezbzxeCorS3BxmmFVcba1zn6e.png":"https://aka.doubaocdn.com/s/LOYrqfV1T8","FFQtbMYgFoAO4QxcMzBcRKwnn33.png":"https://aka.doubaocdn.com/s/QhkNeI1jlW","LpR3b2rgqoJluAxBdcEcFvu0nIb.png":"https://aka.doubaocdn.com/s/2XB8gWDC47","P1cabk0Zmo79G4x3UGLcKGuUnPb.png":"https://aka.doubaocdn.com/s/eTudWaU46X","UwzUbymuSoLCBYxD3ufcpeJtniB.png":"https://aka.doubaocdn.com/s/11uVYtu8Xm","FTkEbLbQso69ifx2Hoec3Pt0nQe.png":"https://aka.doubaocdn.com/s/To6ngIyw7F","A3KIb6OSmonIaYxlq8gc1Btqnsb.png":"https://aka.doubaocdn.com/s/nRHwaeQU4m","PZkxbm4hJoFFQ0xmsa8cAijnnfe.png":"https://aka.doubaocdn.com/s/73d3Yus94J","YUJ6bXpOLoeqz7xS6NlcZjRznrh.png":"https://aka.doubaocdn.com/s/vKOBWxnYE0","N1XybHQVyoGCJ5xqAPucE5bTnId.png":"https://aka.doubaocdn.com/s/3W2LPG3WQM","Kel3bYDM0oPGz2xBc8wcRQpUnsb.png":"https://aka.doubaocdn.com/s/4rEFhu4gAd","YXw7bTWnoog5kAxAkBpcuOwGnXb.png":"https://aka.doubaocdn.com/s/yEi15nML7G","KTmWbxKHpoYp04xxvbfco2mQnAh.png":"https://aka.doubaocdn.com/s/N8VMEKLR38","E5QhbKNFBoe3EZxAFBvcGsYpnpf.png":"https://aka.doubaocdn.com/s/MIRkIVLYsv","WhTYbSEHNoUdrKxoUNNc3y5hnph.png":"https://aka.doubaocdn.com/s/84em5qFJ6I","AxPBbzHZEozuIHxQ5M4c70DtnNO.png":"https://aka.doubaocdn.com/s/2O0ZVmbUub","RLO1byA8qo1SMkxkFlwcGLHcnKg.png":"https://aka.doubaocdn.com/s/sOM4oPGATc","SNZzbvN8aoVebAxL8QKcAvr0n4d.png":"https://aka.doubaocdn.com/s/MDUnaiaxhM","Ovpkb4eOFouPRPxXLX1cc27Tn0c.png":"https://aka.doubaocdn.com/s/flf8Mq4Ash","DbCXbdqhtook6xxTFNhcYr2MnEd.png":"https://aka.doubaocdn.com/s/bMY69Uv2yv","LH3dbt88YorfZ6xs7fbcFJ5hnbd.png":"https://aka.doubaocdn.com/s/4crDN1YphI","B9EcbeqzSouEiVxpLi3c8dHon6e.png":"https://aka.doubaocdn.com/s/WL7g2lITUJ","Qg4HbnDtRoYvX4xZkewcuf6UnDe.png":"https://aka.doubaocdn.com/s/uJTpSss2bM","DJE4b6ixSooSDzxPFjZcSDDznkf.png":"https://aka.doubaocdn.com/s/p3KiqMDgYv","XTJTboHPAoJoUwxyCafczQLFnme.png":"https://aka.doubaocdn.com/s/4bg985fhOY","VMYgbXDOLolSYox02Suc3EtXnBh.png":"https://aka.doubaocdn.com/s/LUPvNF9qQf","OhpSbd0DcoPJxKxhDYHcbiyhnnb.png":"https://aka.doubaocdn.com/s/xUsR2fdjaG","IGXrbtqX2o8EOZx5hf6cOGdOncc.jpeg":"https://aka.doubaocdn.com/s/Y4k0O8YfHZ","RWnobAYYxoDJeVxea49cBsdGnGg.png":"https://aka.doubaocdn.com/s/ajpPxaWg0Z","Ytgab9pjhopYdrxk88fcRoTEnpc.png":"https://aka.doubaocdn.com/s/gCftYEXwfS","P4kCbWlUeo2Au8x8XIuci822nLg.jpg":"https://aka.doubaocdn.com/s/NFMJ6vKD5M","ZWOCb1sZwofvnwx8n5NcleFhneg.png":"https://aka.doubaocdn.com/s/dBq7Qftt8W","XXEAbTCP2oe7hAxxJXYco2xOnpf.jpg":"https://aka.doubaocdn.com/s/T6WkUmJ0tT","PxHfb7T6joNiJvxsvCvcwKG7nMf.png":"https://aka.doubaocdn.com/s/XI5bas1A1K","SPmzbJjycopCy6xJv6Ncy0vKnkd.png":"https://aka.doubaocdn.com/s/0Iivzk6sx2","VOzKbJ7jFoHOdZxzjMlcyGWKndd.jpeg":"https://aka.doubaocdn.com/s/tITyup5RdZ","COrIbl3x8oENRixLGZIcFctbnnd.png":"https://aka.doubaocdn.com/s/0p26kU8jy1","MMtvbzgimocmAHxh9Ruct6Funme.jpeg":"https://aka.doubaocdn.com/s/rzpD4859M0","Zbeob88XWoN3D5xMaqucpnAVnde.jpg":"https://aka.doubaocdn.com/s/0LsVdQ7EUt","D7xybrNANoHMydxePlvcpB7qn09.png":"https://aka.doubaocdn.com/s/Vyqx7tBTE7","Bwh1bdaJdoOqhqxOzEgcMYULnAh.png":"https://aka.doubaocdn.com/s/UDiVyPNVhi","X8gBblBhpoQIb5xlyIscNk8unBR.png":"https://aka.doubaocdn.com/s/RgHsqRdD9q","NMp6bmop4oRTcVxxEp8cehuWnOf.png":"https://aka.doubaocdn.com/s/6QV5KTILUf","FO7LbZ3mso6W96x74J6cULVAnxe.jpeg":"https://aka.doubaocdn.com/s/1uwIBOE4vm","FJFob5KaKoq2mDxSAcucrM4nnqf.png":"https://aka.doubaocdn.com/s/xHKYXYF37Y","NnzSbenA9oYxPVxdUKwcNELWn4e.PNG":"https://aka.doubaocdn.com/s/ntIzFZkND3","AS0ZbKAD7oktTrxFUcDcYAWKnMf.png":"https://aka.doubaocdn.com/s/yIeMm0UFan","G10bbiRmJoVcwCxyDLTcjUGwnuc.png":"https://aka.doubaocdn.com/s/iYVY7M3pL5","XTPfbhbKKowhXuxPiIxcwcUbnvh.png":"https://aka.doubaocdn.com/s/VYCQVLW2Y7","GFPRbCCkIo6il3xwsLBckgLdnxh.png":"https://aka.doubaocdn.com/s/sJ0mhmK6vt","WCuwbcd6qoLblsxQewFcPOHCnpc.png":"https://aka.doubaocdn.com/s/c30VnK4YZP","DevCb8ekSoX55RxumEPcpI9VnxS.png":"https://aka.doubaocdn.com/s/PWHV2oa9GC","FlTIbS5O5omfvOxg1zkcS2yPnTc.png":"https://aka.doubaocdn.com/s/5aSMUzNQze","SC13bRagLoZFk9x2GTJcso7Pnad.png":"https://aka.doubaocdn.com/s/AJNUvxkvhS","Nrl5bv3Vwo4PIRx1i0gcjr8jnhh.png":"https://aka.doubaocdn.com/s/VIDcr1iy9e","Zl2rbO2IKoNb8DxuD2FcSS0ZnQb.png":"https://aka.doubaocdn.com/s/muebhsVRkT","Nz4QbpCRjoeo4bxHEHScccv1nGg.png":"https://aka.doubaocdn.com/s/WJUjmYAMGW","SMa4bsYs5on5Dkx0yR1cPnKDnMh.png":"https://aka.doubaocdn.com/s/E8l4wrUWOU","E6lpbwtedorsUPx7T9XcQuvAnqf.png":"https://aka.doubaocdn.com/s/cidZ8c4m3d","BqYmbSxl1o48YoxrMGZcTBSxn9b.png":"https://aka.doubaocdn.com/s/4TzvJD7CVo","OrM8bAZWEoWkvrxoWE8cYM1rnee.png":"https://aka.doubaocdn.com/s/McgFBPnhkK","Lpy8bspVWostsAxRqOWc170knpc.png":"https://aka.doubaocdn.com/s/1tR53Uj6Hr","PzAAbci1uo43c0xyijJcDJWcnzg.png":"https://aka.doubaocdn.com/s/Mhz5PEngpa","HNwqbOYP1oFlpcxPiELcxhbwnyg.png":"https://aka.doubaocdn.com/s/PU66EPYlAf","HRoCb0gSMosNDqxmVY2cvnaHncd.png":"https://aka.doubaocdn.com/s/az5ECKXdY7","JiPibakhUoQ1UjxqWkOcfXEdn6b.png":"https://aka.doubaocdn.com/s/E1muBxqJfK","Lju1bxHoSoMl3bxiPtecg9D9n5g.png":"https://aka.doubaocdn.com/s/k60tHMLGg4","EuYsbuGL7oXXCsxQtyRcq9vXnke.png":"https://aka.doubaocdn.com/s/6sozsQX6UZ","OhQ2baSv0oQmT1xFuLCcgKe0nPc.png":"https://aka.doubaocdn.com/s/jGeDWq4AuE","Ugs1b0wKxoocFUxGMHZczdLPn4d.png":"https://aka.doubaocdn.com/s/5deFOYhoUm","AEbrbj2igo2DhBxXr6OcQnl3nBb.png":"https://aka.doubaocdn.com/s/yGDukaXepz","JrX3bTdiZoUrHZxNZ3HcVOQAnqc.png":"https://aka.doubaocdn.com/s/2cdgwupwo5","PWs2bdS52o3WAKxkDW7cck6onRs.png":"https://aka.doubaocdn.com/s/5EEQtzOTaK","AnF9b3qk9oWCz8xbh8yckp4un5c.png":"https://aka.doubaocdn.com/s/ie6bzrLpQw","XdPOb6kjFovnOxxftvdc34nCnug.png":"https://aka.doubaocdn.com/s/Q0JPIlrDqo","ZMp2bM6LWoYKvJxfG5acSe0jnuf.png":"https://aka.doubaocdn.com/s/WbKUo2pEdB","QzN9b9707o1BVVxZvlzcKNWFnSb.png":"https://aka.doubaocdn.com/s/P0KgWzwJT9","QZRUbKYH5oRnBoxoFQXcqUQWncd.png":"https://aka.doubaocdn.com/s/EcIRGII8CD","LplSbj2aWotuZgxM8r4c6VznnCD.png":"https://aka.doubaocdn.com/s/vrHek1NbTD","Wt4cbrT4Roszyax4VWlccQmDnfd.png":"https://aka.doubaocdn.com/s/JRbxkm6vGR","BtMibmF5Doe03ax60BTcIYrJn5c.png":"https://aka.doubaocdn.com/s/YFTuGkWUBp","W5PJbQjgwo26T6xjQ6uceuTWn5R.png":"https://aka.doubaocdn.com/s/VPPUKN0CXt","WNFebdPFfoKKy3xhGYOczl65n2e.png":"https://aka.doubaocdn.com/s/NDuwb0YH8T","EgX2byuicouwWuxzxwvcAaN1nod.png":"https://aka.doubaocdn.com/s/2LR5FdpAon","DalHbpTCooQpjBxnHi2cEB1GnVe.png":"https://aka.doubaocdn.com/s/OI9Z54bsuY","MpozbgMJOolkjYxSPWhcARr7nSe.png":"https://aka.doubaocdn.com/s/kSvzh52uEr","KZskbHpipo8fgUxl766cvHtGnad.png":"https://aka.doubaocdn.com/s/96hT2PWRSM","HAsjbsQeeoNvxexRlZfcUbHon9c.png":"https://aka.doubaocdn.com/s/LXfVxzBbE0","YHLEb2DRHoxhfxxIPuBc6QyOnXd.png":"https://aka.doubaocdn.com/s/reDp5z5UvF","WTaCbcDoroP8bPx9milcGr7un7O.png":"https://aka.doubaocdn.com/s/CdzdkK3VS1","OarQbNWzroaogMxGdE9ccoElnkh.png":"https://aka.doubaocdn.com/s/SJgQmFXUkD","UxujbHcYSowDE1x1XLkcwb3anoc.png":"https://aka.doubaocdn.com/s/toxu2L3UU2","DBxKbhA0DoNxXexs9LlcVeXFnKd.png":"https://aka.doubaocdn.com/s/vRegacUFMw","GGKkbWokhofTvaxqCGncFiqcncd.png":"https://aka.doubaocdn.com/s/aKBb74FqjV","TEDObfptxoVYOcxr3lgcmj3inod.jpeg":"https://aka.doubaocdn.com/s/9TXHuxyFbr","JbdHbD0KkodNaUxLXhNcJM8onqf.png":"https://aka.doubaocdn.com/s/Hi1MpK07Un","UmU9b0nuAoIgacxIx6NcaofVnBh.png":"https://aka.doubaocdn.com/s/tXYU6Ued9W","VZDZb0RF1oroVzx3DFXcZxwRnod.jpg":"https://aka.doubaocdn.com/s/TFazZiW7r6","Auh3bGwFCovc24xcseYcpvIznih.png":"https://aka.doubaocdn.com/s/YdCw97uB7X","FzO5bMVF8ozUCuxo5YicnMSUnph.jpg":"https://aka.doubaocdn.com/s/1otZAJIsss","WFpmbZXxJoOZMLxGNXicyByXnqd.png":"https://aka.doubaocdn.com/s/Vi5FnVRPau","YMbMbpzAdoMiwUxAaWSc4f63nhd.png":"https://aka.doubaocdn.com/s/Y3UbjiSfUq","VPjxbFC9UoSsXcxF9hac89G7nWe.jpeg":"https://aka.doubaocdn.com/s/TMw5erwtVC","FsCwbmMgXoxPlsxIBhAciVNRnJe.png":"https://aka.doubaocdn.com/s/CyDUU9gRJY","DqcAbXEl3oJ7XGxrxvgc3yjXn9f.jpeg":"https://aka.doubaocdn.com/s/xt5qtnWQFB","MvimbmKfnoLJMExslSfcYlzwnRf.jpg":"https://aka.doubaocdn.com/s/zFkmpWjXUV","AJ0FbcIigoEClaxMWNQcWos3ntb.png":"https://aka.doubaocdn.com/s/YIM3iplUOg","BGpUb4YTkohWZExPXCecEdPKnrA.png":"https://aka.doubaocdn.com/s/0StA61SDdx","NMiEbWU7jomxxwxm6OqcgfOBnqI.png":"https://aka.doubaocdn.com/s/onVzWhyO5x","Xpw1bSnSvoPI0KxdzH9cqvGynJc.png":"https://aka.doubaocdn.com/s/hB4DXuRUj7","VY66boadPoHtMKxYZQlcj1Egncf.jpeg":"https://aka.doubaocdn.com/s/PKg6VMJfOM","K5gxb7ZChoEJlSxSTRwcylpVnlg.png":"https://aka.doubaocdn.com/s/241crwT9Rh","C9bubtyMboD6LtxbhSvc00zBnCh.PNG":"https://aka.doubaocdn.com/s/kYlQ6Vp4op","VLGIbMBJHoJBgzxd3rjcX9bqn2d.png":"https://aka.doubaocdn.com/s/hIljdP8y4f","Fkj7bV3vEorA5LxCOX4czQbsnub.png":"https://aka.doubaocdn.com/s/Vtx2UF4ucg","WiZ7bE8c8ooi1pxuRTJcGv8gnhh.mp3":"https://aka.doubaocdn.com/s/c7HpmkQ1KK","SGWJbJPXwoIIaExaLBjclxa2nwf.mp3":"https://aka.doubaocdn.com/s/klTDquKDJz","Pfp6b5pxvohc6oxqGX9ctzvpnRe.mp3":"https://aka.doubaocdn.com/s/ZiHbbIDEhG","QmK4bjHLcoDzL5xkv1Pcj17xnWg.mp3":"https://aka.doubaocdn.com/s/FCoRf5RbpE","GicabihYkoT0OOxnPK6ccfxHnzh.mp3":"https://aka.doubaocdn.com/s/9EFL2VFwIx","Lic4bMBOeow2DqxqdHRcGQKineh.mp3":"https://aka.doubaocdn.com/s/P4yl20pala","RjaNblvb0ohKFqxZWNyc4rd0nRb.mp3":"https://aka.doubaocdn.com/s/FKPAKtAfuJ","HDxvbmvTbo9aasxPeRScBHMfnLc.mp3":"https://aka.doubaocdn.com/s/Va8hGUBOK0","MOSfbUg1cozXpzx4Vz2cc00Nnpg.mp3":"https://aka.doubaocdn.com/s/P6NripiNYr","qrcode":"https://miaoda.feishu.cn/aily/api/v1/feisuda/attachments/a7c14512-eff4-4a41-bf0f-d64f900c36f8/raw"};
+
+function assetUrl(key){
+  if(!key) return null;
+  return ASSETS[key] || null;
+}
+
+/* ---------- 工具函数 ---------- */
+function esc(s){
+  return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function fmtDate(ms){
+  if(!ms) return '待定';
+  var d = new Date(ms);
+  return d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日';
+}
+function shortDate(ms){
+  if(!ms) return '';
+  var d = new Date(ms);
+  return (d.getMonth()+1) + '/' + d.getDate();
+}
+function tagHtml(text, cls){
+  return '<span class="tag ' + (cls||'') + '">' + esc(text) + '</span>';
+}
+function firstChar(name){
+  if(!name) return '?';
+  var s = name.trim();
+  return s.charAt(0);
+}
+function imgOrPlaceholder(url, cls, text){
+  if(url){
+    return '<img src="' + esc(url) + '" alt="" loading="lazy" onerror="this.outerHTML=\'<div class=&quot;cover-empty&quot;>' + esc(text) + '</div>\'">';
+  }
+  return '<div class="cover-empty">' + esc(text) + '</div>';
+}
+
+/* ---------- 状态 ---------- */
+var state = {
+  route: '/home',
+  params: {},
+  pioneerTab: 'industry',   // industry | role
+  industryFilter: '全部行业',
+  roleFilter: '全部岗位',
+  materialQuery: '',
+  materialFilters: { company:'全部企业', industry:'全部行业', form:'全部形式', replay:'回放（全部）', gift:'大礼包（全部）' },
+  likes: {}
+};
+
+/* ---------- 本地点赞（localStorage 模拟） ---------- */
+var LIKES_KEY = 'zjx_likes_v1';
+function loadLikes(){
+  try { state.likes = JSON.parse(localStorage.getItem(LIKES_KEY)) || {}; } catch(e){ state.likes = {}; }
+}
+function saveLikes(){
+  try { localStorage.setItem(LIKES_KEY, JSON.stringify(state.likes)); } catch(e){}
+}
+function likeCount(key){
+  var rec = state.likes[key];
+  return rec ? (rec.count || 0) : 0;
+}
+function toggleLike(key){
+  var rec = state.likes[key] || { liked:false, count:0 };
+  if(rec.liked){ rec.liked = false; rec.count = Math.max(0, rec.count - 1); }
+  else { rec.liked = true; rec.count += 1; }
+  state.likes[key] = rec;
+  saveLikes();
+  return rec;
+}
+loadLikes();
+
+/* ---------- 派生数据 ---------- */
+var INDUSTRIES = [];
+(function(){
+  var seen = {};
+  RAW.lives.forEach(function(l){
+    (l.industries||[]).forEach(function(i){ if(i && !seen[i]){ seen[i]=1; INDUSTRIES.push(i);} });
+  });
+})();
+
+var ROLES = ['高管/综合管理','产品/技术/数据','业务经营/运营增长','市场/品牌/内容','客户成功/解决方案','职能/组织管理','供应链/制造/质量合规','无匹配标签'];
+var ROLE_CLASS = { '高管/综合管理':'role-0','产品/技术/数据':'role-1','业务经营/运营增长':'role-2','市场/品牌/内容':'role-3','客户成功/解决方案':'role-4','职能/组织管理':'role-5','供应链/制造/质量合规':'role-6','无匹配标签':'role-4' };
+
+var COMPANIES = (function(){
+  var seen = {}; var arr = [];
+  RAW.lives.forEach(function(l){ (l.companies||[]).forEach(function(c){ if(c && !seen[c]){ seen[c]=1; arr.push(c);} }); });
+  return arr;
+})();
+
+var FORMS = ['圆桌','线下直播','线上对谈','TBD'];
+
+var completedLives = (function(){
+  return RAW.lives.filter(function(l){ return l.status === '已完成'; });
+})();
+
+function pickFeatured(){
+  var sorted = RAW.lives.slice().sort(function(a,b){ return (b.date||0)-(a.date||0); });
+  for(var i=0;i<sorted.length;i++){
+    if(sorted[i].status === '预约中' || sorted[i].status === '进行中'){
+      return { item: sorted[i], kind: 'upcoming' };
+    }
+  }
+  for(var j=0;j<sorted.length;j++){
+    if(sorted[j].status === '已完成') return { item: sorted[j], kind: 'completed' };
+  }
+  return null;
+}
+
+function guestOf(live){
+  // 按嘉宾表匹配：嘉宾 topic 与直播 topic 相同，或嘉宾日期与企业匹配
+  return RAW.guests.filter(function(g){
+    return g.topic && live.topic && g.topic === live.topic;
+  });
+}
+
+/* ---------- 图标 ---------- */
+var ICON = {
+  search: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>',
+  chevronLeft: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>',
+  chevronRight: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>',
+  thumb: '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg>'
+};
+
+/* ---------- 导航 ---------- */
+var NAV_ITEMS = [
+  { to:'#/home', label:'首页' },
+  { to:'#/pioneer', label:'先锋实录' },
+  { to:'#/register', label:'报名参与直播' }
+];
+function renderNav(){
+  var h = '';
+  NAV_ITEMS.forEach(function(n){
+    var active = (state.route === n.to.slice(2) || (n.to === '#/home' && (state.route === 'home' || state.route === ''))) ? ' active' : '';
+    h += '<a class="nav-link' + active + '" href="' + n.to + '">' + esc(n.label) + '</a>';
+  });
+  document.getElementById('navLinks').innerHTML = h;
+  document.getElementById('navMobile').innerHTML = h;
+}
+
+/* ---------- 视图容器 ---------- */
+var app = document.getElementById('app');
+
+function skeletonCards(n){
+  var h = '<div class="grid-3">';
+  for(var i=0;i<n;i++){ h += '<div class="biz-card"><div class="skel-card skeleton"></div><div style="padding:14px"><div class="skeleton" style="height:14px;width:70%;margin-bottom:8px"></div><div class="skeleton" style="height:12px;width:45%"></div></div></div>'; }
+  return h + '</div>';
+}
+
+/* ============================================================
+   页面渲染
+   ============================================================ */
+
+/* ---------- 首页 ---------- */
+function renderHome(){
+  var featured = pickFeatured();
+  var h = '';
+
+  /* Hero */
+  h += '<section class="hero">';
+  h += '<div>';
+  h += '<div class="hero-eyebrow">学习先进数字化实践，就在「直击先进」</div>';
+  h += '<h1 class="hero-title">直击先进<br>案例库</h1>';
+  h += '<p class="hero-subtitle">走进企业真实业务现场，沉淀可复用的 AI 与数字化实践。</p>';
+  h += '<div class="hero-actions">';
+  h += '<button class="button button-default button-lg" onclick="location.hash=\'#/material\'">订阅栏目</button>';
+  h += '<button class="button button-outline button-lg" id="joinCommunityBtn">加入社群</button>';
+  h += '</div>';
+  h += '<div class="hero-note">每周更新不错过</div>';
+  h += '</div>';
+
+  /* HeroOrbit */
+  h += '<div class="orbit-wrap">';
+  h += '<div class="orbit-flow"></div><div class="orbit-ring"></div>';
+  h += '<div class="orbit-flow orbit-flow-inner"></div><div class="orbit-ring orbit-ring-inner"></div>';
+  h += '<div class="orbit-core">AI</div>';
+  h += '<div class="orbit-card oc-1">礼包 · 可复用</div>';
+  h += '<div class="orbit-card oc-2">回放 · 可直达</div>';
+  h += '<div class="orbit-card oc-3">客户 · 企业实践</div>';
+  h += '<div class="orbit-card oc-4"><b>' + INDUSTRIES.length + '</b> 行业分类</div>';
+  h += '<div class="orbit-card oc-5"><b>' + completedLives.length + '</b> 直播案例</div>';
+  h += '</div>';
+  h += '</section>';
+
+  /* StatsBanner */
+  h += '<div class="stats-banner">';
+  h += '<span class="stat-item"><span class="stat-num">145</span><span class="stat-label">期</span></span>';
+  h += '<span class="stat-sep">·</span>';
+  h += '<span class="stat-item"><span class="stat-num">' + INDUSTRIES.length + '+</span><span class="stat-label">行业</span></span>';
+  h += '<span class="stat-sep">·</span>';
+  h += '<span class="stat-item"><span class="stat-num">10万+</span><span class="stat-label">累计观看</span></span>';
+  h += '</div>';
+
+  /* FeaturedLive */
+  if(featured){
+    var it = featured.item;
+    var isUpcoming = featured.kind === 'upcoming';
+    h += '<section class="section"><div class="section-head"><div class="section-title">' + (isUpcoming ? '预约中直播' : '近期直播') + '</div></div>';
+    h += featuredLiveHtml(it, featured.kind, true);
+    h += '</section>';
+  }
+
+  /* About */
+  h += '<section class="section" id="about">';
+  h += '<div class="section-eyebrow">走进直击先进</div>';
+  h += '<div class="section-title">走进企业真实业务现场</div>';
+  h += '<div class="section-sub">沉淀可复用的 AI 与数字化实践，让先进经验真正流动起来</div>';
+
+  h += '<div class="card" style="margin-top:24px;padding:24px">';
+  h += '<div style="font-family:\'Source Code Pro\',monospace;font-size:12px;color:var(--muted-foreground);letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px">ABOUT THE SHOW</div>';
+  h += '<h3 style="font-size:18px;font-weight:600;margin-bottom:12px">「直击先进」栏目简介</h3>';
+  h += '<p class="about-brief">「直击先进」是一档专注于业务数智化的直播节目，我们邀请行业名企、领域能手，一同分享对于先进管理方式和业务数字化的洞察，希望思维的碰撞可以给大家带来新的思考和实践。分享真实、专业、有行业认知的内容，并在好内容的基础上持续扩大影响力，建立用户心智，致力打造一档优质的在线栏目去讲述飞书客户的实践故事。</p>';
+  h += '</div>';
+
+  h += '<div class="about-grid" style="margin-top:16px">';
+  h += '<div class="card" style="padding:24px"><h4 style="font-size:16px;font-weight:600;margin-bottom:14px">观众侧</h4>';
+  h += '<div class="value-col">';
+  h += '<div class="value-item"><span class="dot"></span><div><h4>先进的企业实战经验</h4><p>为中国的企业数字化操盘手，带来行业领先企业的数字化转型实战思考与落地经验。</p></div></div>';
+  h += '<div class="value-item"><span class="dot"></span><div><h4>行业大咖的实战洞察</h4><p>定期邀请各行业的行业大咖、技术大牛，分享对行业变革的深度洞察与前瞻思考。</p></div></div>';
+  h += '<div class="value-item"><span class="dot"></span><div><h4>开箱即用模板带走</h4><p>每期栏目结束，提供嘉宾同款开箱即用的数字化升级实操方法与模板。</p></div></div>';
+  h += '</div></div>';
+  h += '<div class="card" style="padding:24px"><h4 style="font-size:16px;font-weight:600;margin-bottom:14px">嘉宾侧</h4>';
+  h += '<div class="value-col">';
+  h += '<div class="value-item"><span class="dot"></span><div><h4>宣传企业形象</h4><p>获得高价值企业客户人群的定向曝光，通过飞书官方社群、官网、飞行社等渠道宣发。</p></div></div>';
+  h += '<div class="value-item"><span class="dot"></span><div><h4>精准分发企业权益</h4><p>在高净值企业客户群体中，精准分发企业福利，分享先进企业的优秀实践。</p></div></div>';
+  h += '<div class="value-item"><span class="dot"></span><div><h4>打造个人 IP</h4><p>在高价值人群中，通过多重宣发渠道，协助嘉宾打造专业度的个人形象与 IP。</p></div></div>';
+  h += '</div></div>';
+  h += '</div>';
+
+  h += '<div class="steps-grid">';
+  h += '<div class="step-card"><div class="step-num">STEP 01 · 为什么做</div><h4>为什么做</h4><p>数字化转型进入深水区，企业不再满足于概念和方法论，更需要看得见、摸得着、可复用的真实实践。直击先进走进各行各业的先锋企业，记录一线业务场景中的 AI 与数字化落地经验。</p></div>';
+  h += '<div class="step-card"><div class="step-num">STEP 02 · 我们做什么</div><h4>我们做什么</h4><p>通过实地探访、线上对谈、圆桌直播、线下活动等多种形式，沉淀企业实践案例、行业洞察与可复用的业务资料，让先进经验真正流动起来。</p></div>';
+  h += '<div class="step-card"><div class="step-num">STEP 03 · 你能获得什么</div><h4>你能获得什么</h4><p>按行业、岗位、期数多维度检索案例，快速找到与自身业务匹配的实践参考；获取直播回放、大礼包与播后文档，直接用于团队学习与项目推进。</p></div>';
+  h += '</div>';
+  h += '</section>';
+
+  app.innerHTML = h;
+  document.getElementById('joinCommunityBtn').addEventListener('click', openDialog);
+}
+
+/* ---------- 近期直播大卡片 ---------- */
+function featuredLiveHtml(it, kind, showSection){
+  var isUpcoming = kind === 'upcoming';
+  var statusCls = isUpcoming ? 'status-upcoming' : 'status-done';
+  var statusText = isUpcoming ? '预约中' : '已完成';
+  var cover = assetUrl(it.coverAsset);
+  var h = '<div class="grid-2">';
+  h += '<div class="biz-card featured-card" style="cursor:pointer" onclick="location.hash=\'#/live/' + it.id + '\'">';
+  h += '<div class="live-card-cover">' + imgOrPlaceholder(cover, '', '暂无封面');
+  h += '<span class="status-badge ' + statusCls + '">' + statusText + '</span></div>';
+  h += '</div>';
+  h += '<div class="card" style="padding:24px;display:flex;flex-direction:column;gap:12px">';
+  var tags = (it.industries||[]).slice(0,3).map(function(t){ return tagHtml(t); }).join('');
+  h += '<div class="tag-row">' + tags + '</div>';
+  h += '<div class="card-title" style="font-size:24px;-webkit-line-clamp:2">' + esc(it.topic || '未命名直播') + '</div>';
+  h += '<div class="card-meta">企业：' + esc((it.companies||[]).join('、') || '—') + '</div>';
+  h += '<div class="card-meta">嘉宾：' + esc((it.speaker || '—')) + '</div>';
+  h += '<div class="card-meta">日期：' + fmtDate(it.date) + '</div>';
+  h += '<div style="display:flex;gap:12px;margin-top:8px;flex-wrap:wrap">';
+  if(!isUpcoming && it.replayLink){
+    h += '<a class="button button-default" href="' + esc(it.replayLink) + '" target="_blank" rel="noopener">查看回放</a>';
+  } else if(isUpcoming && (it.inviteLink || it.replayLink)){
+    h += '<a class="button button-default" href="' + esc(it.inviteLink || it.replayLink) + '" target="_blank" rel="noopener">预约直播</a>';
+  }
+  if(it.giftLink){
+    h += '<a class="button button-outline" href="' + esc(it.giftLink) + '" target="_blank" rel="noopener">领取直播大礼包</a>';
+  }
+  h += '</div></div></div>';
+  return h;
+}
+
+/* ---------- LiveCard ---------- */
+function liveCardHtml(l){
+  var cover = assetUrl(l.coverAsset);
+  var statusCls = (l.status === '已完成') ? 'status-done' : 'status-upcoming';
+  var key = 'live:' + l.id;
+  var liked = state.likes[key] && state.likes[key].liked;
+  var h = '<div class="biz-card live-card" onclick="location.hash=\'#/live/' + l.id + '\'">';
+  h += '<div class="live-card-cover">' + imgOrPlaceholder(cover, '', '暂无封面');
+  h += '<span class="status-badge ' + statusCls + '">' + esc(l.status || '') + '</span></div>';
+  h += '<div class="live-card-body">';
+  var tags = (l.industries||[]).slice(0,3).map(function(t){ return tagHtml(t); }).join('');
+  var roles = (l.roleTypes||[]).slice(0,2).map(function(r){ return tagHtml(r, 'tag-role'); }).join('');
+  h += '<div class="tag-row">' + tags + roles + '</div>';
+  h += '<div class="card-title">' + esc(l.topic || '未命名直播') + '</div>';
+  h += '<div class="card-meta">' + esc((l.companies||[]).join('、') || '') + ' · ' + esc((l.speaker || '—')) + '</div>';
+  h += '<div class="card-foot">';
+  h += '<span class="card-meta">' + fmtDate(l.date) + '</span>';
+  h += '<button class="useful-btn' + (liked ? ' liked' : '') + '" data-like-key="' + key + '" onclick="event.stopPropagation();toggleLikeUI(this)">' + ICON.thumb + '<span>' + likeCount(key) + '</span></button>';
+  h += '</div></div></div>';
+  return h;
+}
+
+/* ---------- GuestCard ---------- */
+function guestCardHtml(g){
+  var avatar = assetUrl(g.avatarAsset);
+  var key = 'guest:' + g.id;
+  var liked = state.likes[key] && state.likes[key].liked;
+  var isFeatured = !!g.replayLink;
+  var h = '<div class="biz-card guest-card' + (isFeatured ? ' featured-card' : '') + '">';
+  h += '<div class="guest-head">';
+  if(avatar){ h += '<div class="avatar"><img src="' + esc(avatar) + '" alt="" loading="lazy" onerror="this.outerHTML=\'\'"></div>'; }
+  else { h += '<div class="avatar">' + esc(firstChar(g.name)) + '</div>'; }
+  h += '<div><div class="guest-name">' + esc(g.name || '—') + '</div>';
+  h += '<div class="guest-company">' + esc((g.companies||[])[0] || '') + '</div></div>';
+  h += '</div>';
+  h += '<div class="guest-topic">' + esc(g.topic || '') + '</div>';
+  h += '<div class="tag-row">' + (g.roleTypes||[]).slice(0,2).map(function(r){ return '<span class="role-tag ' + (ROLE_CLASS[r]||'role-4') + '">' + esc(r) + '</span>'; }).join('') + '</div>';
+  h += '<div class="guest-foot" style="margin-top:12px">';
+  h += '<button class="useful-btn' + (liked ? ' liked' : '') + '" data-like-key="' + key + '" onclick="toggleLikeUI(this)">' + ICON.thumb + '<span>' + likeCount(key) + '</span></button>';
+  h += '</div></div>';
+  return h;
+}
+
+/* ---------- 先锋实录 ---------- */
+function renderPioneer(){
+  var featured = pickFeatured();
+  var h = '';
+  if(featured){
+    h += '<section class="section" style="padding-bottom:8px"><div class="section-head"><div class="section-title">' + (featured.kind === 'upcoming' ? '预约中直播' : '近期直播') + '</div></div>';
+    h += featuredLiveHtml(featured.item, featured.kind, true);
+    h += '</section>';
+  }
+  h += '<section class="section"><div class="section-title">发现先锋实录</div>';
+  h += '<div class="tabs" style="margin-top:20px">';
+  h += '<button class="tab' + (state.pioneerTab === 'industry' ? ' active' : '') + '" onclick="setTab(\'industry\')">按行业找案例</button>';
+  h += '<button class="tab' + (state.pioneerTab === 'role' ? ' active' : '') + '" onclick="setTab(\'role\')">按岗位找案例</button>';
+  h += '</div>';
+
+  if(state.pioneerTab === 'industry'){
+    h += '<div class="pill-row">';
+    h += '<button class="pill' + (state.industryFilter === '全部行业' ? ' active' : '') + '" onclick="setIndustry(\'全部行业\')">全部行业</button>';
+    INDUSTRIES.forEach(function(i){
+      h += '<button class="pill' + (state.industryFilter === i ? ' active' : '') + '" onclick="setIndustry(\'' + esc(i) + '\')">' + esc(i) + '</button>';
+    });
+    h += '</div>';
+    var list = completedLives.filter(function(l){
+      return state.industryFilter === '全部行业' || (l.industries||[]).indexOf(state.industryFilter) >= 0;
+    });
+    if(list.length === 0){
+      h += '<div class="state-empty">暂无案例</div>';
+    } else {
+      h += '<div class="grid-3">' + list.map(liveCardHtml).join('') + '</div>';
+    }
+  } else {
+    h += '<div class="pill-row">';
+    h += '<button class="pill' + (state.roleFilter === '全部岗位' ? ' active' : '') + '" onclick="setRole(\'全部岗位\')">全部岗位</button>';
+    ROLES.forEach(function(r){
+      h += '<button class="pill' + (state.roleFilter === r ? ' active' : '') + '" onclick="setRole(\'' + esc(r) + '\')">' + esc(r) + '</button>';
+    });
+    h += '</div>';
+    var list = RAW.guests.filter(function(g){
+      return state.roleFilter === '全部岗位' || (g.roleTypes||[]).indexOf(state.roleFilter) >= 0;
+    });
+    if(list.length === 0){
+      h += '<div class="state-empty">暂无嘉宾</div>';
+    } else {
+      h += '<div class="grid-3">' + list.map(guestCardHtml).join('') + '</div>';
+    }
+  }
+  h += '</section>';
+  app.innerHTML = h;
+}
+
+/* ---------- 行业页 ---------- */
+function renderIndustry(){
+  var featured = pickFeatured();
+  var h = '';
+  if(featured){
+    h += '<section class="section" style="padding-bottom:8px"><div class="section-head"><div class="section-title">' + (featured.kind === 'upcoming' ? '预约中直播' : '近期直播') + '</div></div>';
+    h += featuredLiveHtml(featured.item, featured.kind, true);
+    h += '</section>';
+  }
+  h += '<section class="section"><div class="section-title">按行业找案例</div>';
+  h += '<div class="pill-row" style="margin-top:20px">';
+  h += '<button class="pill' + (state.industryFilter === '全部行业' ? ' active' : '') + '" onclick="setIndustry(\'全部行业\')">全部行业</button>';
+  INDUSTRIES.forEach(function(i){
+    h += '<button class="pill' + (state.industryFilter === i ? ' active' : '') + '" onclick="setIndustry(\'' + esc(i) + '\')">' + esc(i) + '</button>';
+  });
+  h += '</div>';
+  var list = completedLives.filter(function(l){
+    return state.industryFilter === '全部行业' || (l.industries||[]).indexOf(state.industryFilter) >= 0;
+  });
+  if(list.length === 0){ h += '<div class="state-empty">暂无案例</div>'; }
+  else { h += '<div class="grid-3">' + list.map(liveCardHtml).join('') + '</div>'; }
+  h += '</section>';
+  app.innerHTML = h;
+}
+
+/* ---------- 素材页 ---------- */
+function materialFiltered(){
+  var q = state.materialQuery.trim().toLowerCase();
+  var f = state.materialFilters;
+  return RAW.lives.filter(function(l){
+    if(q){
+      var hit = false;
+      if((l.topic||'').toLowerCase().indexOf(q) >= 0) hit = true;
+      if((l.issue||'').toLowerCase().indexOf(q) >= 0) hit = true;
+      (l.companies||[]).forEach(function(c){ if(c.toLowerCase().indexOf(q) >= 0) hit = true; });
+      if(!hit) return false;
+    }
+    if(f.company !== '全部企业' && (l.companies||[]).indexOf(f.company) < 0) return false;
+    if(f.industry !== '全部行业' && (l.industries||[]).indexOf(f.industry) < 0) return false;
+    if(f.form !== '全部形式' && l.form !== f.form) return false;
+    if(f.replay === '已有回放' && !l.replayLink) return false;
+    if(f.replay === '暂无回放' && l.replayLink) return false;
+    if(f.gift === '已有大礼包' && !l.giftLink) return false;
+    if(f.gift === '暂无大礼包' && l.giftLink) return false;
+    return true;
+  });
+}
+
+function renderMaterial(){
+  var f = state.materialFilters;
+  var h = '<section class="section">';
+  h += '<div class="section-title">按直播期数找素材</div>';
+  h += '<div class="section-sub">按主题、企业、期数搜索，快速定位每期直播的回放与大礼包素材。</div>';
+
+  h += '<div class="filter-bar" style="margin-top:24px">';
+  h += '<div class="search-box">' + ICON.search + '<input id="materialQuery" type="text" placeholder="搜索主题 / 企业 / 期数" value="' + esc(state.materialQuery) + '" oninput="setQuery(this.value)"></div>';
+  h += '<div class="select-row">';
+  h += '<select class="select" onchange="setFilter(\'company\', this.value)">' + selOpts('company', ['全部企业'].concat(COMPANIES)) + '</select>';
+  h += '<select class="select" onchange="setFilter(\'industry\', this.value)">' + selOpts('industry', ['全部行业'].concat(INDUSTRIES)) + '</select>';
+  h += '<select class="select" onchange="setFilter(\'form\', this.value)">' + selOpts('form', ['全部形式'].concat(FORMS)) + '</select>';
+  h += '<select class="select" onchange="setFilter(\'replay\', this.value)">' + selOpts('replay', ['回放（全部）','已有回放','暂无回放']) + '</select>';
+  h += '<select class="select" onchange="setFilter(\'gift\', this.value)">' + selOpts('gift', ['大礼包（全部）','已有大礼包','暂无大礼包']) + '</select>';
+  h += '</div></div>';
+
+  var list = materialFiltered();
+  h += '<div class="result-count">共 ' + list.length + ' 期素材</div>';
+  if(list.length === 0){
+    h += '<div class="state-empty">无匹配素材</div>';
+  } else {
+    h += '<div class="material-list">';
+    list.forEach(function(l){
+      var cover = assetUrl(l.coverAsset);
+      h += '<div class="material-card" onclick="location.hash=\'#/live/' + l.id + '\'">';
+      h += '<div class="material-thumb">' + imgOrPlaceholder(cover, '', '暂无封面') + '</div>';
+      h += '<div class="material-info">';
+      h += '<div class="material-title">' + esc(l.topic || '未命名直播') + '</div>';
+      h += '<div class="material-meta">';
+      if(l.issue){ h += '<span class="issue-badge">第' + esc(l.issue) + '期</span>'; }
+      h += '<span>' + esc((l.companies||[]).join('、')) + '</span>';
+      h += '<span>' + fmtDate(l.date) + '</span>';
+      h += '</div></div>';
+      h += '<div class="material-right">';
+      if(l.replayLink){ h += '<span class="tag" style="color:hsl(148,58%,65%);border-color:hsla(148,58%,46%,0.4);background:hsla(148,58%,46%,0.1)">有回放</span>'; }
+      if(l.giftLink){ h += '<span class="tag" style="color:hsl(221,83%,75%);">有大礼包</span>'; }
+      h += '<span class="material-arrow">' + ICON.chevronRight + '</span>';
+      h += '</div></div>';
+    });
+    h += '</div>';
+  }
+  h += '</section>';
+  app.innerHTML = h;
+}
+
+function selOpts(k, arr){
+  var v = state.materialFilters[k];
+  return arr.map(function(o){
+    return '<option value="' + esc(o) + '"' + (o === v ? ' selected' : '') + '>' + esc(o) + '</option>';
+  }).join('');
+}
+
+
+
+/* ---------- 报名页 ---------- */
+var REGISTER_FORM_URL = 'https://bytedance.larkoffice.com/share/base/form/shrcn16wz6C7udd8AIs1elvD5cf';
+function renderRegister(){
+  var h = '<div class="plain-wrap">';
+  h += '<div class="section-eyebrow">报名参与直播</div>';
+  h += '<div class="plain-title">报名参与直播</div>';
+  h += '<div class="plain-sub">填写下方表单提交报名信息，我们会尽快与你联系</div>';
+  h += '<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">';
+  h += '<a class="button button-default button-lg" href="' + REGISTER_FORM_URL + '" target="_blank" rel="noopener">在新窗口打开报名表单</a>';
+  h += '</div>';
+  h += '<div class="dialog-note" style="margin-top:24px">本地离线版不再内嵌表单，报名请通过上方链接在新窗口完成。</div>';
+  h += '</div>';
+  app.innerHTML = h;
+}
+
+/* ---------- 直播详情 ---------- */
+function renderLiveDetail(id){
+  var l = null;
+  for(var i=0;i<RAW.lives.length;i++){ if(RAW.lives[i].id === id){ l = RAW.lives[i]; break; } }
+  if(!l){
+    app.innerHTML = '<div class="plain-wrap"><div class="plain-title">未找到该直播</div><a class="button button-outline" href="#/pioneer">返回先锋实录</a></div>';
+    return;
+  }
+  var cover = assetUrl(l.coverAsset);
+  var isDone = l.status === '已完成';
+  var isUpcoming = l.status === '预约中' || l.status === '进行中';
+  var statusCls = isDone ? 'status-done' : 'status-upcoming';
+  var h = '<div class="detail-wrap">';
+  h += '<button class="back-btn" onclick="history.back()">' + ICON.chevronLeft + '返回</button>';
+  h += '<div class="detail-main">';
+  h += '<div class="detail-cover">' + imgOrPlaceholder(cover, '', '暂无封面') + '</div>';
+  h += '<div class="detail-info">';
+  if(l.issue){ h += '<span class="detail-issue">第' + esc(l.issue) + '期</span>'; }
+  h += '<h1 class="detail-title">' + esc(l.topic || '未命名直播') + '</h1>';
+  h += '<div class="detail-row"><span class="k">企业</span><span class="v">' + esc((l.companies||[]).join('、') || '—') + '</span></div>';
+  h += '<div class="detail-row"><span class="k">嘉宾</span><span class="v">' + esc(l.speaker || '—') + '</span></div>';
+  h += '<div class="detail-row"><span class="k">日期</span><span class="v">' + fmtDate(l.date) + '</span></div>';
+  h += '<div class="detail-row"><span class="k">形式</span><span class="v">' + esc(l.form || '—') + '</span></div>';
+  h += '<div class="detail-row"><span class="k">状态</span><span class="v"><span class="status-badge ' + statusCls + '" style="position:static">' + esc(l.status || '—') + '</span></span></div>';
+  if(l.industries && l.industries.length){
+    h += '<div class="detail-row"><span class="k">行业</span><span class="v"><span class="tag-row">' + l.industries.map(function(t){ return tagHtml(t); }).join('') + '</span></span></div>';
+  }
+  h += '</div></div>';
+
+  if(l.highlights){
+    h += '<div class="detail-highlights"><h3>直播看点</h3><p>' + esc(l.highlights) + '</p></div>';
+  }
+
+  if((isDone && l.replayLink) || (isUpcoming && (l.inviteLink || l.replayLink)) || l.giftLink){
+    h += '<div class="detail-actions">';
+    if(isDone && l.replayLink){
+      h += '<a class="button button-default button-lg" href="' + esc(l.replayLink) + '" target="_blank" rel="noopener">查看回放</a>';
+    } else if(isUpcoming && (l.inviteLink || l.replayLink)){
+      h += '<a class="button button-default button-lg" href="' + esc(l.inviteLink || l.replayLink) + '" target="_blank" rel="noopener">预约直播</a>';
+    }
+    if(l.giftLink){
+      h += '<a class="button button-outline button-lg" href="' + esc(l.giftLink) + '" target="_blank" rel="noopener">直播大礼包</a>';
+    }
+    h += '</div>';
+  }
+  h += '</div>';
+  app.innerHTML = h;
+}
+
+/* ---------- 404 ---------- */
+function renderNotFound(){
+  app.innerHTML = '<div class="plain-wrap"><div class="plain-title">页面不存在</div><a class="button button-outline" href="#/home">返回首页</a></div>';
+}
+
+/* ---------- 路由 ---------- */
+function parseHash(){
+  var raw = location.hash || '#/home';
+  var path = raw.replace(/^#\/?/, '');
+  var parts = path.split('?');
+  var seg = parts[0].split('/').filter(Boolean);
+  var route = seg.length ? seg[0] : 'home';
+  var params = {};
+  if(seg[1]) params.id = seg[1];
+  if(parts[1]){
+    parts[1].split('&').forEach(function(kv){
+      var p = kv.split('=');
+      if(p[0]) params[p[0]] = decodeURIComponent(p[1] || '');
+    });
+  }
+  return { route: route, params: params };
+}
+
+function router(){
+  var r = parseHash();
+  state.route = r.route;
+  state.params = r.params;
+  renderNav();
+  if(r.params.id && (r.route === 'live')){ renderLiveDetail(r.params.id); return; }
+  switch(r.route){
+    case 'home': case '': renderHome(); break;
+    case 'pioneer': renderPioneer(); break;
+    case 'industry': renderIndustry(); break;
+    case 'material': renderMaterial(); break;
+    case 'register': renderRegister(); break;
+    default: renderNotFound();
+  }
+  window.scrollTo(0,0);
+}
+
+/* ---------- 全局交互 ---------- */
+function toggleLikeUI(btn){
+  var key = btn.getAttribute('data-like-key');
+  var rec = toggleLike(key);
+  btn.classList.toggle('liked', rec.liked);
+  btn.querySelector('span').textContent = rec.count;
+}
+function setTab(t){
+  state.pioneerTab = t;
+  if(t === 'role') state.roleFilter = '全部岗位'; else state.industryFilter = '全部行业';
+  renderPioneer();
+}
+function setIndustry(v){ state.industryFilter = v; if(state.route === 'pioneer') renderPioneer(); else renderIndustry(); }
+function setRole(v){ state.roleFilter = v; renderPioneer(); }
+function setQuery(v){ state.materialQuery = v; renderMaterial(); var el = document.getElementById('materialQuery'); if(el) el.focus(); }
+function setFilter(k, v){ state.materialFilters[k] = v; renderMaterial(); }
+
+function openDialog(){
+  document.getElementById('dialogMask').classList.add('open');
+  var img = document.getElementById('dialogQrImg');
+  img.src = ASSETS['qrcode'] || 'about:blank';
+  document.getElementById('dialogNote').textContent = '扫码加入直击先进社群';
+}
+function closeDialog(){ document.getElementById('dialogMask').classList.remove('open'); }
+document.getElementById('dialogClose').addEventListener('click', closeDialog);
+document.getElementById('dialogMask').addEventListener('click', function(e){ if(e.target === this) closeDialog(); });
+
+/* 汉堡菜单 */
+document.getElementById('navToggle').addEventListener('click', function(){
+  document.getElementById('navMobile').classList.toggle('open');
+});
+
+/* ---------- 启动 ---------- */
+window.addEventListener('hashchange', function(){
+  document.getElementById('navMobile').classList.remove('open');
+  router();
+});
+router();
+
+/* IIFE 内函数全局不可见，内联 onclick 依赖全局；此处显式暴露 */
+window.setTab = setTab;
+window.setIndustry = setIndustry;
+window.setRole = setRole;
+window.toggleLikeUI = toggleLikeUI;
+
+})();
+</script>
+</body>
+</html>
